@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unreasonable Effectiveness of HTML with Claude Code</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        section h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--border);
+        }
+
+        section h2 .icon {
+            font-size: 1.8rem;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .executive-summary h2 {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .executive-summary p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .highlight-box strong {
+            color: var(--accent);
+        }
+
+        .key-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .key-point {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .key-point:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
+        }
+
+        .key-point h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .key-point p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .analysis-item {
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .analysis-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .analysis-item h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .analysis-item h3 .icon {
+            color: var(--secondary);
+        }
+
+        .use-case-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .actionable-insights {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .actionable-insights h2 {
+            color: white;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .action-list {
+            list-style: none;
+        }
+
+        .action-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .action-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-list .number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .action-list .content h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-list .content p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .prompt-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            border-left: 4px solid var(--accent);
+            overflow-x: auto;
+        }
+
+        .prompt-example::before {
+            content: "💬 Example Prompt";
+            display: block;
+            color: var(--accent);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .meta {
+            margin-top: 0.5rem;
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 1.75rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.3rem;
+            }
+
+            .key-points-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 The Unreasonable Effectiveness of HTML</h1>
+            <p class="subtitle">Why HTML beats Markdown when working with Claude Code</p>
+            <span class="badge">By Thariq Shihipar, Anthropic</span>
+        </header>
+
+        <section class="executive-summary">
+            <h2><span class="icon">📋</span> Executive Summary</h2>
+            <p>
+                This article argues that <strong>HTML is a superior output format to Markdown</strong> when working with Claude Code. HTML enables richer information density, better visual organization, easier sharing, and interactive two-way communication. The core insight is that you're far more likely to actually read and engage with Claude's output when it's beautifully formatted HTML—keeping you genuinely "in the loop" as AI takes on more complex work.
+            </p>
+            <div class="highlight-box">
+                <strong>💡 Bottom Line:</strong> Switching from Markdown to HTML for Claude Code outputs improves comprehension, collaboration, and control. The author has stopped using Markdown entirely.
+            </div>
+        </section>
+
+        <section>
+            <h2><span class="icon">🎯</span> Key Points</h2>
+            <div class="key-points-grid">
+                <div class="key-point">
+                    <h3>📊 Information Density</h3>
+                    <p>HTML can represent tables, CSS styling, SVG diagrams, interactive code, animations, and spatial data—far beyond Markdown's capabilities.</p>
+                </div>
+                <div class="key-point">
+                    <h3>👁️ Visual Clarity</h3>
+                    <p>Complex specs become readable with tabs, illustrations, and links. You'll actually read a 100+ line HTML document; Markdown gets ignored.</p>
+                </div>
+                <div class="key-point">
+                    <h3>🔗 Easy Sharing</h3>
+                    <p>HTML files can be uploaded and shared as links. Colleagues open them instantly—no attachments or special renderers needed.</p>
+                </div>
+                <div class="key-point">
+                    <h3>🎛️ Two-Way Interaction</h3>
+                    <p>Add sliders, knobs, and controls to tune designs. Export changes as prompts to paste back into Claude Code.</p>
+                </div>
+                <div class="key-point">
+                    <h3>📂 Data Ingestion</h3>
+                    <p>Claude Code can read your filesystem, MCPs, browser, and git history—then synthesize it all into rich HTML reports.</p>
+                </div>
+                <div class="key-point">
+                    <h3>🚀 Zero Setup</h3>
+                    <p>Simply prompt "make an HTML file" or "make an HTML artifact." No special configuration required to get started.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2><span class="icon">🔬</span> Deep Analysis</h2>
+
+            <div class="analysis-item">
+                <h3><span class="icon">📝</span> Specs, Planning & Exploration</h3>
+                <p>
+                    Instead of linear Markdown plans, create a <strong>web of interconnected HTML files</strong>: brainstorming explorations, UI mockups, type interfaces, and implementation plans. Pass these files into new sessions for implementation and verification agents.
+                </p>
+                <div class="prompt-example">
+                    Create a thorough implementation plan in a HTML file, be sure to make some mockups, show data flow and add important code snippets I might want to review. Make it easy to read and digest.
+                </div>
+                <div style="margin-top: 1rem;">
+                    <span class="use-case-tag">Architecture</span>
+                    <span class="use-case-tag">UI Exploration</span>
+                    <span class="use-case-tag">Feature Planning</span>
+                </div>
+            </div>
+
+            <div class="analysis-item">
+                <h3><span class="icon">🔍</span> Code Review & Understanding</h3>
+                <p>
+                    Render diffs with inline annotations, color-code findings by severity, and add flowcharts explaining complex logic. Create PR explanations that reviewers will actually understand.
+                </p>
+                <div class="prompt-example">
+                    Help me review this PR by creating an HTML artifact that describes it. Render the actual diff with inline margin annotations, color-code findings by severity.
+                </div>
+                <div style="margin-top: 1rem;">
+                    <span class="use-case-tag">PR Creation</span>
+                    <span class="use-case-tag">Code Walkthroughs</span>
+                    <span class="use-case-tag">Onboarding</span>
+                </div>
+            </div>
+
+            <div class="analysis-item">
+                <h3><span class="icon">🎨</span> Design & Prototypes</h3>
+                <p>
+                    Prototype animations, interactions, and components in HTML—then translate to React, Swift, or any framework. Use sliders and controls to fine-tune exactly what you want.
+                </p>
+                <div class="prompt-example">
+                    Prototype a new checkout button with a play animation. Create an HTML file with sliders to try different options, and give me a copy button to export the parameters.
+                </div>
+                <div style="margin-top: 1rem;">
+                    <span class="use-case-tag">Animation Tuning</span>
+                    <span class="use-case-tag">Design Systems</span>
+                    <span class="use-case-tag">Component Libraries</span>
+                </div>
+            </div>
+
+            <div class="analysis-item">
+                <h3><span class="icon">📊</span> Reports & Research</h3>
+                <p>
+                    Synthesize information from Slack, codebases, git history, or the internet into beautiful reports,
