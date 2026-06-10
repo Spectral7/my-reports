@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Workflows in Claude Code Explained</title>
+<style>
+:root{--paper:#F7F4EF;--ink:#201A17;--muted:#6B5F57;--coral:#C9633F;--line:#E7DFD6;--card:#FFFDFB}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.wrap{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);font-weight:700}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:42px;line-height:1.15;margin:10px 0 14px;font-weight:700}
+.meta{color:var(--muted);font-size:14px;border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:8px}
+h2{font-family:Georgia,serif;font-size:26px;margin:42px 0 12px}
+.lead{font-size:19px;color:#3a322d}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:16px 0}
+ul{padding-left:0;list-style:none;margin:0}
+li{position:relative;padding:9px 0 9px 28px;border-bottom:1px solid var(--line)}
+li:last-child{border:0}
+li:before{content:"◆";position:absolute;left:0;color:var(--coral);font-size:12px;top:12px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{background:#F0E9E0;font-family:Georgia,serif}
+.insight{background:#FBF1EC;border-left:3px solid var(--coral)}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+a{color:var(--coral)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker">Work - Report</div>
+<h1>Dynamic Workflows in Claude Code Explained</h1>
+<div class="meta">x.com - 10.06.2026</div>
+<p class="lead">Anthropic's Thariq announced dynamic workflows in Claude Code, enabling Claude to write its own task-specific harness on the fly instead of relying solely on the default coding harness.</p>
+
+<h2>Key Points</h2>
+<div class="card">
+<ul>
+<li>Claude Code now supports <strong>dynamic workflows</strong>, released the week prior to the early June 2026 post.</li>
+<li>Claude can <strong>write its own harness</strong>, custom-built for each individual task at hand.</li>
+<li>The <strong>default harness is optimized for coding</strong>, but dynamic workflows extend capability beyond that scope.</li>
+<li>Announcement made by <strong>Thariq (@trq212)</strong> via an X post linking to a full Anthropic article.</li>
+<li>The post attracted significant traction: <strong>2.9M views</strong> and 255 replies, indicating strong developer interest.</li>
+</ul>
+</div>
+
+<h2>Deep Analysis</h2>
+<p>This release marks a meaningful evolution in agentic AI tooling. Traditionally, Claude Code operated within a fixed "harness" — the scaffolding that defines how the model perceives tools, context, and task structure. By letting Claude generate its own harness dynamically, the system becomes far more adaptable, capable of reconfiguring itself for tasks well outside conventional software development.</p>
+<p>The shift reflects a broader industry trend toward self-configuring agents that reduce the manual setup burden on developers. The comparison below frames the change.</p>
+<table>
+<tr><th>Aspect</th><th>Default Harness</th><th>Dynamic Workflows</th></tr>
+<tr><td>Configuration</td><td>Fixed, preset</td><td>Generated on the fly</td></tr>
+<tr><td>Primary focus</td><td>Coding tasks</td><td>Any task type</td></tr>
+<tr><td>Flexibility</td><td>Limited to design</td><td>Task-specific adaptation</td></tr>
+<tr><td>Setup effort</td><td>Manual tuning</td><td>Self-authored by Claude</td></tr>
+</table>
+<p>For teams, the practical upshot is broader applicability of Claude Code across non-coding domains, though the reliability of model-generated harnesses will need validation in real workflows.</p>
+
+<h2>Actionable Insights</h2>
+<div class="card insight">
+<ul>
+<li>Test dynamic workflows on <strong>non-coding tasks</strong> — data processing, research, or automation — where the default harness previously fell short.</li>
+<li>Read the <strong>linked full article</strong> to understand harness mechanics before deploying in production environments.</li>
+<li>Pilot the feature on a <strong>low-risk internal workflow</strong> to assess the reliability of self-generated harnesses.</li>
+<li>Scan community replies for <strong>early adopter pitfalls</strong> and emerging best practices.</li>
+</ul>
+</div>
+
+<footer>Source: https://x.com/trq212/status/2061907337154367865 - 10.06.2026 - My Mind Bot</footer>
+</div>
+</body>
+</html>
