@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<title>My Mind — How My Obsidian Second Brain Works</title>
+<style>
+:root{--paper:#F7F4EF;--ink:#201A17;--muted:#6B5F57;--coral:#C9633F;--line:#E7DFD6;--card:#FFFDFB;--soft:#FBF1EC;--th:#F0E9E0}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.wrap{max-width:780px;margin:0 auto;padding:56px 24px 80px}
+.kicker{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral);font-weight:700}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:42px;line-height:1.15;margin:10px 0 14px;font-weight:700}
+.meta{color:var(--muted);font-size:14px;border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:8px}
+h2{font-family:Georgia,serif;font-size:27px;margin:48px 0 6px}
+h3{font-family:Georgia,serif;font-size:20px;margin:26px 0 6px}
+.lead{font-size:19px;color:#3a322d}
+.sub{color:var(--muted);font-size:15px;margin:2px 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:16px 0}
+ul{padding-left:0;list-style:none;margin:0}
+li{position:relative;padding:9px 0 9px 28px;border-bottom:1px solid var(--line)}
+li:last-child{border:0}
+li:before{content:"\25C6";position:absolute;left:0;color:var(--coral);font-size:12px;top:12px}
+ol{padding-left:22px;margin:8px 0}
+ol li{padding:6px 0 6px 6px;border:0}
+ol li:before{content:none}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--th);font-family:Georgia,serif}
+td code,p code,li code{background:#efe7dd;border-radius:5px;padding:2px 6px;font-size:13px;font-family:"SF Mono",Menlo,Consolas,monospace;color:#7a3a22}
+.cmd{font-family:"SF Mono",Menlo,Consolas,monospace;color:var(--coral);font-weight:700;white-space:nowrap}
+.insight{background:var(--soft);border-left:3px solid var(--coral)}
+.note{background:#F2F5F0;border-left:3px solid #6f8f6a}
+.toc{font-size:15px}
+.toc a{display:inline-block;margin:3px 14px 3px 0}
+.pill{display:inline-block;background:var(--th);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;margin:3px 6px 3px 0;color:var(--muted)}
+.flow{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:14px;color:#3a322d;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0;line-height:1.9}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+a{color:var(--coral)}
+strong{color:#2a221d}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">My Mind &middot; User Manual</div>
+  <h1>How My Second Brain Works</h1>
+  <div class="meta">A complete guide to the "My Mind" Obsidian vault &mdash; 18.06.2026</div>
+
+  <p class="lead">My Mind is no longer just a folder of notes. It's an active second brain: I capture thoughts from my phone, and Claude files, links, and answers from them on command. This is the manual &mdash; what each part does, and exactly how to use it day to day.</p>
+
+  <div class="card toc">
+    <strong>In this guide</strong><br>
+    <a href="#big">1. The big picture</a>
+    <a href="#folders">2. The folder map (PARA)</a>
+    <a href="#capture">3. Capturing thoughts</a>
+    <a href="#commands">4. The 6 commands</a>
+    <a href="#workflow">5. My weekly rhythm</a>
+    <a href="#rules">6. The rules that keep it clean</a>
+    <a href="#cheat">7. One-page cheat sheet</a>
+  </div>
+
+  <h2 id="big">1. The big picture</h2>
+  <p>Think of it as a loop with three moves: <strong>capture</strong> anything into one in-tray, <strong>file</strong> it into the right place with links, then <strong>retrieve</strong> it whenever I need it. I never have to remember <em>where</em> something lives &mdash; I just throw it in, and ask for it later.</p>
+
+  <div class="flow">
+    &#128241; Telegram &rarr; &#128229; Inbox &rarr; &nbsp;<span style="color:#C9633F">/ingest</span>&nbsp; &rarr; filed &amp; linked note &rarr; &nbsp;<span style="color:#C9633F">/ask</span>&nbsp; answers from it
+  </div>
+
+  <p>Two files sit at the root and run the whole thing:</p>
+  <ul>
+    <li><strong>hot.md</strong> &mdash; the running context cache. Claude reads it first every session so it knows who I am and where we left off.</li>
+    <li><strong>index.md</strong> &mdash; the master catalog of every note. The "table of contents" for the whole brain.</li>
+  </ul>
+
+  <h2 id="folders">2. The folder map (PARA)</h2>
+  <p class="sub">Everything lives in one of these. PARA = Projects, Areas, Resources, Archive &mdash; plus an Inbox and Notes.</p>
+  <table>
+    <thead><tr><th>Folder</th><th>What goes here</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Inbox/</strong></td><td>Raw captures from the Telegram bot. The in-tray. The goal is always to empty it.</td></tr>
+      <tr><td><strong>Areas/</strong></td><td>One "Map note" (MOC) per ongoing life-area, linking everything in it. Current areas: Personal AI OS &middot; Cloud Sport &middot; AI Education &middot; Personal.</td></tr>
+      <tr><td><strong>Notes/</strong></td><td>Atomic notes &mdash; one idea each. Sub-folders: <code>Concepts/</code> (ideas &amp; tools), <code>People/</code> (people &amp; orgs), <code>Q&amp;A/</code> (good answers worth keeping).</td></tr>
+      <tr><td><strong>Projects/</strong></td><td>Active projects with an end goal &mdash; one note each.</td></tr>
+      <tr><td><strong>Resources/</strong></td><td>Reference material, reading digests, how-tos.</td></tr>
+      <tr><td><strong>Archive/</strong></td><td>Finished or inactive. Nothing is deleted &mdash; Git is the backup.</td></tr>
+      <tr><td><strong>Daily&nbsp;Notes/ &middot; Templates/ &middot; Reports/</strong></td><td>The daily journal, note templates, and research-bot output (like this report).</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card note">
+    <strong>Areas vs. Projects</strong> &mdash; an <em>Area</em> is forever (e.g. "Cloud Sport", "Personal AI OS"); a <em>Project</em> has a finish line. When a project ends, it moves to Archive; the Area lives on.
+  </div>
+
+  <h2 id="capture">3. Capturing thoughts</h2>
+  <p>Capture happens from my phone via <strong>My Mind Bot</strong> on Telegram. I never open the laptop just to jot something down.</p>
+  <table>
+    <thead><tr><th>Send this to the bot</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>A plain thought or idea</td><td>Saved to <code>Inbox/</code> as a capture, to be filed later.</td></tr>
+      <tr><td>A link (optionally + my own notes)</td><td>Saved to my reading list as a "read later" item.</td></tr>
+      <tr><td>A link + <code>/report</code> (+ optional instructions)</td><td>Claude reads the article and writes a full HTML report like this one, published to my reports site.</td></tr>
+      <tr><td>A PDF (with a caption)</td><td>Turned into a full report too.</td></tr>
+    </tbody>
+  </table>
+  <p class="sub">Reports only fire when <code>/report</code> is in the message (or a file is sent). Captures and reading-saves are free; reports cost a few cents each.</p>
+
+  <h2 id="commands">4. The 6 commands</h2>
+  <p>These are Claude Code slash commands &mdash; I type them in a Claude session opened in the vault. This is where filing and retrieval happen.</p>
+
+  <h3><span class="cmd">/ingest</span> &mdash; the Librarian</h3>
+  <p>Processes everything in <code>Inbox/</code> into clean, filed, linked notes. It reads each capture, decides what it is (idea / task / reading / reference), writes it into the right folder, adds <code>[[links]]</code> to related notes and its Area map, pulls out important people and concepts as little stub pages, updates <code>index.md</code>, and empties the Inbox. <em>Also runs when I just say "process my inbox" or "разбери inbox".</em></p>
+
+  <h3><span class="cmd">/ask &lt;question&gt;</span> &mdash; retrieval</h3>
+  <p>Answers a question using <strong>only my own notes</strong> (never the open web), with links to the sources. If it's a good answer worth keeping, it offers to file it into <code>Notes/Q&amp;A/</code> so my knowledge compounds over time.</p>
+
+  <h3><span class="cmd">/research &lt;topic or URL&gt;</span> &mdash; the researcher</h3>
+  <p>Focused <em>web</em> research (or summarize a link) &rarr; a filed digest in <code>Resources/</code>, linked and indexed. This is the opposite of <code>/ask</code>: it goes outward to the web.</p>
+
+  <h3><span class="cmd">/lint</span> &mdash; the health check</h3>
+  <p>Scans the whole vault for problems: orphan notes (nothing links to them), dead links, gaps, and stale notes &mdash; then offers safe fixes. Run it every week or two.</p>
+
+  <h3><span class="cmd">/save [title]</span> &mdash; keep this conversation</h3>
+  <p>Turns the current Claude conversation into a durable, filed note &mdash; written so it "reads cold" later, auto-linked to related notes.</p>
+
+  <h3><span class="cmd">/think &lt;problem&gt;</span> &mdash; reason it out</h3>
+  <p>Works through a decision step by step (framing &rarr; options &rarr; trade-offs &rarr; recommendation &rarr; next step), and can save the reasoning.</p>
+
+  <div class="card insight">
+    <strong>The simplest mental model:</strong>
+    <ul>
+      <li><strong>Get things in</strong> &rarr; Telegram bot, then <span class="cmd">/ingest</span></li>
+      <li><strong>Get answers out</strong> &rarr; <span class="cmd">/ask</span> (from me) or <span class="cmd">/research</span> (from the web)</li>
+      <li><strong>Keep it healthy</strong> &rarr; <span class="cmd">/lint</span>, and <span class="cmd">/save</span> / <span class="cmd">/think</span> as needed</li>
+    </ul>
+  </div>
+
+  <h2 id="workflow">5. My weekly rhythm</h2>
+  <ol>
+    <li><strong>Every day (2 min):</strong> capture freely to the Telegram bot. Don't file, don't organize &mdash; just dump it in the Inbox.</li>
+    <li><strong>Every few days (10 min):</strong> open Claude in the vault and run <span class="cmd">/ingest</span> ("process my inbox"). Watch the Inbox go to zero.</li>
+    <li><strong>Anytime I need something:</strong> <span class="cmd">/ask</span> "what do I know about X?" &mdash; and file the good answers it offers.</li>
+    <li><strong>When I want to go deeper on a topic:</strong> <span class="cmd">/research</span> it &rarr; a digest lands in Resources.</li>
+    <li><strong>Every week or two (5 min):</strong> run <span class="cmd">/lint</span> and accept the safe fixes.</li>
+  </ol>
+  <p class="sub">That's the whole habit. The system rewards capturing without friction and filing in batches &mdash; not perfect organization in the moment.</p>
+
+  <h2 id="rules">6. The rules that keep it clean</h2>
+  <ul>
+    <li><strong>One idea per note.</strong> Atomic notes with clear, human, searchable titles.</li>
+    <li><strong>Everything links.</strong> Every note connects to at least its Area map note, via <code>[[wikilinks]]</code>. Links are what turn notes into a brain.</li>
+    <li><strong>Notes mature over time.</strong> Knowledge notes carry a status: <span class="pill">seed</span> <span class="pill">developing</span> <span class="pill">mature</span> <span class="pill">evergreen</span>. Tasks use <span class="pill">open</span> / <span class="pill">done</span>.</li>
+    <li><strong>Conflicts are signal, not noise.</strong> If new info disagrees with an old note, Claude never silently overwrites &mdash; it flags a contradiction on <em>both</em> notes and lets me decide.</li>
+    <li><strong>Nothing is ever lost.</strong> Git auto-commits the vault, so deletions are recoverable. Archive instead of delete.</li>
+    <li><strong>Every filing action is logged</strong> to <code>log.md</code>, so there's always a paper trail of what the Librarian did.</li>
+  </ul>
+
+  <h2 id="cheat">7. One-page cheat sheet</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>I want to&hellip;</th><th>Do this</th></tr></thead>
+      <tbody>
+        <tr><td>Save a thought on the go</td><td>Text it to <strong>My Mind Bot</strong></td></tr>
+        <tr><td>Save a link to read later</td><td>Send the link to the bot</td></tr>
+        <tr><td>Get a full report on an article</td><td>Send link + <code>/report</code> to the bot</td></tr>
+        <tr><td>File my captures into notes</td><td><span class="cmd">/ingest</span> (or "process my inbox")</td></tr>
+        <tr><td>Find what I already know</td><td><span class="cmd">/ask &lt;question&gt;</span></td></tr>
+        <tr><td>Research something new on the web</td><td><span class="cmd">/research &lt;topic&gt;</span></td></tr>
+        <tr><td>Save this conversation as a note</td><td><span class="cmd">/save</span></td></tr>
+        <tr><td>Think through a decision</td><td><span class="cmd">/think &lt;problem&gt;</span></td></tr>
+        <tr><td>Tidy &amp; fix the vault</td><td><span class="cmd">/lint</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card note">
+    <strong>If a command doesn't appear:</strong> slash commands load when Claude Code starts. Open a fresh Claude session inside the vault folder and they'll show up.
+  </div>
+
+  <footer>Source: My Mind vault (CLAUDE.md, hot.md) &mdash; 18.06.2026 &mdash; My Mind</footer>
+
+</div>
+</body>
+</html>
