@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Солнечная энергия для Амирсоя — правовая и регуляторная оценка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,18..72,400;1,18..72,400&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --surface:#FFFFFF;
+    --surface-2:#FCFAF6;
+    --ink:#221F1B;
+    --body:#3C3833;
+    --muted:#6E6960;
+    --faint:#9A948A;
+    --line:#E7E2D8;
+    --line-2:#D8D2C6;
+
+    --coral:#D85A30; --coral-d:#993C1D; --coral-bg:#FAECE7; --coral-ink:#712B13;
+    --teal:#1D9E75; --teal-d:#0F6E56; --teal-bg:#E1F5EE; --teal-ink:#085041;
+    --green:#3B6D11; --green-bg:#EAF3DE; --green-ink:#27500A;
+    --amber:#BA7517; --amber-d:#854F0B; --amber-bg:#FAEEDA; --amber-ink:#633806;
+    --red:#A32D2D; --red-bg:#FCEBEB; --red-ink:#791F1F;
+
+    --r-md:10px; --r-lg:14px; --r-xl:20px;
+    --maxw:780px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"Newsreader",Georgia,"Iowan Old Style",Palatino,serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--body);
+    font-family:var(--sans);font-size:17px;line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 26px 96px;}
+  ::selection{background:var(--coral-bg);}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:600;letter-spacing:-.01em;line-height:1.15;}
+  p{margin:1em 0;}
+  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);transition:border-color .15s;}
+  a:hover{border-color:var(--coral);}
+  strong{font-weight:600;color:var(--ink);}
+  em{font-style:italic;}
+
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block;}
+  h1.title{font-size:clamp(32px,6vw,50px);font-weight:600;line-height:1.05;margin:0 0 18px;
+    letter-spacing:-.02em;}
+  .dek{font-size:21px;line-height:1.5;color:var(--muted);margin:0 0 28px;max-width:36em;font-weight:400;}
+  .meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .meta .m{flex:1 1 160px;padding:14px 18px 14px 0;border-right:1px solid var(--line);}
+  .meta .m:last-child{border-right:0;}
+  .meta .ml{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px;}
+  .meta .mv{font-size:13.5px;color:var(--body);font-weight:500;line-height:1.35;}
+
+  section{margin-top:64px;}
+  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .tag .badge{width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:0;flex:0 0 auto;}
+  h2.sec{font-size:27px;margin:0 0 6px;}
+  .sec-lead{font-size:18px;color:var(--muted);margin:.3em 0 0;}
+
+  .score{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 18px;}
+  .score .cell{border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 22px 20px;background:var(--surface);}
+  .score .cell.yes{background:var(--teal-bg);border-color:#CFE9DE;}
+  .score .cell.no{background:var(--amber-bg);border-color:#F0E2C5;}
+  .score .q{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+  .score .yes .q{color:var(--teal-d);}
+  .score .no .q{color:var(--amber-d);}
+  .score .a{display:flex;align-items:baseline;gap:10px;}
+  .score .a .word{font-size:40px;font-weight:600;line-height:1;letter-spacing:-.02em;}
+  .score .yes .a .word{color:var(--teal-ink);}
+  .score .no .a .word{color:var(--amber-ink);}
+  .score .sub{font-size:14px;line-height:1.45;margin-top:10px;}
+  .score .yes .sub{color:var(--teal-ink);}
+  .score .no .sub{color:var(--amber-ink);}
+  .bottomline{border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:0 var(--r-md) var(--r-md) 0;
+    background:var(--surface);padding:18px 22px;}
+  .bottomline p{margin:0;font-size:16.5px;}
+  .bottomline .lab{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:6px;}
+
+  .flow{margin:28px auto 8px;max-width:580px;}
+  .flow .node{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:16px 20px;}
+  .flow .node.firm{border:1.5px solid var(--coral);}
+  .flow .node.resort{border:1.5px solid var(--ink);}
+  .flow .node .role{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:4px;}
+  .flow .node .nm{font-size:18px;font-weight:600;color:var(--ink);}
+  .flow .node .sb{font-size:14px;color:var(--muted);margin-top:4px;line-height:1.45;}
+  .flow .node .gridtag{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line-2);
+    font-size:13.5px;color:var(--body);display:flex;gap:8px;align-items:flex-start;}
+  .flow .node .gridtag b{color:var(--ink);font-weight:600;}
+  .flow .link{display:flex;align-items:center;gap:11px;padding:9px 0 9px 24px;color:var(--faint);flex-wrap:wrap;}
+  .flow .link .ar{font-size:20px;line-height:1;color:var(--line-2);}
+  .flow .link .lbl{font-size:13.5px;color:var(--muted);}
+  .flow .link.key{color:var(--teal-d);}
+  .flow .link.key .ar{color:var(--teal);}
+  .flow .link.key .lbl{color:var(--teal-d);font-weight:600;}
+  .flow .link.key .pill{font-size:11px;font-weight:600;background:var(--teal-bg);color:var(--teal-ink);
+    padding:2px 9px;border-radius:999px;letter-spacing:.02em;white-space:nowrap;}
+  figcaption{font-size:13.5px;color:var(--faint);text-align:center;margin-top:14px;font-style:italic;font-family:var(--serif);}
+
+  .pull{border:1px solid #CFE9DE;background:var(--teal-bg);border-radius:var(--r-lg);padding:24px 26px;margin:24px 0;}
+  .pull .src{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-d);font-weight:600;margin-bottom:10px;}
+  .pull .qt{font-family:var(--serif);font-size:20px;line-height:1.55;font-style:italic;color:var(--teal-ink);display:block;}
+  .pull .hl{font-style:normal;background:#CDE9DD;color:var(--teal-ink);padding:1px 5px;border-radius:4px;}
+
+  .note{border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 22px;margin:22px 0;background:var(--surface-2);}
+  .note.amber{background:var(--amber-bg);border-color:#F0E2C5;}
+  .note.coral{background:var(--coral-bg);border-color:#F3D6C9;}
+  .note .nt{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:7px;}
+  .note.amber .nt{color:var(--amber-d);}
+  .note.coral .nt{color:var(--coral-d);}
+  .note p{margin:0;font-size:15.5px;}
+  .note.amber p{color:var(--amber-ink);}
+  .note.coral p{color:var(--coral-ink);}
+
+  .frictions{display:flex;flex-direction:column;gap:12px;margin:26px 0;}
+  .fr{display:flex;gap:18px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:18px 22px;}
+  .fr .n{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:var(--coral-bg);color:var(--coral-d);
+    display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;}
+  .fr h4{margin:2px 0 4px;font-size:17px;}
+  .fr p{margin:0;font-size:15px;color:var(--muted);line-height:1.55;}
+
+  .gate{display:flex;flex-wrap:wrap;align-items:center;gap:16px;border:1px solid var(--line);
+    border-radius:var(--r-lg);background:var(--surface-2);padding:22px;margin:18px 0 6px;}
+  .gate .conds{flex:1 1 320px;display:flex;flex-direction:column;gap:10px;}
+  .cond{display:flex;align-items:center;gap:13px;border-radius:var(--r-md);padding:12px 15px;}
+  .cond.t{background:var(--green-bg);}
+  .cond.f{background:var(--red-bg);}
+  .cond .mk{flex:0 0 auto;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:14px;font-weight:700;color:#fff;}
+  .cond.t .mk{background:var(--green);}
+  .cond.f .mk{background:var(--red);}
+  .cond .ct{font-size:14px;}
+  .cond .ct b{display:block;color:var(--ink);font-weight:600;font-size:15px;}
+  .cond.t .ct{color:var(--green-ink);}
+  .cond.f .ct{color:var(--red-ink);}
+  .gate .op{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--faint);}
+  .gate .op .ring{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line-2);
+    display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--ink);font-size:15px;}
+  .gate .op .cap{font-size:11px;letter-spacing:.02em;}
+  .gate .result{flex:1 1 220px;background:var(--amber-bg);border:1px solid #F0E2C5;border-radius:var(--r-md);padding:16px 18px;}
+  .gate .result .rh{font-size:16px;font-weight:600;color:var(--amber-ink);margin-bottom:5px;}
+  .gate .result .rt{font-size:14px;color:var(--amber-ink);line-height:1.45;}
+
+  .decree{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:20px 22px;margin:14px 0;}
+  .decree.fit{border-color:#CFE9DE;}
+  .decree .dh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:4px;}
+  .decree .code{font-size:21px;font-weight:600;color:var(--ink);}
+  .decree .date{font-size:13px;color:var(--faint);flex:1 1 auto;}
+  .decree .verd{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 11px;border-radius:999px;white-space:nowrap;}
+  .decree.fit .verd{background:var(--teal-bg);color:var(--teal-ink);}
+  .decree.no .verd{background:var(--amber-bg);color:var(--amber-ink);}
+  .decree .ti{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--muted);margin:2px 0 9px;line-height:1.4;}
+  .decree p{margin:0;font-size:15px;color:var(--body);line-height:1.55;}
+  .decree .src{margin-top:9px;font-size:13px;}
+
+  .who{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0;}
+  .who .w{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:16px 18px;}
+  .who .role{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:4px;}
+  .who .name{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.3;}
+  .who .desc{font-size:13.5px;color:var(--muted);margin-top:5px;line-height:1.45;}
+
+  .timeline{margin:26px 0 4px;}
+  .tl{position:relative;padding:0 0 24px 30px;border-left:2px solid var(--line);}
+  .tl:last-child{padding-bottom:0;}
+  .tl .dot{position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;
+    background:var(--surface);border:2.5px solid var(--coral);}
+  .tl.here{border-left-color:var(--coral);}
+  .tl.here .dot{width:16px;height:16px;left:-9px;background:var(--coral);box-shadow:0 0 0 4px var(--coral-bg);}
+  .tl .yr{font-size:13px;font-weight:600;color:var(--coral-d);letter-spacing:.02em;}
+  .tl .hd{font-size:15.5px;font-weight:600;color:var(--ink);margin:1px 0 2px;}
+  .tl .tx{font-size:14px;color:var(--muted);line-height:1.45;}
+  .tl .nowtag{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    background:var(--coral);color:#fff;padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:1px;}
+
+  .incs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0;}
+  .inc{border:1px solid #CFE9DE;background:var(--teal-bg);border-radius:var(--r-lg);padding:18px 20px;}
+  .inc .big{font-size:23px;font-weight:600;color:var(--teal-ink);line-height:1.1;letter-spacing:-.01em;}
+  .inc .t{font-size:14px;color:var(--teal-ink);margin-top:5px;line-height:1.45;opacity:.92;}
+
+  ol.qs{list-style:none;counter-reset:q;padding:0;margin:24px 0;}
+  ol.qs li{counter-increment:q;position:relative;padding:16px 20px 16px 62px;border:1px solid var(--line);
+    border-radius:var(--r-lg);background:var(--surface);margin:11px 0;font-size:15.5px;line-height:1.55;}
+  ol.qs li::before{content:counter(q);position:absolute;left:18px;top:15px;width:30px;height:30px;
+    background:var(--coral);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-weight:600;font-size:15px;}
+
+  footer{margin-top:72px;border-top:2px solid var(--ink);padding-top:26px;}
+  .disc{background:var(--amber-bg);border:1px solid #F0E2C5;border-radius:var(--r-lg);padding:15px 18px;
+    font-size:14px;line-height:1.5;color:var(--amber-ink);margin-bottom:24px;}
+  footer h5{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;}
+  .srcs{columns:2;column-gap:30px;font-size:13px;line-height:1.5;}
+  .srcs p{margin:0 0 8px;break-inside:avoid;color:var(--muted);}
+  .colophon{margin-top:24px;font-size:13px;color:var(--faint);}
+
+  @media (max-width:640px){
+    .wrap{padding:42px 18px 64px;}
+    body{font-size:16px;}
+    .dek{font-size:19px;}
+    h2.sec{font-size:23px;}
+    .score,.who,.incs{grid-template-columns:1fr;}
+    .score .a .word{font-size:34px;}
+    .srcs{columns:1;}
+    .meta .m{flex:1 1 100%;border-right:0;border-bottom:1px solid var(--line);padding:12px 0;}
+    .meta .m:last-child{border-bottom:0;}
+  }
+  @media print{
+    body{background:#fff;}
+    a{color:var(--ink);border:0;}
+    .wrap{max-width:none;padding:0;}
+    section{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">Правовая и регуляторная оценка · конфиденциально</div>
+    <h1 class="title">Солнечная энергия для Амирсоя</h1>
+    <p class="dek">Может ли новая компания владеть солнечной станцией 2&nbsp;МВт на территории курорта и продавать электроэнергию напрямую горнолыжному курорту — и законно ли это по энергетическому регулированию Узбекистана 2026 года?</p>
+    <div class="meta">
+      <div class="m"><div class="ml">Подготовлено</div><div class="mv">23 июня 2026</div></div>
+      <div class="m"><div class="ml">Для проекта</div><div class="mv">«Солнечная энергия Амирсоя»</div></div>
+      <div class="m"><div class="ml">Источники</div><div class="mv">Законы РУз, ADB, ВБ, IEA, юр. обзоры</div></div>
+      <div class="m"><div class="ml">Метод</div><div class="mv">Глубокое исследование + проверка фактов</div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="tag"><span class="badge">i</span> Вывод вкратце</div>
+    <div class="score">
+      <div class="cell yes">
+        <div class="q">Законно ли это?</div>
+        <div class="a"><span class="word">Да</span></div>
+        <div class="sub">Разрешено отдельной нормой — пункт&nbsp;10 Постановления&nbsp;ПП-57.</div>
+      </div>
+      <div class="cell no">
+        <div class="q">Просто ли это?</div>
+        <div class="a"><span class="word">Нет</span></div>
+        <div class="sub">Не «под ключ» — нужна серьёзная правовая проработка и местный юрист.</div>
+      </div>
+    </div>
+    <div class="bottomline">
+      <div class="lab">Главный вывод</div>
+      <p>Предложенная схема — отдельная компания, которая владеет станцией и продаёт энергию курорту по прямому долгосрочному договору, — верна по форме и прямо разрешена для производителей из ВИЭ. Но станция 2&nbsp;МВт, подключённая к сети, остаётся полностью внутри регулируемого режима, на пути стоит государственный «единый закупщик», а рынок находится в стадии реформы. При этом общий вектор реформ — в пользу именно таких сделок.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag"><span class="badge">A</span> План одной схемой</div>
+    <h2 class="sec">Как устроена схема</h2>
+    <p class="sec-lead">Владение и денежные потоки идут сверху вниз; выделенный шаг — это коммерческая продажа электроэнергии, вокруг которой строится весь вопрос.</p>
+
+    <figure>
+      <div class="flow">
+        <div class="node">
+          <div class="role">Владельцы</div>
+          <div class="nm">Бенефициары Амирсоя</div>
+        </div>
+        <div class="link"><span class="ar">&#8595;</span><span class="lbl">владеют 100%</span></div>
+        <div class="node firm">
+          <div class="role">Юрлицо</div>
+          <div class="nm">Новая солнечная компания</div>
+          <div class="sb">Специальная компания (SPV), владеющая станцией.</div>
+        </div>
+        <div class="link"><span class="ar">&#8595;</span><span class="lbl">финансирует стройку и нанимает EPC-подрядчика</span></div>
+        <div class="node">
+          <div class="role">Актив</div>
+          <div class="nm">Солнечная станция 2&nbsp;МВт</div>
+          <div class="sb">Построена на земле курорта по договору аренды.</div>
+        </div>
+        <div class="link key"><span class="ar">&#8595;</span><span class="lbl">продаёт электроэнергию — прямая линия + долгосрочный договор (PPA)</span><span class="pill">ПП-57 п.10</span></div>
+        <div class="node resort">
+          <div class="role">Покупатель</div>
+          <div class="nm">Горнолыжный курорт Амирсой</div>
+          <div class="gridtag"><span>&#43;</span><span><b>Подключение к единой сети сохраняется</b> — курорт докупает остаток потребления (особенно зимой) из сети.</span></div>
+        </div>
+      </div>
+      <figcaption>Предложенная схема. Зелёный шаг — продажа курорту — это то, что разрешает Постановление ПП-57.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="tag"><span class="badge">B</span> Почему это законно</div>
+    <h2 class="sec">Норма, которая делает это возможным</h2>
+    <p>Правовая основа — <strong>пункт 10 Постановления Президента ПП-57 от 16 февраля 2023 года</strong>. Он разрешает компании, вырабатывающей электроэнергию из ВИЭ, продавать её:</p>
+
+    <div class="pull">
+      <div class="src">ПП-57 · пункт 10 — по тексту lex.uz</div>
+      <span class="qt">…«другим потребителям — <span class="hl">по взаимосогласованным ценам, на основании заключённых прямых договоров, включая долгосрочные</span>» — и возводить установку <span class="hl">«на объектах, принадлежащих другим лицам на основе права аренды»</span>.</span>
+    </div>
+
+    <p>Это почти дословно описывает вашу схему: отдельная компания, прямой долгосрочный договор с курортом и станция на арендованной земле курорта. <strong>Предельная мощность в этом пункте не указана.</strong> Закон о ВИЭ (ЗРУ-539, 2019) это подкрепляет — производители из ВИЭ могут создавать локальные сети и заключать договоры на продажу энергии юридическим лицам.</p>
+
+    <div class="note amber">
+      <div class="nt">Одна поправка к раннему предположению</div>
+      <p>ПП-57 датировано 16 февраля 2023 года (не январём 2022). При первом чтении пункт 10 был пропущен из-за платного доступа, и был сделан ошибочный вывод об отсутствии нормы о прямой продаже. Глубокая проверка по первоисточнику (lex.uz), подтверждённая тремя независимыми юридическими источниками, это право подтверждает. Два других постановления (УП-220, ПКМ-247) описывают другую модель и эту схему не разрешают.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag"><span class="badge">C</span> Почему это непросто</div>
+    <h2 class="sec">Три сложности</h2>
+
+    <div class="frictions">
+      <div class="fr"><div class="n">1</div><div>
+        <h4>Малый размер не выводит из-под регулирования</h4>
+        <p>Новый закон об электроэнергетике (ЗРУ-939) освобождает станцию от регулируемого режима, только если выполнены все три условия одновременно. Наша схема не проходит по двум — см. ниже.</p>
+      </div></div>
+      <div class="fr"><div class="n">2</div><div>
+        <h4>На пути стоит государственный «единый закупщик»</h4>
+        <p>С 1 июля 2024 года АО «Узэнергосотиш» — центральный покупатель и продавец электроэнергии. Право прямой продажи по ПП-57 — это исключение в обход этой системы, но ни один источник чётко не описывает порядок для подключённой к сети станции 2&nbsp;МВт. Это самое важное, что нужно уточнить у юриста.</p>
+      </div></div>
+      <div class="fr"><div class="n">3</div><div>
+        <h4>Правила меняются прямо сейчас</h4>
+        <p>Узбекистан — в середине дорожной карты либерализации 2023–2030. Указ мая 2025 года начал допускать лицензированную торговлю энергией; конкурентный рынок запускается поэтапно с 2026 года; монополию единого закупщика планируется упразднить примерно к июлю 2026 года. Проверяйте действующие правила на момент стройки — тренд в вашу пользу.</p>
+      </div></div>
+    </div>
+
+    <h3 style="font-size:18px;margin:30px 0 4px;">Сложность 1 наглядно: освобождение «до 5 МВт» — всё или ничего</h3>
+    <p style="font-size:15.5px;color:var(--muted);margin:.2em 0 0;">Для освобождения нужны все условия. Схема выполняет только первое.</p>
+    <figure>
+      <div class="gate">
+        <div class="conds">
+          <div class="cond t"><span class="mk">&#10003;</span><span class="ct"><b>Менее 5 МВт</b>наша станция 2 МВт — да</span></div>
+          <div class="cond f"><span class="mk">&#10007;</span><span class="ct"><b>Только для собственных нужд</b>нет — это продажа третьей стороне</span></div>
+          <div class="cond f"><span class="mk">&#10007;</span><span class="ct"><b>Без подключения к сети</b>нет — курорт остаётся в сети</span></div>
+        </div>
+        <div class="op"><span class="ring">И</span><span class="cap">все условия</span></div>
+        <div class="result">
+          <div class="rh">Освобождение не действует</div>
+          <div class="rt">Станция остаётся полностью внутри регулируемого режима электроэнергетики.</div>
+        </div>
+      </div>
+      <figcaption>«Всего 2 МВт» — не лазейка: схема не является ни «только для себя», ни «вне сети».</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="tag"><span class="badge">D</span> Три постановления, о которых вы спрашивали</div>
+    <h2 class="sec">Какое постановление действительно это регулирует</h2>
+    <p class="sec-lead">Подходит только одно. Два других — меньшая, иная модель: продажа излишков обратно в сеть, а не курорту.</p>
+
+    <div class="decree fit">
+      <div class="dh"><span class="code">ПП-57</span><span class="date">Постановление Президента · 16 фев 2023</span><span class="verd">✓ Наша основа</span></div>
+      <div class="ti">«О мерах по ускорению внедрения возобновляемых источников энергии…»</div>
+      <p>Годовая программа по ВИЭ — но её пункт 10 несёт постоянное право продавать энергию из ВИЭ напрямую другим потребителям по прямым/долгосрочным договорам по согласованным ценам и строить на арендованной земле.</p>
+      <p class="src"><a href="https://lex.uz/uz/docs/6385720">lex.uz/uz/docs/6385720</a></p>
+    </div>
+
+    <div class="decree no">
+      <div class="dh"><span class="code">УП-220</span><span class="date">Постановление Президента · 9 сен 2022</span><span class="verd">Не подходит</span></div>
+      <div class="ti">«…развитие маломощных возобновляемых источников энергии»</div>
+      <p>Режим малого самопотребления: солнце/ветер/биогаз до ~1 МВт «для собственных нужд», с продажей излишков обратно в сеть. Станция 2 МВт — вне его охвата, и это не механизм продажи третьим лицам.</p>
+      <p class="src"><a href="https://lex.uz/uz/docs/6189043">lex.uz/uz/docs/6189043</a></p>
+    </div>
+
+    <div class="decree no">
+      <div class="dh"><span class="code">ПКМ-247</span><span class="date">Постановление Кабмина · 14 июн 2023</span><span class="verd">Не тот механизм</span></div>
+      <div class="ti">«О порядке реализации излишков электроэнергии, произведённой… с использованием ВИЭ»</div>
+      <p>Порядок, реализующий УП-220: продажа излишков (станции до 1 МВт для собственных нужд) АО «Региональные электрические сети» по 80% тарифа II группы. Энергия идёт государственному оператору сети, а не частному покупателю вроде курорта.</p>
+      <p class="src"><a href="https://lex.uz/ru/docs/6502113">lex.uz/ru/docs/6502113</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag"><span class="badge">E</span> Расстановка сил</div>
+    <h2 class="sec">Кто есть кто и на каком этапе реформы мы находимся</h2>
+
+    <div class="who">
+      <div class="w"><div class="role">Единый закупщик</div><div class="name">АО «Узэнергосотиш»</div><div class="desc">Центральный покупатель/продавец энергии с 1 июля 2024 г. Орган, с которым нужно согласовать право прямой продажи.</div></div>
+      <div class="w"><div class="role">Передача и диспетчеризация</div><div class="name">Национальные электрические сети (НЭС)</div><div class="desc">Магистральная сеть и системная работа. До 2024 г. выполнял роль единого закупщика.</div></div>
+      <div class="w"><div class="role">Распределение</div><div class="name">Региональные электрические сети</div><div class="desc">Местное распределение; покупатель излишков малых станций по УП-220 / ПКМ-247.</div></div>
+      <div class="w"><div class="role">Регулятор</div><div class="name">Агентство по рынку энергии · Минэнерго</div><div class="desc">Агентство регулирует рынок; Минэнерго — уполномоченный орган по ВИЭ.</div></div>
+    </div>
+
+    <h3 style="font-size:18px;margin:32px 0 14px;">Дорожная карта реформы — и где в ней 2026 год</h3>
+    <div class="timeline">
+      <div class="tl"><span class="dot"></span><div class="yr">2019</div><div class="hd">Заложены основы</div><div class="tx">Закон о ВИЭ ЗРУ-539; прежняя монополия («Узбекэнерго») разделена на генерацию, передачу и распределение.</div></div>
+      <div class="tl"><span class="dot"></span><div class="yr">2022</div><div class="hd">Постановление по малым ВИЭ — УП-220</div><div class="tx">Поощряет самопотребление до 1 МВт с продажей излишков обратно в сеть.</div></div>
+      <div class="tl"><span class="dot"></span><div class="yr">2023</div><div class="hd">Появляется право прямой продажи</div><div class="tx">ПП-57 даёт право на прямой PPA (наша основа); утверждена дорожная карта реформы 2023–2030 (Указ 166); ПКМ-247 задаёт порядок продажи излишков.</div></div>
+      <div class="tl"><span class="dot"></span><div class="yr">Июль 2024</div><div class="hd">Единый закупщик + новый закон</div><div class="tx">«Узэнергосотиш» становится центральным покупателем; вступает в силу новый закон ЗРУ-939.</div></div>
+      <div class="tl"><span class="dot"></span><div class="yr">Май 2025</div><div class="hd">Торговля открывается</div><div class="tx">Указ начинает допускать лицензированную оптовую/розничную торговлю энергией.</div></div>
+      <div class="tl here"><span class="dot"></span><div class="yr">2026 &rarr; 2030 <span class="nowtag">Мы здесь</span></div><div class="hd">Конкурентный рынок вводится поэтапно</div><div class="tx">Прямые продажи «генератор — потребитель» расширяются через торговую площадку; монополию единого закупщика планируется упразднить ~июль 2026. Для этой сделки — проще, а не сложнее.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag"><span class="badge">F</span> Экономике помогают льготы</div>
+    <h2 class="sec">Налоговые льготы и тарифы</h2>
+    <p>Для станции ВИЭ от 0,1 МВт льготы существенные:</p>
+    <div class="incs">
+      <div class="inc"><div class="big">10 лет</div><div class="t">освобождение от налога на имущество (оборудование) и земельного налога (занимаемая земля)</div></div>
+      <div class="inc"><div class="big">0%</div><div class="t">налог на прибыль с доходов от продажи «зелёных» сертификатов</div></div>
+      <div class="inc"><div class="big">Таможня</div><div class="t">освобождение от пошлин на ввозимое солнечное оборудование</div></div>
+      <div class="inc"><div class="big">Рост тарифов</div><div class="t">цены в сети растут, для бизнеса сверх лимита — двойной тариф, что усиливает доводы в пользу собственной генерации</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="tag"><span class="badge">G</span> Что делать дальше</div>
+    <h2 class="sec">Четыре вопроса местному юристу по энергетике</h2>
+    <p>Задайте их ташкентской энергетической практике (Kosta&nbsp;Legal, Centil, Dentons, Azizov&nbsp;&amp;&nbsp;Partners, Unicase) <strong>до вложения средств</strong>:</p>
+
+    <ol class="qs">
+      <li><strong>Процедура.</strong> Как именно подключённая к сети станция 2&nbsp;МВт реализует право на прямой PPA по пункту 10 ПП-57, пока действует режим единого закупщика «Узэнергосотиш», и какая лицензия нужна после указа мая 2025 года о либерализации торговли?</li>
+      <li><strong>Сети.</strong> По правилам техприсоединения (ПКМ № 610) кто платит за подключение, защиту и учёт, когда станция питает курорт по прямой линии, а курорт также берёт из сети, — и отличается ли «прямая линия» юридически от «локальной сети»?</li>
+      <li><strong>Цена.</strong> Есть ли ограничения по трансфертному ценообразованию или антимонопольные ограничения на «взаимосогласованную» цену между компанией и аффилированным курортом — в сравнении с самостоятельной генерацией курорта?</li>
+      <li><strong>Деньги.</strong> Действуют ли налоговые и таможенные льготы при 2&nbsp;МВт через эту структуру — и каков выкупной тариф на излишки, отдаваемые в сеть?</li>
+    </ol>
+
+    <div class="note coral">
+      <div class="nt">Рекомендация</div>
+      <p>Самый ценный следующий шаг — короткая платная консультация по вопросу&nbsp;1. Этот единственный ответ — как реализовать право прямой продажи по ПП-57 при действующем едином закупщике — определяет, идём ли мы напрямую или нужна перестройка схемы. Всё остальное (выбор панелей, размер, финансирование) следует из этого.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="disc"><strong>Не является юридической консультацией.</strong> Отчёт обобщает кабинетное исследование публичного законодательства РУз и авторитетных аналитических материалов; каждый ключевой тезис проверен независимо. Рынок в стадии реформы, и определяющими являются правила, действующие на момент стройки, — прежде чем полагаться на любой пункт, проверьте у лицензированного местного юриста по энергетике.</div>
+
+    <h5>Основные источники</h5>
+    <div class="srcs">
+      <p><strong>ПП-57</strong> (16.02.2023): <a href="https://lex.uz/uz/docs/6385720">lex.uz/uz/docs/6385720</a></p>
+      <p><strong>ЗРУ-939</strong> «Об электроэнергетике» (07.08.2024): <a href="https://www.lex.uz/ru/docs/7051594">lex.uz/ru/docs/7051594</a></p>
+      <p><strong>ПКМ № 610</strong> (22.07.2019): <a href="https://lex.uz/docs/4432300">lex.uz/docs/4432300</a></p>
+      <p><strong>УП-220</strong> (09.09.2022): <a href="https://lex.uz/uz/docs/6189043">lex.uz/uz/docs/6189043</a></p>
+      <p><strong>ПКМ-247</strong> (14.06.2023): <a href="https://lex.uz/ru/docs/6502113">lex.uz/ru/docs/6502113</a></p>
+      <p><strong>Закон о ВИЭ ЗРУ-539</strong> (IEA): <a href="https://www.iea.org/policies/13310-law-of-the-republic-of-uzbekistan-on-the-use-of-renewable-energy-sources-dated-may-21-2019-no-zru-539">iea.org/policies/13310</a></p>
+      <p><strong>Реформа рынка</strong> (ADB): <a href="https://www.adb.org/sites/default/files/project-documents/54269/54269-002-rrp-en.pdf">adb.org RRP 54269-002</a></p>
+      <p><strong>Единый закупщик</strong> (Kosta Legal): <a href="https://kostalegal.com/newsletters/uzbekistan-legal-newsletter-for-september-2023">kostalegal.com</a> · <a href="https://law.asia/uzbekistan-new-power-system-reform-energy-market/">law.asia</a></p>
+      <p><strong>Налоговые льготы</strong> (EY): <a href="https://www.ey.com/en_uz/technical/tax-alerts/2024/09/tax-incentives-for-renewable-electricity-producers">ey.com</a></p>
+      <p><strong>Тарифы</strong> (kun.uz): <a href="https://kun.uz/en/news/2025/01/24/electricity-tariffs-to-increase-again-from-april-1">рост с апр. 2025</a> · <a href="https://kun.uz/en/news/2024/07/10/uzbekistan-introduces-double-rate-for-businesses-who-exceed-electricity-consumption-limit">двойной тариф для бизнеса</a></p>
+    </div>
+
+    <p class="colophon">Подготовлено 23 июня 2026 для проекта «Солнечная энергия Амирсоя» · хранилище My Mind.</p>
+  </footer>
+
+</div>
+</body>
+</html>
