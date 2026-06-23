@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powering Amirsoy with Solar — Legal & Regulatory Feasibility</title>
+<style>
+  :root{
+    --paper:#F7F4EF;
+    --paper-2:#FFFFFF;
+    --ink:#2B2520;
+    --ink-soft:#5A5048;
+    --ink-faint:#8A7F74;
+    --coral:#C9633F;
+    --coral-soft:#E9C9B9;
+    --line:#E4DCD0;
+    --line-strong:#D6CBBB;
+    --green:#3C7D5B;
+    --green-bg:#E8F1EA;
+    --amber:#B9822E;
+    --amber-bg:#F6ECD8;
+    --red:#BB4A33;
+    --red-bg:#F4E1DA;
+    --shadow:0 1px 2px rgba(43,37,32,.04),0 8px 30px rgba(43,37,32,.06);
+    --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:18px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:56px 28px 80px;}
+
+  /* ---------- Header ---------- */
+  header.masthead{border-bottom:2px solid var(--ink);padding-bottom:28px;margin-bottom:8px;}
+  .kicker{font-family:var(--sans);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--coral);font-weight:700;margin-bottom:18px;}
+  h1{font-family:var(--serif);font-weight:700;font-size:46px;line-height:1.08;margin:0 0 14px;
+    letter-spacing:-.01em;}
+  .dek{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.45;
+    color:var(--ink-soft);margin:0 0 22px;max-width:46em;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13px;color:var(--ink-faint);
+    letter-spacing:.02em;}
+  .meta b{color:var(--ink-soft);font-weight:600;}
+
+  /* ---------- Typography ---------- */
+  h2{font-family:var(--serif);font-size:30px;line-height:1.15;margin:56px 0 6px;letter-spacing:-.01em;}
+  h2 .num{color:var(--coral);font-size:20px;font-weight:700;font-family:var(--sans);
+    display:inline-block;margin-right:12px;vertical-align:middle;letter-spacing:0;}
+  h3{font-family:var(--serif);font-size:21px;margin:34px 0 4px;}
+  .lead{font-size:18px;color:var(--ink-soft);margin:.4em 0 0;}
+  p{margin:.9em 0;}
+  a{color:var(--coral);text-decoration:none;border-bottom:1px solid var(--coral-soft);}
+  a:hover{border-color:var(--coral);}
+  .rule{height:1px;background:var(--line);border:0;margin:52px 0;}
+  .section-tag{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:700;margin:0 0 2px;}
+
+  /* ---------- Verdict band ---------- */
+  .verdict{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:30px 30px 26px;box-shadow:var(--shadow);margin:34px 0 10px;}
+  .verdict-chips{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
+  .chip{flex:1 1 220px;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;}
+  .chip.yes{background:var(--green-bg);}
+  .chip.no{background:var(--amber-bg);}
+  .chip .big{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1;}
+  .chip.yes .big{color:var(--green);}
+  .chip.no .big{color:var(--amber);}
+  .chip .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+    font-weight:700;margin-bottom:3px;}
+  .chip .sub{font-size:14px;color:var(--ink-soft);line-height:1.4;}
+  .verdict p{margin:.5em 0 0;font-size:16.5px;}
+
+  /* ---------- Callout ---------- */
+  .callout{border-left:4px solid var(--coral);background:var(--paper-2);border-radius:0 12px 12px 0;
+    padding:20px 24px;margin:26px 0;box-shadow:var(--shadow);}
+  .callout.green{border-color:var(--green);}
+  .callout.amber{border-color:var(--amber);}
+  .callout.red{border-color:var(--red);}
+  .callout .ct{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+    color:var(--coral);margin-bottom:6px;}
+  .callout.green .ct{color:var(--green);}
+  .callout.amber .ct{color:var(--amber);}
+  .callout.red .ct{color:var(--red);}
+  .callout p:first-of-type{margin-top:0;}
+  .callout p:last-child{margin-bottom:0;}
+
+  .quote{font-family:var(--serif);font-size:21px;line-height:1.5;font-style:italic;color:var(--ink);
+    margin:8px 0 4px;}
+  .quote .hl{font-style:normal;background:linear-gradient(transparent 60%,var(--coral-soft) 60%);
+    padding:0 2px;}
+
+  /* ---------- Figure ---------- */
+  figure{margin:30px 0;}
+  .fig-card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;
+    padding:26px 22px 14px;box-shadow:var(--shadow);}
+  figure svg{display:block;width:100%;height:auto;}
+  figcaption{font-size:13.5px;color:var(--ink-faint);margin-top:12px;text-align:center;
+    font-style:italic;font-family:var(--serif);}
+
+  /* ---------- Friction cards ---------- */
+  .cards{display:grid;grid-template-columns:1fr;gap:16px;margin:26px 0;}
+  .card{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    box-shadow:var(--shadow);}
+  .card .n{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--coral-soft);
+    line-height:1;float:left;margin:-2px 16px 0 0;}
+  .card h4{margin:0 0 4px;font-size:18.5px;font-family:var(--sans);font-weight:700;}
+  .card p{margin:.35em 0 0;font-size:15.5px;color:var(--ink-soft);}
+  .card p:last-child{margin-bottom:2px;}
+
+  /* ---------- Decree cards ---------- */
+  .decree{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    margin:14px 0;box-shadow:var(--shadow);border-top:4px solid var(--line-strong);}
+  .decree.fit{border-top-color:var(--green);}
+  .decree.no{border-top-color:var(--amber);}
+  .decree .dh{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .decree .code{font-family:var(--serif);font-size:23px;font-weight:700;}
+  .decree .date{font-size:13px;color:var(--ink-faint);}
+  .decree .verd{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;white-space:nowrap;}
+  .decree.fit .verd{background:var(--green-bg);color:var(--green);}
+  .decree.no .verd{background:var(--amber-bg);color:var(--amber);}
+  .decree .title{font-style:italic;font-family:var(--serif);color:var(--ink-soft);font-size:15.5px;
+    margin:6px 0 8px;}
+  .decree p{margin:.3em 0 0;font-size:15.5px;}
+  .decree .src{font-size:13px;margin-top:8px;}
+
+  /* ---------- Who's who grid ---------- */
+  .who{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+  .who .w{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;
+    box-shadow:var(--shadow);}
+  .who .w .role{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);
+    font-weight:700;margin-bottom:3px;}
+  .who .w .name{font-family:var(--serif);font-size:17px;font-weight:700;}
+  .who .w .desc{font-size:14px;color:var(--ink-soft);margin-top:3px;line-height:1.4;}
+
+  /* ---------- Incentives ---------- */
+  .incentives{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0;}
+  .inc{background:var(--green-bg);border-radius:12px;padding:16px 18px;}
+  .inc .big{font-family:var(--serif);font-size:26px;font-weight:700;color:var(--green);line-height:1.1;}
+  .inc .t{font-size:14px;color:var(--ink-soft);margin-top:4px;}
+
+  /* ---------- Lawyer questions ---------- */
+  ol.qs{list-style:none;counter-reset:q;padding:0;margin:24px 0;}
+  ol.qs li{counter-increment:q;position:relative;padding:16px 18px 16px 64px;background:var(--paper-2);
+    border:1px solid var(--line);border-radius:12px;margin:12px 0;box-shadow:var(--shadow);font-size:16px;}
+  ol.qs li::before{content:counter(q);position:absolute;left:18px;top:14px;width:32px;height:32px;
+    background:var(--coral);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-family:var(--serif);font-weight:700;font-size:17px;}
+
+  ul.clean{padding-left:1.2em;}
+  ul.clean li{margin:.45em 0;}
+
+  /* ---------- Footer ---------- */
+  footer{margin-top:64px;border-top:2px solid var(--ink);padding-top:24px;font-size:13.5px;
+    color:var(--ink-faint);}
+  footer h5{font-family:var(--sans);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-soft);margin:0 0 8px;}
+  footer .disc{background:var(--amber-bg);border-radius:10px;padding:14px 16px;color:var(--ink-soft);
+    margin-bottom:20px;font-size:14px;line-height:1.5;}
+  footer a{font-size:13px;word-break:break-word;}
+  .srclist{columns:2;column-gap:28px;}
+  .srclist p{margin:.3em 0;break-inside:avoid;}
+
+  /* SVG helpers */
+  .svg-ink{fill:var(--ink);}
+  text{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+
+  @media (max-width:680px){
+    body{font-size:16.5px;}
+    .wrap{padding:38px 18px 60px;}
+    h1{font-size:34px;}
+    h2{font-size:25px;}
+    .dek{font-size:18px;}
+    .who,.incentives{grid-template-columns:1fr;}
+    .srclist{columns:1;}
+    .chip{flex:1 1 100%;}
+  }
+  @media print{
+    body{background:#fff;}
+    .fig-card,.card,.decree,.verdict,.callout,.who .w,ol.qs li{box-shadow:none;}
+    .wrap{max-width:none;}
+    a{color:var(--ink);border:0;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Legal &amp; Regulatory Feasibility · Confidential</div>
+    <h1>Powering Amirsoy with Solar</h1>
+    <p class="dek">Can a new company own a 2&nbsp;MW solar plant on the resort and sell that electricity directly to the ski resort — while the resort still buys the rest from the national grid? And is that legal under Uzbekistan&rsquo;s 2026 energy rules?</p>
+    <div class="meta">
+      <span><b>Prepared</b> 23 June 2026</span>
+      <span><b>For</b> Amirsoy Solar Energy project</span>
+      <span><b>Basis</b> Uzbek primary law + ADB / World Bank / IEA + law-firm briefings</span>
+      <span><b>Method</b> deep web research, claims adversarially fact-checked</span>
+    </div>
+  </header>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="verdict-chips">
+      <div class="chip yes">
+        <div class="big">YES</div>
+        <div><div class="lbl">Is it legal?</div><div class="sub">Permitted, via one specific provision — Decree&nbsp;ПП-57, Point&nbsp;10.</div></div>
+      </div>
+      <div class="chip no">
+        <div class="big">NO</div>
+        <div><div class="lbl">Is it easy?</div><div class="sub">Not plug-and-play — it needs real regulatory navigation and a local lawyer.</div></div>
+      </div>
+    </div>
+    <p>The structure you described — a separate firm that owns the plant and sells to the resort under a direct, long-term contract — is the right shape and is <b>expressly allowed for renewable generators</b>. But a 2&nbsp;MW grid-connected plant stays fully inside the regulated system, the state &ldquo;single buyer&rdquo; sits in the path, and the market is mid-reform. The direction of travel is toward <i>more</i> freedom to do exactly this.</p>
+  </div>
+
+  <hr class="rule">
+
+  <!-- THE PLAN IN ONE PICTURE -->
+  <p class="section-tag">The plan in one picture</p>
+  <h2>How the structure works</h2>
+  <p class="lead">Ownership and money flow left-to-right; the green arrow is the commercial electricity sale that the whole question turns on.</p>
+
+  <figure>
+    <div class="fig-card">
+      <svg viewBox="0 0 1000 400" role="img" aria-label="Structure diagram: beneficiaries own a new solar firm, which builds a 2 MW plant that sells power to the resort via a direct PPA; the national grid tops the resort up.">
+        <defs>
+          <marker id="arr" markerWidth="11" markerHeight="11" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L9,5 L0,10 z" fill="#5A5048"/>
+          </marker>
+          <marker id="arrG" markerWidth="12" markerHeight="12" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L9,5 L0,10 z" fill="#3C7D5B"/>
+          </marker>
+          <marker id="arrA" markerWidth="11" markerHeight="11" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L9,5 L0,10 z" fill="#B9822E"/>
+          </marker>
+        </defs>
+
+        <!-- Node A: Beneficiaries -->
+        <rect x="20" y="60" width="170" height="78" rx="12" fill="#F7F4EF" stroke="#D6CBBB" stroke-width="1.5"/>
+        <text x="105" y="93" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2B2520">Amirsoy</text>
+        <text x="105" y="112" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2B2520">beneficiaries</text>
+
+        <!-- A -> B -->
+        <line x1="190" y1="99" x2="252" y2="99" stroke="#5A5048" stroke-width="2" marker-end="url(#arr)"/>
+        <text x="221" y="90" text-anchor="middle" font-size="11.5" fill="#8A7F74">own</text>
+
+        <!-- Node B: New Solar Firm -->
+        <rect x="255" y="52" width="190" height="94" rx="12" fill="#FFFFFF" stroke="#C9633F" stroke-width="2"/>
+        <text x="350" y="83" text-anchor="middle" font-size="15" font-weight="700" fill="#2B2520">NEW SOLAR FIRM</text>
+        <text x="350" y="104" text-anchor="middle" font-size="12.5" fill="#5A5048">special-purpose</text>
+        <text x="350" y="120" text-anchor="middle" font-size="12.5" fill="#5A5048">company (owns plant)</text>
+
+        <!-- B -> C -->
+        <line x1="445" y1="99" x2="507" y2="99" stroke="#5A5048" stroke-width="2" marker-end="url(#arr)"/>
+        <text x="476" y="90" text-anchor="middle" font-size="11.5" fill="#8A7F74">funds +</text>
+        <text x="476" y="116" text-anchor="middle" font-size="11.5" fill="#8A7F74">hires EPC</text>
+
+        <!-- Node C: Plant -->
+        <rect x="510" y="52" width="190" height="94" rx="12" fill="#FFFFFF" stroke="#D6CBBB" stroke-width="1.5"/>
+        <text x="605" y="82" text-anchor="middle" font-size="15" font-weight="700" fill="#2B2520">2 MW SOLAR PLANT</text>
+        <text x="605" y="103" text-anchor="middle" font-size="12.5" fill="#5A5048">built by EPC contractor</text>
+        <text x="605" y="119" text-anchor="middle" font-size="12.5" fill="#5A5048">on resort land (lease)</text>
+
+        <!-- C -> D : green PPA -->
+        <line x1="700" y1="99" x2="812" y2="99" stroke="#3C7D5B" stroke-width="3" marker-end="url(#arrG)"/>
+        <rect x="702" y="20" width="196" height="44" rx="9" fill="#E8F1EA" stroke="#3C7D5B" stroke-width="1"/>
+        <text x="800" y="38" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3C7D5B">electricity sold</text>
+        <text x="800" y="54" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3C7D5B">direct line + long-term PPA</text>
+        <text x="756" y="114" text-anchor="middle" font-size="11" fill="#3C7D5B" font-weight="700">ПП-57 §10</text>
+
+        <!-- Node D: Resort -->
+        <rect x="815" y="52" width="170" height="94" rx="12" fill="#FFFFFF" stroke="#2B2520" stroke-width="2"/>
+        <text x="900" y="90" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2B2520">AMIRSOY</text>
+        <text x="900" y="108" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2B2520">SKI RESORT</text>
+        <text x="900" y="126" text-anchor="middle" font-size="12" fill="#5A5048">the buyer</text>
+
+        <!-- Node E: Grid -->
+        <rect x="815" y="280" width="170" height="78" rx="12" fill="#F7F4EF" stroke="#D6CBBB" stroke-width="1.5"/>
+        <text x="900" y="313" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2B2520">NATIONAL GRID</text>
+        <text x="900" y="333" text-anchor="middle" font-size="12" fill="#5A5048">single buyer system</text>
+
+        <!-- E -> D : top up -->
+        <line x1="900" y1="280" x2="900" y2="150" stroke="#5A5048" stroke-width="2" marker-end="url(#arr)"/>
+        <text x="912" y="220" text-anchor="start" font-size="11.5" fill="#8A7F74">top-up</text>
+        <text x="912" y="236" text-anchor="start" font-size="11.5" fill="#8A7F74">(winter peak)</text>
+
+        <!-- D -> E : surplus dashed -->
+        <line x1="868" y1="150" x2="868" y2="278" stroke="#B9822E" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arrA)"/>
+        <text x="858" y="225" text-anchor="end" font-size="11" fill="#B9822E">summer</text>
+        <text x="858" y="241" text-anchor="end" font-size="11" fill="#B9822E">surplus?</text>
+
+        <!-- footnote line -->
+        <text x="500" y="392" text-anchor="middle" font-size="11.5" fill="#8A7F74">Because the resort keeps a grid connection for top-up power, the whole setup stays inside the regulated regime — see below.</text>
+      </svg>
+    </div>
+    <figcaption>The proposed structure. The green arrow (the commercial sale to the resort) is what Decree ПП-57 makes legal.</figcaption>
+  </figure>
+
+  <hr class="rule">
+
+  <!-- WHY LEGAL -->
+  <p class="section-tag">Why it is legal</p>
+  <h2><span class="num">A</span>The one provision that makes it work</h2>
+  <p>The legal anchor is <b>Presidential Decree ПП-57 of 16 February 2023, Point 10</b>. It says a business that generates electricity from renewables may sell it to:</p>
+
+  <div class="callout green">
+    <div class="ct">ПП-57 · Point 10 (paraphrased from lex.uz)</div>
+    <p class="quote">&hellip;&ldquo;other consumers <span class="hl">at mutually agreed prices, on the basis of concluded direct contracts, including long-term ones</span>&rdquo; — and may build the installation <span class="hl">on property belonging to others under a lease</span>.</p>
+  </div>
+
+  <p>That is almost a word-for-word description of your plan: a separate firm, a direct long-term contract with the resort, and a plant built on the resort&rsquo;s leased land. <b>No capacity ceiling is stated in that paragraph.</b> The renewable-energy law (ЗРУ-539, 2019) reinforces it — renewable producers may build local networks and contract to sell power to legal entities.</p>
+
+  <div class="callout amber">
+    <div class="ct">Correction to an earlier assumption</div>
+    <p>ПП-57 is dated <b>16 Feb 2023</b> (not Jan 2022). An initial read missed Point 10 behind a paywall and wrongly concluded the decree had no direct-sale rule. Deep verification against the primary lex.uz text — corroborated by three independent legal sources — confirms Point 10 grants the right. The other two decrees you flagged (УП-220, ПКМ-247) describe a <i>different</i> model and do not authorise this plan.</p>
+  </div>
+
+  <hr class="rule">
+
+  <!-- WHY NOT EASY -->
+  <p class="section-tag">Why it is not easy</p>
+  <h2><span class="num">B</span>Three frictions to navigate</h2>
+
+  <div class="cards">
+    <div class="card">
+      <div class="n">1</div>
+      <h4>You can&rsquo;t &ldquo;hide&rdquo; from regulation by being small</h4>
+      <p>The new electricity law (ЗРУ-939) only frees a plant from the regulated regime if it meets <b>all three</b> conditions at once. Our plan fails two of them — see the diagram below.</p>
+    </div>
+    <div class="card">
+      <div class="n">2</div>
+      <h4>The state &ldquo;single buyer&rdquo; sits in the path</h4>
+      <p>Since 1 July 2024, <b>Uzenergosotish JSC</b> is the central buyer/seller of electricity. ПП-57&rsquo;s direct-sale right is a carve-out <i>around</i> this — but no source cleanly spells out the exact step-by-step procedure to use it for a grid-connected 2&nbsp;MW plant. <b>This is the single most important thing to confirm with a lawyer.</b></p>
+    </div>
+    <div class="card">
+      <div class="n">3</div>
+      <h4>The rules are changing right now</h4>
+      <p>Uzbekistan is mid-way through a 2023&ndash;2030 liberalisation roadmap. A May-2025 decree began allowing licensed power trading; a competitive market opens in stages from 2026; the single-buyer monopoly is slated to dissolve around July 2026. Check the live rules at build time — the trend favours your plan.</p>
+    </div>
+  </div>
+
+  <h3>Friction&nbsp;1, visualised: the 5&nbsp;MW exemption is an &ldquo;all-three-or-nothing&rdquo; test</h3>
+  <figure>
+    <div class="fig-card">
+      <svg viewBox="0 0 1000 300" role="img" aria-label="Logic gate: the under-5MW exemption requires three conditions all true. Our plan: under 5 MW is true, own-use-only is false, off-grid is false, so the exemption does not apply.">
+        <defs>
+          <marker id="arr2" markerWidth="11" markerHeight="11" refX="8" refY="5" orient="auto">
+            <path d="M0,0 L9,5 L0,10 z" fill="#5A5048"/>
+          </marker>
+        </defs>
+
+        <!-- Condition 1 TRUE -->
+        <rect x="20" y="30" width="300" height="62" rx="10" fill="#E8F1EA" stroke="#3C7D5B" stroke-width="1.5"/>
+        <text x="44" y="58" font-size="22" fill="#3C7D5B" font-weight="700">&#10003;</text>
+        <text x="70" y="55" font-size="14.5" font-weight="700" fill="#2B2520">Under 5 MW</text>
+        <text x="70" y="76" font-size="13" fill="#5A5048">our plant is 2 MW &mdash; TRUE</text>
+
+        <!-- Condition 2 FALSE -->
+        <rect x="20" y="110" width="300" height="62" rx="10" fill="#F4E1DA" stroke="#BB4A33" stroke-width="1.5"/>
+        <text x="46" y="148" font-size="22" fill="#BB4A33" font-weight="700">&#10007;</text>
+        <text x="70" y="135" font-size="14.5" font-weight="700" fill="#2B2520">For own use only</text>
+        <text x="70" y="156" font-size="13" fill="#5A5048">no &mdash; it&rsquo;s a sale to a third party</text>
+
+        <!-- Condition 3 FALSE -->
+        <rect x="20" y="190" width="300" height="62" rx="10" fill="#F4E1DA" stroke="#BB4A33" stroke-width="1.5"/>
+        <text x="46" y="228" font-size="22" fill="#BB4A33" font-weight="700">&#10007;</text>
+        <text x="70" y="215" font-size="14.5" font-weight="700" fill="#2B2520">Not connected to the grid</text>
+        <text x="70" y="236" font-size="13" fill="#5A5048">no &mdash; resort stays grid-connected</text>
+
+        <!-- lines to AND -->
+        <line x1="320" y1="61" x2="470" y2="120" stroke="#5A5048" stroke-width="1.6"/>
+        <line x1="320" y1="141" x2="470" y2="141" stroke="#5A5048" stroke-width="1.6"/>
+        <line x1="320" y1="221" x2="470" y2="162" stroke="#5A5048" stroke-width="1.6"/>
+
+        <!-- AND gate -->
+        <rect x="470" y="108" width="120" height="66" rx="10" fill="#FFFFFF" stroke="#2B2520" stroke-width="2"/>
+        <text x="530" y="138" text-anchor="middle" font-size="17" font-weight="700" fill="#2B2520">AND</text>
+        <text x="530" y="158" text-anchor="middle" font-size="11.5" fill="#8A7F74">all must be true</text>
+
+        <line x1="590" y1="141" x2="648" y2="141" stroke="#5A5048" stroke-width="2" marker-end="url(#arr2)"/>
+
+        <!-- result -->
+        <rect x="650" y="100" width="330" height="82" rx="12" fill="#F6ECD8" stroke="#B9822E" stroke-width="2"/>
+        <text x="815" y="132" text-anchor="middle" font-size="16" font-weight="700" fill="#B9822E">Exemption does NOT apply</text>
+        <text x="815" y="156" text-anchor="middle" font-size="13.5" fill="#5A5048">the plant stays fully inside the</text>
+        <text x="815" y="173" text-anchor="middle" font-size="13.5" fill="#5A5048">regulated electricity regime</text>
+      </svg>
+    </div>
+    <figcaption>&ldquo;Only 2 MW&rdquo; is not a shortcut: the exemption needs small <i>and</i> own-use <i>and</i> off-grid — and the plan is neither own-use-only nor off-grid.</figcaption>
+  </figure>
+
+  <hr class="rule">
+
+  <!-- THREE DECREES -->
+  <p class="section-tag">The three decrees you asked about</p>
+  <h2><span class="num">C</span>Which decree actually governs this</h2>
+  <p class="lead">Only one of the three fits the plan. The other two are about a smaller, different model — selling <i>surplus back to the grid</i>, not selling to the resort.</p>
+
+  <div class="decree fit">
+    <div class="dh">
+      <span class="code">ПП-57</span>
+      <span class="date">Presidential decree · 16 Feb 2023</span>
+      <span class="verd">✓ This is our anchor</span>
+    </div>
+    <div class="title">&ldquo;On measures to accelerate the introduction of renewable energy sources&hellip;&rdquo;</div>
+    <p>An annual renewables programme — <b>but its Point 10</b> carries the standing right to sell renewable power directly to other consumers under direct/long-term contracts at agreed prices, and to build on leased land.</p>
+    <p class="src"><a href="https://lex.uz/uz/docs/6385720">lex.uz/uz/docs/6385720</a></p>
+  </div>
+
+  <div class="decree no">
+    <div class="dh">
+      <span class="code">УП-220</span>
+      <span class="date">Presidential decree · 9 Sep 2022</span>
+      <span class="verd">⚠ Doesn&rsquo;t fit</span>
+    </div>
+    <div class="title">&ldquo;&hellip;development of low-capacity renewable energy sources&rdquo;</div>
+    <p>The <b>small self-consumption</b> regime: solar/wind/biogas <b>up to ~1 MW</b>, &ldquo;for own needs,&rdquo; with surplus sold <i>back to the grid</i>. A 2 MW plant is outside its scope, and it isn&rsquo;t a third-party-sale mechanism.</p>
+    <p class="src"><a href="https://lex.uz/uz/docs/6189043">lex.uz/uz/docs/6189043</a></p>
+  </div>
+
+  <div class="decree no">
+    <div class="dh">
+      <span class="code">ПКМ-247</span>
+      <span class="date">Cabinet of Ministers · 14 Jun 2023</span>
+      <span class="verd">⚠ Wrong mechanism</span>
+    </div>
+    <div class="title">&ldquo;On the procedure for selling surplus electricity produced&hellip; using RES&rdquo;</div>
+    <p>The how-to implementing УП-220: sell <b>surplus</b> (≤1 MW own-use plants) to <b>Regional Electric Networks</b> at <b>80% of the Group-II tariff</b>. It routes power to the <i>state grid operator</i>, not to a private buyer like the resort.</p>
+    <p class="src"><a href="https://lex.uz/ru/docs/6502113">lex.uz/ru/docs/6502113</a></p>
+  </div>
+
+  <hr class="rule">
+
+  <!-- MARKET + TIMELINE -->
+  <p class="section-tag">The landscape</p>
+  <h2><span class="num">D</span>Who&rsquo;s who, and where we are in the reform</h2>
+
+  <div class="who">
+    <div class="w"><div class="role">Single buyer</div><div class="name">Uzenergosotish JSC</div><div class="desc">Central buyer/seller of power since 1 Jul 2024. The body the direct-sale right must be reconciled with.</div></div>
+    <div class="w"><div class="role">Transmission &amp; dispatch</div><div class="name">National Electric Networks (NEGU)</div><div class="desc">Runs the backbone grid and system operation. (Held the single-buyer role until 2024.)</div></div>
+    <div class="w"><div class="role">Distribution</div><div class="name">Regional Electric Power Networks</div><div class="desc">Local distribution; the buyer of small-plant surplus under УП-220 / ПКМ-247.</div></div>
+    <div class="w"><div class="role">Regulator</div><div class="name">Energy Market Agency &middot; Ministry of Energy</div><div class="desc">The Agency (under the Cabinet) regulates the market; the Ministry is the authorised body for renewables.</div></div>
+  </div>
+
+  <figure>
+    <div class="fig-card">
+      <svg viewBox="0 0 1000 240" role="img" aria-label="Reform timeline from 2019 to 2030 showing key energy laws and the 2026 you-are-here marker.">
+        <line x1="40" y1="150" x2="960" y2="150" stroke="#D6CBBB" stroke-width="3"/>
+
+        <!-- ticks -->
+        <!-- 2019 -->
+        <circle cx="80" cy="150" r="7" fill="#C9633F"/>
+        <text x="80" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2520">2019</text>
+        <text x="80" y="120" text-anchor="middle" font-size="11.5" fill="#5A5048">RES law ЗРУ-539;</text>
+        <text x="80" y="105" text-anchor="middle" font-size="11.5" fill="#5A5048">sector unbundled</text>
+
+        <!-- 2022 -->
+        <circle cx="245" cy="150" r="7" fill="#C9633F"/>
+        <text x="245" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2520">2022</text>
+        <text x="245" y="120" text-anchor="middle" font-size="11.5" fill="#5A5048">УП-220</text>
+        <text x="245" y="105" text-anchor="middle" font-size="11.5" fill="#5A5048">(small RES)</text>
+
+        <!-- 2023 -->
+        <circle cx="410" cy="150" r="7" fill="#C9633F"/>
+        <text x="410" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2520">2023</text>
+        <text x="410" y="120" text-anchor="middle" font-size="11.5" font-weight="700" fill="#3C7D5B">ПП-57 direct-sale</text>
+        <text x="410" y="105" text-anchor="middle" font-size="11.5" fill="#5A5048">+ reform roadmap (166)</text>
+
+        <!-- Jul 2024 -->
+        <circle cx="575" cy="150" r="7" fill="#C9633F"/>
+        <text x="575" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2520">Jul 2024</text>
+        <text x="575" y="120" text-anchor="middle" font-size="11.5" fill="#5A5048">single buyer +</text>
+        <text x="575" y="105" text-anchor="middle" font-size="11.5" fill="#5A5048">new law ЗРУ-939</text>
+
+        <!-- May 2025 -->
+        <circle cx="740" cy="150" r="7" fill="#C9633F"/>
+        <text x="740" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="#2B2520">May 2025</text>
+        <text x="740" y="120" text-anchor="middle" font-size="11.5" fill="#5A5048">licensed power</text>
+        <text x="740" y="105" text-anchor="middle" font-size="11.5" fill="#5A5048">trading opened</text>
+
+        <!-- 2026 YOU ARE HERE -->
+        <rect x="843" y="40" width="118" height="26" rx="13" fill="#C9633F"/>
+        <text x="902" y="58" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">YOU ARE HERE</text>
+        <line x1="902" y1="66" x2="902" y2="143" stroke="#C9633F" stroke-width="2" stroke-dasharray="4 3"/>
+        <circle cx="902" cy="150" r="9" fill="#C9633F" stroke="#fff" stroke-width="2.5"/>
+        <text x="902" y="180" text-anchor="middle" font-size="13" font-weight="700" fill="#C9633F">2026 &rarr; 2030</text>
+        <text x="902" y="200" text-anchor="middle" font-size="11.5" fill="#5A5048">competitive market;</text>
+        <text x="902" y="215" text-anchor="middle" font-size="11.5" fill="#5A5048">monopoly dissolving</text>
+      </svg>
+    </div>
+    <figcaption>We are entering the phase where direct generator-to-consumer sales get easier, not harder.</figcaption>
+  </figure>
+
+  <hr class="rule">
+
+  <!-- INCENTIVES -->
+  <p class="section-tag">The economics get help</p>
+  <h2><span class="num">E</span>Tax incentives &amp; tariff backdrop</h2>
+  <p>For a renewable plant of <b>0.1 MW or more</b>, the incentives are material:</p>
+  <div class="incentives">
+    <div class="inc"><div class="big">10 years</div><div class="t">exemption from property tax (the equipment) <b>and</b> land tax (the land it occupies)</div></div>
+    <div class="inc"><div class="big">0%</div><div class="t">corporate income tax on revenue from selling green-energy certificates</div></div>
+    <div class="inc"><div class="big">Customs</div><div class="t">duty exemptions on imported solar equipment</div></div>
+    <div class="inc"><div class="big">↑ Tariffs</div><div class="t">grid prices are rising, with penalty double-rates for businesses over their limit — which <i>strengthens</i> the case for own solar</div></div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- NEXT STEPS -->
+  <p class="section-tag">What to do next</p>
+  <h2><span class="num">F</span>Four questions for a local energy lawyer</h2>
+  <p>Take these to a Tashkent energy practice (Kosta&nbsp;Legal, Centil, Dentons, Azizov&nbsp;&amp;&nbsp;Partners, Unicase) <b>before committing capital</b>:</p>
+
+  <ol class="qs">
+    <li><b>The procedure.</b> Exactly how does a 2&nbsp;MW grid-connected renewable plant exercise the ПП-57 Point-10 direct-PPA right <i>while the Uzenergosotish single-buyer regime is in force</i> — and what licence/registration is required after the May-2025 trade-liberalisation decree?</li>
+    <li><b>The wires.</b> Under the grid-connection rules (Cabinet Reg.&nbsp;No.&nbsp;610), who pays for connection, protection and metering when the plant feeds the resort by direct line while the resort also draws from the grid — and is a &ldquo;direct line&rdquo; legally distinct from a &ldquo;local network&rdquo;?</li>
+    <li><b>The price.</b> Any transfer-pricing or anti-monopoly limits on the &ldquo;mutually agreed&rdquo; price between the firm and the affiliated resort — versus the resort simply self-generating?</li>
+    <li><b>The money.</b> Do the tax/customs incentives (10-yr property/land-tax exemption, green-certificate CIT exemption, equipment customs relief) all apply at 2&nbsp;MW through this corporate vehicle — and what is the buy-back tariff for any surplus fed to the grid?</li>
+  </ol>
+
+  <div class="callout">
+    <div class="ct">Recommendation</div>
+    <p>The highest-value next step is a short paid consult on <b>question&nbsp;1</b>. That single answer — <i>how</i> to exercise the ПП-57 direct-sale right under today&rsquo;s single-buyer rules — decides whether this is a clean go or needs restructuring. Everything else (panel choice, sizing, financing) follows from it.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="disc"><b>Not legal advice.</b> This report summarises desk research into public Uzbek law and reputable analyses, with each key claim independently fact-checked. The market is mid-reform and the precise rules in force when you build are what govern — verify with a licensed local energy lawyer before relying on any point here.</div>
+
+    <h5>Key sources</h5>
+    <div class="srclist">
+      <p><b>ПП-57</b> (16.02.2023) — direct-sale anchor: <a href="https://lex.uz/uz/docs/6385720">lex.uz/uz/docs/6385720</a></p>
+      <p><b>ЗРУ-939</b> &ldquo;On Electrical Energy&rdquo; (07.08.2024): <a href="https://www.lex.uz/ru/docs/7051594">lex.uz/ru/docs/7051594</a></p>
+      <p><b>Cabinet Reg. 610</b> (22.07.2019) — grid connection: <a href="https://lex.uz/docs/4432300">lex.uz/docs/4432300</a></p>
+      <p><b>УП-220</b> (09.09.2022): <a href="https://lex.uz/uz/docs/6189043">lex.uz/uz/docs/6189043</a></p>
+      <p><b>ПКМ-247</b> (14.06.2023): <a href="https://lex.uz/ru/docs/6502113">lex.uz/ru/docs/6502113</a></p>
+      <p><b>RES Law ЗРУ-539</b> (IEA): <a href="https://www.iea.org/policies/13310-law-of-the-republic-of-uzbekistan-on-the-use-of-renewable-energy-sources-dated-may-21-2019-no-zru-539">iea.org/policies/13310</a></p>
+      <p><b>Market reform</b> (ADB): <a href="https://www.adb.org/sites/default/files/project-documents/54269/54269-002-rrp-en.pdf">adb.org RRP 54269-002</a></p>
+      <p><b>Single buyer / PPAs</b> (Kosta Legal): <a href="https://kostalegal.com/newsletters/uzbekistan-legal-newsletter-for-september-2023">kostalegal.com</a> · <a href="https://law.asia/uzbekistan-new-power-system-reform-energy-market/">law.asia</a></p>
+      <p><b>Tax incentives</b> (EY): <a href="https://www.ey.com/en_uz/technical/tax-alerts/2024/09/tax-incentives-for-renewable-electricity-producers">ey.com</a></p>
+      <p><b>Tariffs</b> (kun.uz): <a href="https://kun.uz/en/news/2025/01/24/electricity-tariffs-to-increase-again-from-april-1">Apr-2025 rise</a> · <a href="https://kun.uz/en/news/2024/07/10/uzbekistan-introduces-double-rate-for-businesses-who-exceed-electricity-consumption-limit">business double-rate</a></p>
+    </div>
+
+    <p style="margin-top:22px;">Prepared 23 June 2026 for the <b>Amirsoy Solar Energy</b> project &middot; My Mind vault.</p>
+  </footer>
+
+</div>
+</body>
+</html>
