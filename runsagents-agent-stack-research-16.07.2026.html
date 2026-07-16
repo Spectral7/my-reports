@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inside runsagents — What Shakhzod Built</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,600;1,18..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --surface:#FFFFFF;
+    --surface-2:#FCFAF6;
+    --ink:#221F1B;
+    --body:#3C3833;
+    --muted:#6E6960;
+    --faint:#9A948A;
+    --line:#E7E2D8;
+    --line-2:#D8D2C6;
+
+    --coral:#D85A30; --coral-d:#993C1D; --coral-bg:#FAECE7; --coral-ink:#712B13;
+    --teal:#1D9E75; --teal-d:#0F6E56; --teal-bg:#E1F5EE; --teal-ink:#085041;
+    --green:#3B6D11; --green-bg:#EAF3DE; --green-ink:#27500A;
+    --amber:#BA7517; --amber-d:#854F0B; --amber-bg:#FAEEDA; --amber-ink:#633806;
+    --red:#A32D2D; --red-bg:#FCEBEB; --red-ink:#791F1F;
+    --violet:#6B4E9E; --violet-bg:#F0EAF9; --violet-ink:#48326F;
+    --blue:#2C6BAF; --blue-bg:#E6EFF8; --blue-ink:#1B456F;
+
+    --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px;
+    --maxw:860px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"Newsreader",Georgia,"Iowan Old Style",Palatino,serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--body);
+    font-family:var(--sans);font-size:17px;line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 26px 96px;}
+  ::selection{background:var(--coral-bg);}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:600;letter-spacing:-.01em;line-height:1.2;}
+  p{margin:1em 0;}
+  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);transition:border-color .15s;}
+  a:hover{border-color:var(--coral);}
+  strong{font-weight:600;color:var(--ink);}
+  em{font-style:italic;}
+  code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--r-sm);padding:1px 5px;color:var(--coral-ink);white-space:nowrap;}
+
+  /* ---- Masthead ---- */
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block;}
+  h1.title{font-size:clamp(34px,6vw,52px);font-weight:600;line-height:1.04;margin:0 0 18px;
+    letter-spacing:-.025em;font-family:var(--serif);}
+  .dek{font-size:21px;line-height:1.5;color:var(--muted);margin:0 0 28px;max-width:34em;font-weight:400;}
+  .meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .meta .m{flex:1 1 150px;padding:14px 18px 14px 0;border-right:1px solid var(--line);}
+  .meta .m:last-child{border-right:0;}
+  .meta .ml{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px;}
+  .meta .mv{font-size:13.5px;color:var(--body);font-weight:500;line-height:1.35;}
+
+  /* ---- Section heads ---- */
+  section{margin-top:68px;}
+  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .tag .badge{width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:0;flex:0 0 auto;}
+  h2.sec{font-size:29px;margin:0 0 6px;font-family:var(--serif);}
+  .sec-lead{font-size:18px;color:var(--muted);margin:.3em 0 0;}
+  h3.sub{font-size:20px;margin:38px 0 4px;}
+
+  /* ---- Bottom line ---- */
+  .bottomline{border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:0 var(--r-md) var(--r-md) 0;
+    background:var(--surface);padding:18px 22px;margin:26px 0;}
+  .bottomline p{margin:0;font-size:16.5px;}
+  .bottomline p + p{margin-top:.8em;}
+  .bottomline .lab{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:6px;}
+
+  .score{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 18px;}
+  @media(max-width:560px){.score{grid-template-columns:1fr;}}
+  .score .cell{border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;background:var(--surface);}
+  .score .cell.yes{background:var(--teal-bg);border-color:#CFE9DE;}
+  .score .cell.no{background:var(--amber-bg);border-color:#F0E2C5;}
+  .score .cell.neu{background:var(--surface-2);}
+  .score .q{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:8px;color:var(--faint);}
+  .score .yes .q{color:var(--teal-d);}
+  .score .no .q{color:var(--amber-d);}
+  .score .a .word{font-size:34px;font-weight:600;line-height:1;letter-spacing:-.02em;color:var(--ink);font-family:var(--serif);}
+  .score .yes .a .word{color:var(--teal-ink);}
+  .score .no .a .word{color:var(--amber-ink);}
+  .score .sub{font-size:13.5px;line-height:1.45;margin-top:10px;color:var(--muted);}
+  .score .yes .sub{color:var(--teal-ink);}
+  .score .no .sub{color:var(--amber-ink);}
+
+  /* ---- Tables ---- */
+  .tw{overflow-x:auto;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);}
+  /* full-bleed table for the wide master catalog */
+  .tw.wide{width:min(1180px,94vw);margin-left:50%;transform:translateX(-50%);}
+  .tw.wide table{font-size:14px;}
+  .tw.wide td{padding:13px 15px;}
+  .tw.wide col.c-tool{width:150px;}
+  .tw.wide col.c-what{width:38%;}
+  .tw.wide col.c-fam{width:104px;}
+  .tw.wide col.c-code{width:172px;}
+  .tw.wide col.c-adopt{width:74px;}
+  .tw.wide col.c-fit{width:20%;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;}
+  th{background:var(--surface-2);text-align:left;padding:12px 14px;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line-2);white-space:nowrap;}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;}
+  tr:last-child td{border-bottom:0;}
+  tbody tr:hover{background:var(--surface-2);}
+  td.nm{font-weight:600;color:var(--ink);white-space:nowrap;}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .tnote{font-size:13px;color:var(--faint);margin:-14px 0 26px;padding:0 4px;}
+
+  /* ---- Pills ---- */
+  .p{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2.5px 8px;
+    border-radius:20px;white-space:nowrap;line-height:1.5;}
+  .p-hi{background:var(--red-bg);color:var(--red-ink);}
+  .p-md{background:var(--amber-bg);color:var(--amber-ink);}
+  .p-lo{background:var(--teal-bg);color:var(--teal-ink);}
+  .p-n{background:var(--surface-2);color:var(--muted);border:1px solid var(--line);}
+  .p-v{background:var(--violet-bg);color:var(--violet-ink);}
+  .p-b{background:var(--blue-bg);color:var(--blue-ink);}
+  .p-c{background:var(--coral-bg);color:var(--coral-ink);}
+
+  /* ---- The loop (CSS grid, no SVG) ---- */
+  .loop{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:28px 24px;margin:30px 0;}
+  .loop-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;}
+  .lstep{flex:1 1 128px;min-width:128px;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--r-md);padding:13px 12px;position:relative;margin:5px;}
+  .lstep .ln{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:5px;}
+  .lstep .lt{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--coral-ink);line-height:1.45;word-break:break-word;}
+  .lstep.human{background:var(--coral-bg);border-color:#EBCBBE;}
+  .lstep.human .ln{color:var(--coral-d);}
+  .lstep.human .lt{color:var(--coral-ink);font-family:var(--sans);font-weight:600;font-size:13px;}
+  .larrow{display:flex;align-items:center;justify-content:center;color:var(--line-2);font-size:17px;flex:0 0 14px;font-weight:700;}
+  .lback{margin-top:14px;padding-top:13px;border-top:1px dashed var(--line-2);font-size:13px;color:var(--muted);
+    display:flex;align-items:center;gap:9px;}
+  .lback .rr{color:var(--coral);font-weight:700;font-size:15px;}
+  .lside{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px;}
+  .lside .ls{border:1px dashed var(--line-2);border-radius:var(--r-md);padding:11px 13px;font-size:13px;color:var(--muted);background:var(--surface-2);}
+  .lside .ls b{font-family:var(--mono);font-size:12px;color:var(--coral-ink);font-weight:500;}
+
+  /* ---- Artifact cards ---- */
+  .card{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);
+    padding:24px;margin:18px 0;}
+  .card .ch{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:4px;}
+  .card .cn{font-family:var(--mono);font-size:17px;font-weight:500;color:var(--ink);letter-spacing:-.01em;}
+  .card .cp{display:flex;gap:6px;flex-wrap:wrap;}
+  .card .cl{font-size:15.5px;color:var(--muted);margin:0 0 16px;line-height:1.5;}
+  .card dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 16px;font-size:14.5px;align-items:baseline;}
+  .card dt{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;
+    white-space:nowrap;padding-top:3px;}
+  .card dd{margin:0;line-height:1.55;}
+  .card .quote{margin:16px 0 0;padding:12px 16px;background:var(--surface-2);border-left:2px solid var(--line-2);
+    border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:14px;color:var(--muted);font-style:italic;line-height:1.55;}
+  .card .quote b{font-style:normal;color:var(--body);}
+
+  /* ---- Callouts ---- */
+  .co{border-radius:var(--r-md);padding:16px 20px;margin:24px 0;font-size:15.5px;line-height:1.6;}
+  .co .cot{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:7px;}
+  .co p{margin:.55em 0;}
+  .co p:first-of-type{margin-top:0;}
+  .co p:last-child{margin-bottom:0;}
+  .co-w{background:var(--amber-bg);border:1px solid #F0E2C5;}
+  .co-w .cot{color:var(--amber-d);}
+  .co-w{color:var(--amber-ink);}
+  .co-i{background:var(--teal-bg);border:1px solid #CFE9DE;}
+  .co-i .cot{color:var(--teal-d);}
+  .co-i{color:var(--teal-ink);}
+  .co-r{background:var(--red-bg);border:1px solid #F2D5D5;color:var(--red-ink);}
+  .co-r .cot{color:var(--red);}
+  .co-v{background:var(--violet-bg);border:1px solid #DFD2F0;color:var(--violet-ink);}
+  .co-v .cot{color:var(--violet);}
+  .co b,.co strong{color:inherit;font-weight:700;}
+  .co code{background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.08);color:inherit;}
+
+  /* ---- Family header ---- */
+  .fam{display:flex;align-items:center;gap:12px;margin:46px 0 6px;padding-bottom:11px;border-bottom:2px solid var(--line-2);}
+  .fam .fi{width:32px;height:32px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;
+    font-size:15px;flex:0 0 auto;}
+  .fam h3{margin:0;font-size:22px;font-family:var(--serif);}
+  .fam .fc{margin-left:auto;font-size:12px;color:var(--faint);font-weight:500;white-space:nowrap;}
+
+  /* ---- Lists ---- */
+  ul.clean{list-style:none;padding:0;margin:16px 0;}
+  ul.clean li{position:relative;padding-left:22px;margin:9px 0;line-height:1.6;}
+  ul.clean li::before{content:"";position:absolute;left:3px;top:11px;width:5px;height:5px;
+    border-radius:50%;background:var(--coral);}
+  ol.steps{padding-left:0;counter-reset:s;list-style:none;margin:18px 0;}
+  ol.steps li{position:relative;padding-left:38px;margin:14px 0;counter-increment:s;line-height:1.6;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;
+    background:var(--coral-bg);color:var(--coral-d);font-size:12px;font-weight:600;
+    display:flex;align-items:center;justify-content:center;}
+
+  /* ---- Stat strip ---- */
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0;border:1px solid var(--line);
+    border-radius:var(--r-lg);overflow:hidden;background:var(--surface);margin:26px 0;}
+  .strip .st{padding:18px 16px;border-right:1px solid var(--line);text-align:center;}
+  .strip .st:last-child{border-right:0;}
+  .strip .sv{font-size:30px;font-weight:600;color:var(--ink);line-height:1;font-family:var(--serif);letter-spacing:-.02em;}
+  .strip .sl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-top:7px;}
+
+  hr.d{border:0;border-top:1px solid var(--line);margin:48px 0;}
+  .foot{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);line-height:1.65;}
+  .foot p{margin:.5em 0;}
+
+  @media(max-width:640px){
+    .wrap{padding:44px 18px 70px;}
+    .card dl{grid-template-columns:1fr;gap:3px 0;}
+    .card dt{padding-top:11px;}
+    .larrow{display:none;}
+    .lstep{flex:1 1 100%;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">Research Report</div>
+<h1 class="title">Inside <span style="font-family:var(--mono);font-size:.72em;font-weight:500;">runsagents</span></h1>
+<p class="dek">Your friend Shakhzod published thirteen agent tools in two days. This is everything he has, what each one actually does, and how much of it is real.</p>
+
+<div class="meta">
+  <div class="m"><div class="ml">Subject</div><div class="mv">github.com/runsagents<br>Shakhzod Shukurov</div></div>
+  <div class="m"><div class="ml">Scope</div><div class="mv">18 repos · all files read<br>all test suites run</div></div>
+  <div class="m"><div class="ml">Date</div><div class="mv">16 July 2026</div></div>
+  <div class="m"><div class="ml">Method</div><div class="mv">Cloned + verified<br>not just READMEs</div></div>
+</div>
+
+<!-- ============ BOTTOM LINE ============ -->
+<section id="bottomline" style="margin-top:52px;">
+<div class="tag"><span class="badge">1</span> The short version</div>
+<h2 class="sec">What he actually has</h2>
+<p class="sec-lead">One sentence: a complete, self-consistent safety system for running a company on AI agents — built for money-grade stakes, and only three days old.</p>
+
+<div class="bottomline">
+  <div class="lab">Bottom line</div>
+  <p>Shakhzod has built <strong>13 small tools that together form one loop</strong>, not a pile of utilities. Each one guards a specific way an AI agent can lie to you: it says the deploy worked (it didn't), it approves its own bad code, it remembers an approval that expired last month, it fixes the wrong side of a contradiction while you sleep. Every tool is <strong>free to take (CC0 public domain), has zero dependencies, and installs in one command.</strong></p>
+  <p>The honest caveat: <strong>everything was published on 13–14 July 2026 — two to three days ago.</strong> All are version 1.0.0. Zero stars, zero forks, one author. Roughly <strong>half of them are prompts, not programs</strong> — the "tool" is a page of rules the AI reads. That is not a criticism; the rules <em>are</em> the product. But it means you can adopt most of this by reading it, not installing it.</p>
+</div>
+
+<div class="strip">
+  <div class="st"><div class="sv">13</div><div class="sl">Agent tools</div></div>
+  <div class="st"><div class="sv">3</div><div class="sl">Days old</div></div>
+  <div class="st"><div class="sv">70/71</div><div class="sl">Tests passing</div></div>
+  <div class="st"><div class="sv">0</div><div class="sl">Dependencies</div></div>
+  <div class="st"><div class="sv">CC0</div><div class="sl">Take anything</div></div>
+</div>
+
+<div class="co co-i">
+  <div class="cot">What CC0 means for you</div>
+  <p>CC0 is the most permissive licence that exists — it is a formal surrender of copyright into the public domain. <strong>You can copy any of these repos, rename them, change them, use them commercially, and never credit him.</strong> There is no legal reason to hesitate on any of it. He chose this deliberately for all 13.</p>
+</div>
+</section>
+
+<!-- ============ WHO ============ -->
+<section id="who">
+<div class="tag"><span class="badge">2</span> The author</div>
+<h2 class="sec">Who built this, and why it's shaped this way</h2>
+<p class="sec-lead">The whole collection makes sense once you know his day job.</p>
+
+<p>His GitHub profile describes him as: <em>"Fintech founder. Ex-data scientist. Redesigning Fintech for Agents."</em> The longer version on his profile page:</p>
+
+<div class="card">
+  <div class="ch"><div class="cn">Shakhzod Shukurov</div><div class="cp"><span class="p p-n">London, UK</span></div></div>
+  <dl>
+    <dt>Now</dt><dd>Co-founder at <strong>IMAN</strong> (imaninvest.com). Profile says <em>"Chief Risk and Data Officer at IMAN."</em></dd>
+    <dt>Before</dt><dd>Fraud and payments data science in London.</dd>
+    <dt>Public</dt><dd>X / Twitter: <strong>@runsagents</strong>. GitHub account created 2019, 8 followers.</dd>
+    <dt>His pitch</dt><dd>"I run my startup on AI agents: pick a process, design the loop, close it end to end. The useful parts get published here, distilled from running real fintech work with agents."</dd>
+  </dl>
+  <div class="quote"><b>His six operating principles, verbatim from his profile:</b> "One writer per worktree. A second, independent model attacks meaningful diffs. 'Done' is checked at the system of record. Handoffs carry receipts. Unattended agents file, don't fix. The loop matters more than the prompt."</div>
+</div>
+
+<p>Those six sentences are the entire collection in miniature — each one is a tool. And his background explains the collection's centre of gravity: <strong>this is a fraud-and-payments person's view of AI agents.</strong> A fraud specialist's instinct is that <em>a claim is not evidence</em>, that you check the system of record rather than the story, and that the expensive failure is the one that looks fine. Every tool here is built on that instinct.</p>
+
+<div class="co co-w">
+  <div class="cot">Read this bias before you adopt anything</div>
+  <p>He is optimising for <strong>real money moving under an agent's control</strong>. His phrase, repeated in nearly every repo, is <em>"production stakes."</em> That is a genuinely different risk profile from yours. Some of what he built is essential for a regulated lender and pure ceremony for a one-person operation — and the report flags which is which.</p>
+</div>
+</section>
+
+<!-- ============ THE IDEA ============ -->
+<section id="idea">
+<div class="tag"><span class="badge">3</span> The organising idea</div>
+<h2 class="sec">It's a loop, not a toolbox</h2>
+<p class="sec-lead">This is the thing to understand. Everything else is detail.</p>
+
+<p>He published a 14th repo called <strong>agent-stack</strong> whose only job is to be the map. It contains no code — just a README and a routing table. Its first line sets the frame:</p>
+
+<div class="bottomline">
+  <div class="lab">agent-stack, verbatim</div>
+  <p>"The runsagents agent stack: <strong>how one human runs a company where agents do the work.</strong> Every piece assumes production stakes: real money, real state, real consequences."</p>
+  <p style="color:var(--muted);font-size:15px;">"This is <strong>a control loop, not a toolbox shelf.</strong>"</p>
+</div>
+
+<p>The claim is that these 13 tools are not 13 good ideas — they are one circular process where the output of each stage feeds the next, and the human sits at a specific point in the circle. Here is that loop, as he draws it:</p>
+
+<div class="loop">
+  <div class="loop-row">
+    <div class="lstep"><div class="ln">Territory</div><div class="lt">agent-fleet-control</div></div>
+    <div class="larrow">→</div>
+    <div class="lstep"><div class="ln">Attack</div><div class="lt">second-opinion<br>second-opinion-bench</div></div>
+    <div class="larrow">→</div>
+    <div class="lstep"><div class="ln">Verify state</div><div class="lt">airlocks<br>settlement-proof</div></div>
+    <div class="larrow">→</div>
+    <div class="lstep"><div class="ln">Receipts</div><div class="lt">handoff-receipts</div></div>
+  </div>
+  <div class="loop-row" style="margin-top:6px;">
+    <div class="lstep"><div class="ln">Rank unknowns</div><div class="lt">loss-weighted-unknowns</div></div>
+    <div class="larrow">→</div>
+    <div class="lstep human"><div class="ln">The point of it all</div><div class="lt">THE HUMAN DECIDES</div></div>
+    <div class="larrow">→</div>
+    <div class="lstep"><div class="ln">Stay able to</div><div class="lt">quiz-me</div></div>
+    <div class="larrow">→</div>
+    <div class="lstep"><div class="ln">Then</div><div class="lt">memory-ledger<br>night-watch<br>route-ledger</div></div>
+  </div>
+  <div class="lback"><span class="rr">↺</span> and back to territory — the loop closes and runs again</div>
+  <div class="lside">
+    <div class="ls"><b>permission-surface</b> — guards what is allowed to enter the loop at all</div>
+    <div class="ls"><b>voice-calibration</b> — governs the words that leave the loop in your name</div>
+  </div>
+</div>
+
+<p>Read left to right, top row then bottom row. In plain language:</p>
+
+<ol class="steps">
+  <li><strong>Give each agent its own sandbox</strong> so two agents can't overwrite each other's work.</li>
+  <li><strong>Have a different AI attack the code</strong> — the model that wrote it can't see its own blind spots.</li>
+  <li><strong>Check the real system,</strong> not the agent's report, before believing "done."</li>
+  <li><strong>Write a receipt</strong> when work changes hands, carrying the risks that are still open.</li>
+  <li><strong>Sort the open questions by what being wrong would cost</strong> — not by what feels uncertain.</li>
+  <li><strong>The human decides.</strong> This is the centre. Everything upstream exists to make this decision well-informed; everything downstream exists to keep it honest.</li>
+  <li><strong>Quiz the human</strong> so they can still answer for code the agents wrote.</li>
+  <li><strong>Then:</strong> store memory with an expiry date, let overnight agents report but never fix, and price your model choices from real outcomes.</li>
+</ol>
+
+<div class="co co-v">
+  <div class="cot">The one design decision underneath all of it</div>
+  <p><strong>Every single tool refuses to make the decision itself.</strong> Not one of them merges, deploys, fixes, approves, or acts. They gather evidence and hand it to a person. <code>agent-fleet-control</code> never commits or merges. <code>night-watch</code> can only file findings, never fix. <code>settlement-proof</code> "does not repair, retry, reverse, refund, or post." <code>loss-weighted-unknowns</code> "does not approve a release." <code>permission-surface</code> "never certifies safe."</p>
+  <p>This is the actual thesis of the collection, and it is worth more than any individual tool: <strong>as agents get more capable, the scarce resource is not agent work — it's a human who still understands enough to be accountable.</strong> Every tool protects that human's ability to decide.</p>
+</div>
+</section>
+
+<!-- ============ CATALOG ============ -->
+<section id="catalog">
+<div class="tag"><span class="badge">4</span> The catalog</div>
+<h2 class="sec">All 13 tools at a glance</h2>
+<p class="sec-lead">Sorted by his own five families. "Real code" tells you whether you're getting a program or a page of rules.</p>
+
+<div class="tw wide">
+<table>
+<colgroup>
+  <col class="c-tool"><col class="c-what"><col class="c-fam"><col class="c-code"><col class="c-adopt"><col class="c-fit">
+</colgroup>
+<thead><tr>
+  <th>Tool</th><th>What it does, plainly</th><th>Family</th><th>Real code?</th><th>Adopt</th><th>Fits you?</th>
+</tr></thead>
+<tbody>
+<tr>
+  <td class="nm">agent-fleet-control</td>
+  <td>Gives each AI agent its own copy of the repo and its own set of files it's allowed to touch, so two agents can't clobber each other.</td>
+  <td><span class="p p-b">Discipline</span></td>
+  <td><span class="p p-lo">Yes — 580-line Bash CLI</span></td>
+  <td><span class="p p-lo">Low</span></td>
+  <td>Only if you run 2+ agents at once</td>
+</tr>
+<tr>
+  <td class="nm">second-opinion</td>
+  <td>Sends your code to a <em>different</em> AI (e.g. Codex) briefed to "prove it wrong." If the two models disagree and won't budge, a human rules.</td>
+  <td><span class="p p-b">Discipline</span></td>
+  <td><span class="p p-md">Mostly prompt + 81-line printer</span></td>
+  <td><span class="p p-lo">Low</span></td>
+  <td>Good — needs a 2nd model</td>
+</tr>
+<tr>
+  <td class="nm">airlocks</td>
+  <td>Refuses to believe "it's deployed / merged / fixed" until someone checks the real system. Never trust the log — check the thing.</td>
+  <td><span class="p p-b">Discipline</span></td>
+  <td><span class="p p-hi">No — 34-line rulebook + demo</span></td>
+  <td><span class="p p-lo">Low</span></td>
+  <td><strong>Strong — steal the doctrine</strong></td>
+</tr>
+<tr>
+  <td class="nm">handoff-receipts</td>
+  <td>When work passes between agents (or to you), it must carry a structured receipt: what was done, what's still risky, what was verified.</td>
+  <td><span class="p p-b">Discipline</span></td>
+  <td><span class="p p-lo">Yes — 316-line validator</span></td>
+  <td><span class="p p-lo">Low</span></td>
+  <td>Thin solo — needs 2 parties</td>
+</tr>
+<tr>
+  <td class="nm">night-watch</td>
+  <td>Overnight agents inspect the repo read-only and <em>file</em> problems. They are forbidden from fixing anything.</td>
+  <td><span class="p p-b">Discipline</span></td>
+  <td><span class="p p-hi">No — 4 prompts + 176-line checker</span></td>
+  <td><span class="p p-md">Medium</span></td>
+  <td><strong>Doctrine yes, tool no</strong></td>
+</tr>
+<tr>
+  <td class="nm">settlement-proof</td>
+  <td>Before believing a payment succeeded, checks four separate systems agree: processor, ledger, duplicate-guard, reconciliation.</td>
+  <td><span class="p p-c">Money</span></td>
+  <td><span class="p p-lo">Yes — 291 lines, real logic</span></td>
+  <td><span class="p p-hi">High</span></td>
+  <td>Needs a real payment stack</td>
+</tr>
+<tr>
+  <td class="nm">route-ledger</td>
+  <td>Works out which AI model is actually cheapest by counting the <em>human</em> time spent fixing its output — not the token price.</td>
+  <td><span class="p p-c">Money</span></td>
+  <td><span class="p p-lo">Yes — 401 lines</span></td>
+  <td><span class="p p-hi">High</span></td>
+  <td>Needs 100s of logged runs</td>
+</tr>
+<tr>
+  <td class="nm">second-opinion-bench</td>
+  <td>Tests whether a second AI reviewer is actually worth paying for, using 12 deliberately planted bugs.</td>
+  <td><span class="p p-v">Measurement</span></td>
+  <td><span class="p p-lo">Yes — best-tested repo</span></td>
+  <td><span class="p p-md">Medium</span></td>
+  <td>Only if evaluating reviewers</td>
+</tr>
+<tr>
+  <td class="nm">loss-weighted-unknowns</td>
+  <td>Ranks your open questions by what being wrong would <em>cost</em>, not by how uncertain they feel. Multiplies five 1–5 scores.</td>
+  <td><span class="p p-v">Measurement</span></td>
+  <td><span class="p p-lo">Yes — small ranker</span></td>
+  <td><span class="p p-lo">Low</span></td>
+  <td><strong>Strong — works solo</strong></td>
+</tr>
+<tr>
+  <td class="nm">quiz-me</td>
+  <td>Your agent quizzes you with 8 questions on code it wrote for you, and grades you honestly. Below 6/8, you study and retake.</td>
+  <td><span class="p p-md">Human</span></td>
+  <td><span class="p p-hi">No — 35-line prompt</span></td>
+  <td><span class="p p-lo">Low</span></td>
+  <td><strong>Strongest fit of all 13</strong></td>
+</tr>
+<tr>
+  <td class="nm">voice-calibration</td>
+  <td>Turns your real chat history into a style guide so the agent drafts messages that sound like you, not LinkedIn.</td>
+  <td><span class="p p-md">Human</span></td>
+  <td><span class="p p-hi">No — a blank template</span></td>
+  <td><span class="p p-md">Medium</span></td>
+  <td><strong>High value, unfinished</strong></td>
+</tr>
+<tr>
+  <td class="nm">memory-ledger</td>
+  <td>Every stored agent memory must carry a source, an expiry date, and a flag for whether it's allowed to authorise an action.</td>
+  <td><span class="p p-md">Memory</span></td>
+  <td><span class="p p-lo">Yes — 2 scripts, 9 tests</span></td>
+  <td><span class="p p-md">Medium</span></td>
+  <td><strong>Steal 2 ideas, not the tool</strong></td>
+</tr>
+<tr>
+  <td class="nm">permission-surface</td>
+  <td>Scans a skill <em>before</em> you install it and lists what it could do: run code, hit the network, write outside the folder.</td>
+  <td><span class="p p-hi">Guard</span></td>
+  <td><span class="p p-lo">Yes — 460-line scanner</span></td>
+  <td><span class="p p-lo">Low</span></td>
+  <td>Useful but noisy (see bugs)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="tnote">"Real code?" is the most important column and the least obvious from his READMEs. Green = a program that computes something. Red = a document the AI reads. Both are legitimate — but you adopt them completely differently.</p>
+</section>
+
+<!-- ============ DEEP DIVES ============ -->
+<section id="deep">
+<div class="tag"><span class="badge">5</span> The breakdown</div>
+<h2 class="sec">Every tool, in detail</h2>
+<p class="sec-lead">Grouped into his five families. Each card gives the real mechanism, the install, and — importantly — what he says it can't do.</p>
+
+<!-- ---- DISCIPLINE ---- -->
+<div class="fam">
+  <div class="fi" style="background:var(--blue-bg);color:var(--blue-ink);">⚙</div>
+  <h3>Discipline</h3>
+  <div class="fc">5 tools · the core loop</div>
+</div>
+<p>His largest family. These are the tools that run every time an agent writes code, regardless of what the code does.</p>
+
+<div class="card">
+  <div class="ch"><div class="cn">agent-fleet-control</div><div class="cp"><span class="p p-lo">Bash · 20/20 tests</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">One writer per worktree. Each agent gets its own copy of the repo, its own branch, and a declared list of folders it's allowed to touch — and the tool refuses to create two agents whose folders overlap.</p>
+  <dl>
+    <dt>Problem</dt><dd>Two agents in one folder overwrite each other. Both honestly report success; the final code matches neither of the things they verified.</dd>
+    <dt>Mechanism</dt><dd>A single 580-line Bash script, four commands: <code>new</code> (create agent + worktree + contract), <code>verify</code> (run its test command and capture the output as tamper-checked evidence), <code>receipt</code> (produce a merge receipt for a human), <code>help</code>.</dd>
+    <dt>Clever bit</dt><dd>Evidence is bound to an exact commit and hashed. If the code changes after verification, the receipt is refused: <em>"verification does not cover the current commit."</em> It also detects if your test command dirtied the repo and forces exit code 125.</dd>
+    <dt>Install</dt><dd>Clone, then copy one file to your <code>$PATH</code>. No dependencies at all — just Bash and Git.</dd>
+    <dt>Reality check</dt><dd>Only tested on macOS. Linux, WSL, Git Bash are all explicitly marked <strong>"Untested."</strong> The bundled <code>policies/default.yaml</code> is never read by any code — it's decoration.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "Path ownership is coordination metadata. It does not prevent a process from writing outside its territory; the agent host or OS sandbox must enforce that separately." — and: "It never commits, pushes, or merges."</div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">second-opinion</div><div class="cp"><span class="p p-lo">4/4 tests</span><span class="p p-n">v1.2.0</span></div></div>
+  <p class="cl">A different AI, from a different vendor if possible, is briefed to attack your code. Not to review it — to <em>prove it wrong</em>.</p>
+  <dl>
+    <dt>Problem</dt><dd>His line: <em>"Same model writing and reviewing is homework marking itself."</em> The model that wrote the code reviews it with the same assumptions that produced the bug.</dd>
+    <dt>Mechanism</dt><dd>Four steps: collect the diff → brief the other model → one rebuttal round → escalate. The briefing is fixed text: <em>"This code was written by another AI. Your job is to prove it wrong."</em></dd>
+    <dt>Key rule</dt><dd><strong>Do not show the reviewer the author's reasoning — it anchors them.</strong> And: exactly one rebuttal round, because "more rounds means the models negotiate; you don't want them to."</dd>
+    <dt>Outcome</dt><dd>Reviewer says <em>clear</em> → pass. Says <em>objection</em> → author may <em>concede</em> (fix it) or <em>stand</em> (escalate). A standing disagreement <strong>always</strong> goes to a human. "NEVER resolve a standing disagreement silently."</dd>
+    <dt>Install</dt><dd><code>npx skills add runsagents/second-opinion</code>. Requires a second model you can reach — a second CLI, an API, or another agent session.</dd>
+    <dt>Reality check</dt><dd>The "code" is an 81-line script that pretty-prints two JSON files you write by hand. It does not detect disagreement — it formats it. The product is the ritual.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "Costs a second model call per review... Two models agreeing is strong evidence, not proof; keep your tests and gates. And never let the models resolve a disagreement between themselves: that's negotiation, not review."</div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">airlocks</div><div class="cp"><span class="p p-md">Prompt-first</span><span class="p p-lo">3/3 tests</span><span class="p p-n">v1.1.0</span></div></div>
+  <p class="cl">The most quotable tool in the collection, and one of the most useful. When an agent says "done," you check the real system before believing it.</p>
+  <dl>
+    <dt>Origin story</dt><dd>Worth quoting in full: <em>"An agent once told me a deploy succeeded. Its evidence: the word 'success' appeared in the logs. It appeared inside an error message. The broken build reached TestFlight."</em></dd>
+    <dt>The five rules</dt><dd>1. Words are claims, state is evidence. 2. Never grep for success words — parse exit codes. 3. Ask the system of record, not the actor. 4. The doer never verifies its own work. 5. On mismatch, halt and report — <strong>file, don't fix</strong>.</dd>
+    <dt>How to check</dt><dd>Merged? <code>git merge-base --is-ancestor</code>. Deployed? The platform API reports the new build number. Tests pass? Run them on the <em>merged</em> commit, not the branch. Fixed? Reproduce the original failure and watch it not happen.</dd>
+    <dt>Report format</dt><dd>Four lines, always: CLAIM / SYSTEM OF RECORD / EVIDENCE / VERDICT (CONFIRMED · REFUTED · UNVERIFIABLE).</dd>
+    <dt>Install</dt><dd><code>npx skills add runsagents/airlocks</code>, then say "airlock this."</dd>
+    <dt>Reality check</dt><dd>The whole product is a <strong>34-line rulebook.</strong> The demo script is a hardcoded illustration, exports nothing, and can't be imported. It also always exits 0 — even when it REFUTES — so it can't gate a pipeline as shipped.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "Some claims are genuinely unverifiable from your seat (say so, don't guess). Airlocks catch false 'done's; they don't catch wrong designs, that's what review is for." — Tagline: <em>"agents don't need supervision. They need airlocks."</em></div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">handoff-receipts</div><div class="cp"><span class="p p-lo">11/11 tests</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Work changing hands must carry a structured receipt — and the receiver refuses work that arrives without one.</p>
+  <dl>
+    <dt>Problem</dt><dd>An agent handed off a clean summary that quietly omitted one unresolved deployment risk. The receiver trusted the green test line and lost a day. His point: <em>"the handoff simply had no required place for the uncomfortable fact."</em></dd>
+    <dt>The seven fields</dt><dd>task &amp; scope · territory (which paths you were allowed to touch) · decisions + why · <strong>unresolved risks</strong> · verification (command, exit code, output) · artifacts · acceptance checklist.</dd>
+    <dt>Clever bit</dt><dd>Verification status can be <code>passed</code>, <code>failed</code>, or <strong><code>not-run</code></strong>. "We didn't check" is a first-class, recordable state — it can't hide as silence.</dd>
+    <dt>The actual rule</dt><dd><strong>"No receipt, no acceptance."</strong> The validator is secondary; this social rule is the product.</dd>
+    <dt>Install</dt><dd>Clone. Node ≥18. Zero dependencies.</dd>
+    <dt>Reality check</dt><dd>Structure only. Nothing stops a sender pasting <em>fabricated</em> command output into a structurally perfect receipt.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "Validation checks structure, not whether a claim or pasted command output is true." — repeated in four separate places: <strong>"validation is not proof."</strong></div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">night-watch</div><div class="cp"><span class="p p-md">Prompt-first</span><span class="p p-lo">5/5 tests</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Scheduled agents inspect the repo read-only and file findings. They are categorically forbidden from fixing anything.</p>
+  <dl>
+    <dt>Origin story</dt><dd>The best failure story in the collection: <em>"An unattended fixer found a mismatch between a guide and the runtime. The guide described the intended behavior; the runtime contained a bug. With no human awake to decide which side was authoritative, the agent confidently 'corrected' the guide to match the bug. <strong>The repository woke up internally consistent and more wrong.</strong>"</em></dd>
+    <dt>Four checks</dt><dd><strong>citations</strong> (do the links in docs actually support the claims?) · <strong>dead-branches</strong> (unreachable code) · <strong>docs-vs-code</strong> (docs contradict reality) · <strong>invariants</strong> (rules the code states but can break).</dd>
+    <dt>Finding format</dt><dd>WHAT · WHERE · EVIDENCE · <strong>SUGGESTED-OWNER</strong> — the human who can decide intent. The finding deliberately <em>doesn't say which side is wrong</em>. That's the whole doctrine.</dd>
+    <dt>Design highlight</dt><dd>Each check spends as much text on <em>what not to file</em> as what to file. Best line: <em>"A network failure is not proof of a dead citation."</em></dd>
+    <dt>Reality check</dt><dd>"File, don't fix" has <strong>zero code enforcement</strong> — it's a prompt asking the model to police itself. Whether it holds depends entirely on your permission settings, not this repo.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "Checks are agent instructions, not deterministic analyzers... A valid packet proves that required fields are present and well-formed; it does not prove that the conclusion is correct. Human triage remains necessary."</div>
+</div>
+
+<!-- ---- MONEY ---- -->
+<div class="fam">
+  <div class="fi" style="background:var(--coral-bg);color:var(--coral-ink);">₿</div>
+  <h3>Money stakes</h3>
+  <div class="fc">2 tools · the fintech core</div>
+</div>
+<p>Where his day job shows most clearly. These two have the most real code and the narrowest fit.</p>
+
+<div class="card">
+  <div class="ch"><div class="cn">settlement-proof</div><div class="cp"><span class="p p-hi">7/8 tests — RED</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">"The payment airlock for AI agents that touch real money." Blocks a payment "done" claim until four independent systems agree.</p>
+  <dl>
+    <dt>Problem</dt><dd>An agent got a <code>SETTLED</code> response from the processor and declared the payment done. The internal ledger contained no entries at all.</dd>
+    <dt>The four systems</dt><dd><strong>Processor</strong> (the provider says it settled) · <strong>Ledger</strong> (double-entry records exist and sum to zero) · <strong>Idempotency store</strong> (exactly one effect applied; every retry accounted for) · <strong>Reconciliation</strong> (a completed match exists).</dd>
+    <dt>Two policies</dt><dd><strong>Fail fast</strong> on contradiction (halt immediately, mark the rest NOT_EVALUATED) and <strong>fail closed</strong> on absence (missing evidence blocks — absence is never permission). Three verdicts map to three exit codes: PROVED=0, MISMATCH=1, UNVERIFIABLE=2.</dd>
+    <dt>Best detail</dt><dd>"Compensation is evidence, <strong>not a fifth source</strong> allowed to overrule disagreement among the four." This is enforced structurally — the schema literally has no slot for compensation to halt on. He built the rule into the data shape, not just the prose.</dd>
+    <dt>Reality check</dt><dd><strong>Ships zero integrations.</strong> You build every adapter yourself. Its real prerequisite is a payments architecture mature enough that the tool is nearly redundant.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim (an entire shouted section titled WHAT IT DOES NOT PROVE):</b> "...the customer authorized the payment or received the goods; the merchant, tax treatment, fee model or business decision was correct; funds are irrevocable... The packet proves only the bounded agreement encoded by the v1 checks over the supplied snapshot."</div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">route-ledger</div><div class="cp"><span class="p p-lo">4/4 tests</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Which AI model is cheapest? Not the one with the lowest token price — the one that costs you least <em>after</em> you count the human time spent fixing its output.</p>
+  <dl>
+    <dt>The formula</dt><dd>Real cost = tokens + <strong>human review minutes</strong> + <strong>correction minutes</strong> + reruns + an expected-loss proxy (a $ figure per defect severity: none $0 / minor $2 / major $25 / critical $250). Ranked by <em>cost per <strong>accepted</strong> run</em> — rejected work isn't output.</dd>
+    <dt>The killer number</dt><dd>In his own 40-run demo: <strong>token spend is 0.1% of total cost.</strong> Human review is 72%, corrections 27%. The entire ranking is decided by human minutes. That single statistic is arguably the most valuable thing in the repo.</dd>
+    <dt>Refuses to guess</dt><dd>Needs ≥5 runs per model-per-task and ≥80% acceptance, or it returns <strong>NO RECOMMENDATION</strong>. One of his three demo categories deliberately gets exactly that.</dd>
+    <dt>Reality check</dt><dd>It's a calculator, not a collector — you build the logging. To reach "high confidence" on 3 models × 3 task types you need <strong>270+ labelled runs.</strong> And it needs a <em>timed</em> human review step; a fully automated pipeline has nothing to feed it.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "Expected loss is a proxy: severity weights are assumptions and can dominate the ranking. Run sensitivity analysis." — and: "Do not use this report as the sole control for safety-, credit-, compliance-, or other high-stakes production decisions."</div>
+</div>
+
+<!-- ---- MEASUREMENT ---- -->
+<div class="fam">
+  <div class="fi" style="background:var(--violet-bg);color:var(--violet-ink);">◎</div>
+  <h3>Measurement</h3>
+  <div class="fc">2 tools · prove it works</div>
+</div>
+<p>The most intellectually honest part of the collection — one of these exists purely to test whether another one of his own tools is worth using.</p>
+
+<div class="card">
+  <div class="ch"><div class="cn">second-opinion-bench</div><div class="cp"><span class="p p-lo">10/10 tests · best-tested</span><span class="p p-n">v1.1.0</span></div></div>
+  <p class="cl">Twelve deliberately planted bugs. Give them to your reviewers, see who catches what, and measure whether a second model actually adds anything.</p>
+  <dl>
+    <dt>Why it exists</dt><dd>To falsify his own <code>second-opinion</code> skill. Its stated problem: <em>"A second reviewer can add cost without catching defects the first reviewer missed."</em> He built the tool that could prove his other tool worthless.</dd>
+    <dt>The corpus</dt><dd>12 fixtures, 2 in each of 6 classes: logic errors, missing edge cases, security slips, money-rounding bugs, concurrency hazards, silent behaviour changes. Every one is a <em>plausible refactor that silently regresses</em> — none look like sabotage.</dd>
+    <dt>Example bugs</dt><dd>A one-token change flipping a retry default from true to false. <code>parseInt("12.34")</code> silently dropping every sub-dollar part of a fee. An atomic DB call decomposed into read-modify-write so concurrent orders oversell.</dd>
+    <dt>The headline metric</dt><dd><strong>Pair uplift</strong>, measured in both directions: what did B catch that A missed, and vice versa. Reported separately because it's asymmetric.</dd>
+    <dt>His demo numbers</dt><dd>Reviewer A: 50% recall. Reviewer B: 58.3%. <strong>Together: 91.7%.</strong> They overlapped on only 2 of 11 finds. But note the last 8.3%: one bug — a missing header crash — <strong>both reviewers missed entirely.</strong> His own demo demonstrates his own limitation: two models agreeing is not two models being right.</dd>
+    <dt>Reality check</dt><dd>Those numbers are <strong>hand-authored and labelled SIMULATED</strong> in the title, the report and the JSON. They're a designed demo, not evidence. He is scrupulous about saying so.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "Do not say 'model B is better' from this corpus alone. A defensible statement is narrower: 'On this 12-defect synthetic corpus, under the recorded setup, B added N planted defects that A missed.'" — and one of six integrity rules: <em>"Never describe a simulated, hand-authored, incomplete, or ground-truth-exposed run as measured model performance."</em></div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">loss-weighted-unknowns</div><div class="cp"><span class="p p-lo">2/2 tests</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Rank your open questions by what being wrong would <em>cost</em> — not by how uncertain each one feels. Uncertainty and importance are different things.</p>
+  <dl>
+    <dt>The formula</dt><dd><code>priority = severity × likelihood × irreversibility × blast-radius × compliance-exposure</code>. Each 1–5, so scores run 1 to 3125. Multiplied, not added — deliberately, so a question that's severe <em>and</em> irreversible <em>and</em> broad dominates a merely vague one.</dd>
+    <dt>The whole argument, in his numbers</dt><dd>"Will customers understand the button label?" has <strong>likelihood 5 — the highest in his set</strong>, and scores <strong>20 (dead last)</strong>. "Can the settlement ledger mapping be corrected after release?" has likelihood 3 and scores <strong>1200</strong>. Sorting by uncertainty puts button copy first. That inversion is the entire point.</dd>
+    <dt>The distinction that matters</dt><dd>Stated twice: <em>"Score likelihood of the harmful outcome, not confidence in the answer."</em> Confusing those two is the exact failure the tool exists to prevent.</dd>
+    <dt>Nice touch</dt><dd>Ties are shown, not broken by a fudge factor. Two of his examples genuinely tie at 1500.</dd>
+    <dt>Reality check</dt><dd>Every number is a human's guess. It's a calculator and a sorter — it discovers nothing.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim — note he names his own central mechanism as the weakness:</b> "Scores are judgments. Teams can anchor poorly, inflate pet risks, confuse likelihood with uncertainty, or hide disagreement behind a number. <strong>Multiplication also implies interactions and precision that the evidence may not support.</strong>"</div>
+</div>
+
+<!-- ---- HUMAN & MEMORY ---- -->
+<div class="fam">
+  <div class="fi" style="background:var(--amber-bg);color:var(--amber-ink);">☺</div>
+  <h3>Human &amp; memory</h3>
+  <div class="fc">3 tools · keeping you in the loop</div>
+</div>
+<p>The family most relevant to you, and the one least about code.</p>
+
+<div class="card">
+  <div class="ch"><div class="cn">quiz-me</div><div class="cp"><span class="p p-md">Prompt-only</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Your agent examines <em>you</em> on the code it wrote for you. Eight questions, graded honestly, no flattery.</p>
+  <dl>
+    <dt>Problem</dt><dd>Stated bluntly: <strong>"Agents write the code; you stop being able to answer for it."</strong></dd>
+    <dt>The 8 questions</dt><dd><strong>3</strong> × "why is it built this way?" (design intent, rejected alternatives) · <strong>2</strong> × "what breaks if X fails or doubles?" · <strong>1</strong> × "where does this number come from?" (constants, thresholds, prices) · <strong>1</strong> × "walk me through what happens when…" · <strong>1</strong> wildcard: <em>"whatever would embarrass the human in a due-diligence meeting."</em></dd>
+    <dt>Scoping</dt><dd>Last 7 days of commits or last 5 merged PRs, whichever is richer. Prioritises <em>"anything touching money, auth, persistence, or external APIs."</em> Skips formatting noise.</dd>
+    <dt>The grading rule</dt><dd><strong>"No grade inflation. A wrong 'why' is wrong even when the 'what' was right."</strong> Verdicts are correct / partial / missed. Below 6/8 you get a retake.</dd>
+    <dt>Delivery</dt><dd>One question at a time. Wait for the answer. <strong>Do not hint.</strong> Then re-explain every miss with file paths.</dd>
+    <dt>Install</dt><dd><code>npx skills add runsagents/quiz-me</code>, then say "quiz me." Or paste the raw URL — zero install.</dd>
+    <dt>Reality check</dt><dd>The entire engine is ~35 lines of prompt. "Honest grading" is enforced by four imperative sentences and nothing else. There are no evals proving it resists flattery.</dd>
+  </dl>
+  <div class="quote"><b>His own practice, verbatim:</b> "I run this weekly on my own fintech, where agents write most of the code... Below 6 of 8, I study and retake. <strong>The product isn't mine until I pass.</strong>" — He cites real research: Anthropic found AI-assisted developers scored <strong>17% lower</strong> on comprehension quizzes, "the equivalent of nearly two letter grades."</div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">voice-calibration</div><div class="cp"><span class="p p-hi">Template only</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Turn ten years of your own chat history into a style guide, so "draft this in my voice" finally means something.</p>
+  <dl>
+    <dt>Problem</dt><dd><em>"Every AI draft 'in your voice' sounds like LinkedIn. This is the method that fixed mine, my agent now drafts messages my friends can't flag, down to the punctuation quirks."</em></dd>
+    <dt>The method</dt><dd>1. Export your corpus — <em>"chat exports beat polished writing, because your real voice lives in the unedited stuff."</em> His was <strong>43,252 Telegram messages over ten years.</strong> 2. Extract <em>patterns, not content</em>. 3. Write a style guide and correct it. 4. Blind-test until it passes.</dd>
+    <dt>The four-part guide</dt><dd><strong>Keep-list</strong> (quirks that ARE you — keep them even if "wrong") · <strong>Fix-list</strong> (typos, autocorrect damage) · <strong>Anti-patterns</strong> (corporate filler dies here) · <strong>Calibrated exemplars</strong> (full messages you approved).</dd>
+    <dt>Best idea in it</dt><dd><em>"Your 2016 voice is history, not identity."</em> Voice is dated; the guide anchors to one era. And the stopping rule: <strong>"Stop when you hesitate before spotting your own."</strong></dd>
+    <dt>Relevant to you</dt><dd>Step 2's <em>first</em> extraction target is <strong>"which languages you mix and when"</strong> — code-switching is a first-class feature, and <code>language</code> is a required parameter. This method was plainly designed by a multilingual author.</dd>
+    <dt>Reality check</dt><dd><strong>The repo ships no working prompt</strong> — only a fill-in-the-blanks template and four paragraphs of method. You build the analysis yourself. And 43k messages won't fit in a context window; step 1 is secretly a data task.</dd>
+  </dl>
+  <div class="quote"><b>His privacy note, verbatim:</b> "The corpus never needs to leave your machine, point a local agent at it. The finished guide contains <em>patterns</em>, not messages, but it's still a fingerprint of you: treat the guide itself as personal data, and don't publish it." — <b>Note the gap:</b> his own template requires <em>"full example message, approved verbatim"</em>, so the guide <em>does</em> contain real messages. And "never leaves your machine" is only true with a <em>local model</em> — pointing Claude at a Telegram export sends every message to the provider.</div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">memory-ledger</div><div class="cp"><span class="p p-lo">9/9 tests</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Every stored memory must say where it came from, when it dies, and whether it's allowed to authorise an action.</p>
+  <dl>
+    <dt>Problem</dt><dd><em>"A stale unscoped memory can outlive an approval and trigger the wrong consequential action."</em> His framing: <strong>"Memory is convenient in prototypes; at production stakes, unqualified memory is hidden state."</strong></dd>
+    <dt>Required fields</dt><dd><code>fact</code> (one atomic claim) · <code>source.kind</code> (user-said / observed / <strong>inferred</strong>) · <code>source.reference</code> · <code>scope</code> · <code>confidence</code> · <code>created</code> · <strong>exactly one of <code>expires</code> or <code>review-by</code></strong> · <code>superseded-by</code> · <code>may-this-authorize-action</code>.</dd>
+    <dt>The central invention</dt><dd>A field named as a question: <strong><code>may-this-authorize-action</code></strong>. Setting it true triggers four extra rules — the source can't be <em>inferred</em>, confidence must be ≥0.9, scope must be specific, and it must have a hard expiry, not a soft review date. <strong>Standing approvals must be re-approved on a calendar.</strong></dd>
+    <dt>The demo that lands</dt><dd>His example #2 is a release approval that is <em>structurally perfect</em> — it passes every validation check. It's defeated purely by <strong>time</strong>: audited two weeks after its expiry, it drops out of the eligible list. Validation alone can't catch it; only a dated audit can.</dd>
+    <dt>Reality check</dt><dd>The field list is closed — any extra key is a hard error. <strong>You cannot retrofit this onto existing Obsidian notes</strong> with <code>tags:</code> or <code>type:</code>. It must live as a separate parallel ledger. Also: the shipped JSON schema is never read by the code.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim:</b> "A clean audit is evidence about ledger hygiene, not proof that a fact is true or an action is safe, legal, permitted, or desirable." — and the rule that matters: <strong>"The flag never expands the agent's current permissions and never replaces fresh approval."</strong></div>
+</div>
+
+<!-- ---- GUARD ---- -->
+<div class="fam">
+  <div class="fi" style="background:var(--red-bg);color:var(--red-ink);">⛨</div>
+  <h3>Guard</h3>
+  <div class="fc">1 tool · the front door</div>
+</div>
+
+<div class="card">
+  <div class="ch"><div class="cn">permission-surface</div><div class="cp"><span class="p p-lo">5/5 tests</span><span class="p p-n">v1.0.0</span></div></div>
+  <p class="cl">Before you run <code>npx skills add something</code>, scan it and see what it <em>could</em> do.</p>
+  <dl>
+    <dt>Problem</dt><dd><em>"A one-line install can hide lifecycle hooks, mutable downloads and writes outside the repository."</em></dd>
+    <dt>Eight signals</dt><dd>Executable files &amp; shebangs · <strong>install hooks</strong> (postinstall scripts) · network endpoints · <strong>shell execution</strong> (<code>curl | sh</code>, <code>eval</code>, child processes) · writes outside the repo · secret-looking strings · <strong>mutable-ref fetches</strong> · declared-vs-observed capabilities.</dd>
+    <dt>Best concept</dt><dd><strong>Mutable ref</strong> — code fetched from <code>main</code> or <code>latest</code> rather than a pinned commit. His framing: <em>"A mutable fetch asks 'what content will arrive later?'"</em> You reviewed one thing; you'll run another.</dd>
+    <dt>Honest by design</dt><dd>The disclaimer is embedded in every report, not footnoted. <strong>"QUIET means no v1 heuristic matched, not that the artifact is safe."</strong></dd>
+    <dt>Reality check</dt><dd>Regex, not real analysis. <strong>Trivially evadable</strong> — string concatenation defeats it in one line. It catches <em>careless</em>, not <em>hostile</em>. And see the bug table: it produces false alarms on ordinary Markdown.</dd>
+  </dl>
+  <div class="quote"><b>His limitation, verbatim (bolded in his original):</b> "This is a static heuristic scan. It has false positives and false negatives, does not execute code, resolve indirection, inspect fetched content, model every language or installer, or prove whether a behavior is reachable. <strong>It is not a security audit and makes no 'safe' or 'malicious' determination.</strong>"</div>
+</div>
+</section>
+
+<!-- ============ HOUSE STYLE ============ -->
+<section id="style">
+<div class="tag"><span class="badge">6</span> The pattern</div>
+<h2 class="sec">All 13 are built the same way</h2>
+<p class="sec-lead">This consistency is itself worth studying — it's a template you could copy for your own work.</p>
+
+<p>Every repo follows an identical skeleton. Once you've read one, you can navigate any of them in thirty seconds:</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Convention</th><th>What it is</th><th>Why it's smart</th></tr></thead>
+<tbody>
+<tr><td class="nm">Problem / Theory / This tool</td><td>A 3-row table at the very top of every README: the failure, the established idea it borrows, the thing he built.</td><td>You know in 15 seconds whether it's for you. It also forces him to name a prior art rather than pretend he invented it.</td></tr>
+<tr><td class="nm">A real failure story</td><td>Every repo opens with a specific incident — the "success" inside an error message, the ledger with no entries.</td><td>Concrete beats abstract. And each is labelled as composite/illustrative rather than passed off as real.</td></tr>
+<tr><td class="nm">Mermaid flow diagram</td><td>A small left-to-right diagram of the mechanism.</td><td>Shows the loop shape at a glance.</td></tr>
+<tr><td class="nm">An explicit Limitations section</td><td>Sometimes shouted in capitals. Names what the tool can't do.</td><td><strong>The single most impressive habit here.</strong> See below.</td></tr>
+<tr><td class="nm">ATTRIBUTION.md</td><td>Credits the projects that inspired it, with licence + date observed, plus an explicit "no code was copied" statement.</td><td>Unusually rigorous licence hygiene for a 3-day-old side project.</td></tr>
+<tr><td class="nm">Zero dependencies</td><td>All 13. No <code>node_modules</code>, no lockfile, no install step. Hand-rolled parsers rather than pulling a library.</td><td>Nothing to audit, nothing to break, no supply chain. For a security-minded tool this is the argument.</td></tr>
+<tr><td class="nm">Synthetic fixtures, always labelled</td><td>Every example is marked <code>synthetic: true</code> — and in tests, <em>enforced</em> to be. Fake URLs use the reserved <code>.invalid</code> domain.</td><td>Demo data can never be mistaken for real evidence.</td></tr>
+<tr><td class="nm">CC0 + full legal text</td><td>All 13. Public domain.</td><td>Removes every barrier to you taking it.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="sub">The habit worth stealing above all others</h3>
+<p>Each repo names <strong>its own central mechanism as its own weakest point.</strong> That is rare enough to be worth listing:</p>
+
+<ul class="clean">
+  <li><code>loss-weighted-unknowns</code> sells you on multiplying five scores — then says <em>"multiplication implies interactions and precision that the evidence may not support."</em></li>
+  <li><code>handoff-receipts</code> ships a validator — then says <em>"validation is not proof"</em> four separate times.</li>
+  <li><code>permission-surface</code> is a security scanner that refuses to say anything is safe.</li>
+  <li><code>second-opinion-bench</code> exists to test whether <code>second-opinion</code> — his own product — is worth the money.</li>
+  <li><code>second-opinion-bench</code>'s demo shows a reviewer pair scoring <strong>91.7%, not 100%</strong> — his own numbers prove his own caveat that agreement isn't proof.</li>
+</ul>
+
+<div class="co co-i">
+  <div class="cot">The transferable lesson</div>
+  <p>A tool that states its own limits is <em>more</em> trustworthy, not less — because you know where the edge is. This is the opposite of how most tools are marketed, and it's the highest-quality thing in the entire collection. <strong>It costs nothing to copy and it's worth more than any of the code.</strong></p>
+</div>
+</section>
+
+<!-- ============ QUALITY ============ -->
+<section id="quality">
+<div class="tag"><span class="badge">7</span> Quality audit</div>
+<h2 class="sec">Does it actually work?</h2>
+<p class="sec-lead">I cloned all 13, ran every test suite, and re-generated the example outputs to check they match the docs. Here's what came back.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Tool</th><th class="num">Tests</th><th>Result</th><th>Docs match reality?</th></tr></thead>
+<tbody>
+<tr><td class="nm">agent-fleet-control</td><td class="num">20</td><td><span class="p p-lo">20/20 pass</span></td><td>Yes — real integration tests, builds a repo and runs the CLI</td></tr>
+<tr><td class="nm">handoff-receipts</td><td class="num">11</td><td><span class="p p-lo">11/11 pass</span></td><td>Yes — even rejects an impossible date (Feb 30)</td></tr>
+<tr><td class="nm">second-opinion-bench</td><td class="num">10</td><td><span class="p p-lo">10/10 pass</span></td><td>Yes — report regenerates <strong>byte-identically</strong></td></tr>
+<tr><td class="nm">memory-ledger</td><td class="num">9</td><td><span class="p p-lo">9/9 pass</span></td><td>Yes — README output reproduced byte-for-byte</td></tr>
+<tr><td class="nm">night-watch</td><td class="num">5</td><td><span class="p p-lo">5/5 pass</span></td><td>Yes — console output character-identical</td></tr>
+<tr><td class="nm">permission-surface</td><td class="num">5</td><td><span class="p p-lo">5/5 pass</span></td><td>Yes — includes a real secret-leak test</td></tr>
+<tr><td class="nm">second-opinion</td><td class="num">4</td><td><span class="p p-lo">4/4 pass</span></td><td>Yes</td></tr>
+<tr><td class="nm">route-ledger</td><td class="num">4</td><td><span class="p p-lo">4/4 pass</span></td><td>Yes — example regenerates byte-identically</td></tr>
+<tr><td class="nm">airlocks</td><td class="num">3</td><td><span class="p p-lo">3/3 pass</span></td><td>Yes — demo output matches README exactly</td></tr>
+<tr><td class="nm">loss-weighted-unknowns</td><td class="num">2</td><td><span class="p p-lo">2/2 pass</span></td><td>Yes — but thin coverage</td></tr>
+<tr><td class="nm">settlement-proof</td><td class="num">8</td><td><span class="p p-hi">7/8 — FAILING</span></td><td>All 4 payment fixtures behave exactly as documented</td></tr>
+<tr><td class="nm">quiz-me</td><td class="num">0</td><td><span class="p p-n">None — prompt only</span></td><td>n/a</td></tr>
+<tr><td class="nm">voice-calibration</td><td class="num">0</td><td><span class="p p-n">None — prompt only</span></td><td>n/a</td></tr>
+</tbody>
+</table>
+</div>
+<p class="tnote">Total: 70 of 71 tests pass. Every documented example output I regenerated matched the committed version exactly. That's a genuinely strong result — the docs are not lying about the code.</p>
+
+<h3 class="sub">The one red test, and why it's funny</h3>
+<div class="co co-r">
+  <div class="cot">settlement-proof — test 8 fails</div>
+  <p>He wrote a test that enforces his own README convention: the closing tagline must be the last line. Then he shipped a commit adding a "Terminology &amp; prior art" footer <em>after</em> that line. <strong>His own test caught his own edit — and the failure was published anyway.</strong></p>
+  <p>Impact is cosmetic: the payment verifier is untouched and all four fixtures behave exactly as documented. But it tells you something real — <strong>there is no CI running on any of these 13 repos.</strong> The tests exist; nothing runs them automatically. The same commit added the same footer to <code>airlocks</code>, which has no such test and stayed green.</p>
+</div>
+
+<h3 class="sub">Bugs I found that he hasn't</h3>
+<p>These are real, reproduced, and none of them are in his issue tracker. Useful both as a health check and as things to avoid if you adopt:</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Tool</th><th>Bug</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr>
+  <td class="nm">permission-surface</td>
+  <td>Its "writes outside the repo" check matches <em>any</em> <code>&gt;</code> character — so a Markdown blockquote or a JavaScript arrow function <code>=&gt;</code> triggers a HIGH alert.</td>
+  <td><span class="p p-hi">High</span> Its own README starts with a blockquote. Scanning an ordinary repo produces false alarms that train you to ignore it.</td>
+</tr>
+<tr>
+  <td class="nm">permission-surface</td>
+  <td>Documentation links count as "network access." Scanning his own <code>route-ledger</code> — which provably makes zero network calls — reports <code>observed: network-access</code> from 11 arXiv/GitHub links in the docs.</td>
+  <td><span class="p p-hi">High</span> The capability inventory is the headline feature, and it's wrong on a clean repo.</td>
+</tr>
+<tr>
+  <td class="nm">route-ledger</td>
+  <td>If you override the loss values, the report still prints the <em>default</em> table and calls them "v1 defaults are…"</td>
+  <td><span class="p p-hi">High</span> It breaks the exact sensitivity analysis his own README tells you to run. Every scenario would claim the same assumptions.</td>
+</tr>
+<tr>
+  <td class="nm">memory-ledger</td>
+  <td>Copy his template, fix only the two dates, and it validates as a real memory — with the fact still reading <em>"Replace with one atomic, falsifiable fact."</em></td>
+  <td><span class="p p-md">Medium</span> For a tool whose whole premise is refusing placeholder provenance, the checker never inspects the <code>fact</code> field.</td>
+</tr>
+<tr>
+  <td class="nm">night-watch</td>
+  <td>A quoted <code># TODO</code> inside a code block is parsed as document structure and crashes validation.</td>
+  <td><span class="p p-md">Medium</span> His own checks tell agents to quote code excerpts. The prescribed fix is "edit the packet until it passes" — i.e. degrade your evidence to satisfy a parser bug.</td>
+</tr>
+<tr>
+  <td class="nm">permission-surface</td>
+  <td><code>main()</code> runs on import, poisoning the importing program's exit code to 1.</td>
+  <td><span class="p p-md">Medium</span> <code>route-ledger</code> guards against this correctly. The two repos disagree; route-ledger is right.</td>
+</tr>
+<tr>
+  <td class="nm">agent-fleet-control</td>
+  <td><code>policies/default.yaml</code> is never read by any code. Setting <code>allow_push: true</code> does nothing.</td>
+  <td><span class="p p-lo">Low</span> Makes the tool look more configurable than it is. It's a spec, not a setting.</td>
+</tr>
+<tr>
+  <td class="nm">agent-stack</td>
+  <td>The map's routing table still points at <code>rival-review</code> and <code>rival-review-bench</code> — the old names of <code>second-opinion</code>.</td>
+  <td><span class="p p-lo">Low</span> He renamed the repos on 14 July and missed the map. Follow that table and you'd install nothing.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="sub">Where the "theory" citations hold up — and where they thin out</h3>
+<p>Every README cites a source for its idea. That's a good habit, but the quality varies a lot, and it's worth knowing which claims are anchored to real research:</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Strength</th><th>Tools</th><th>What's actually cited</th></tr></thead>
+<tbody>
+<tr><td><span class="p p-lo">Real peer-reviewed paper</span></td><td>quiz-me · night-watch · agent-stack · second-opinion-bench · voice-calibration</td><td>Genuine DOIs and ACL papers. <code>quiz-me</code> cites Karpicke &amp; Roediger 2008 in <em>Science</em> on retrieval practice — real and apt. <code>night-watch</code> cites Parasuraman/Sheridan/Wickens 2000, the foundational human-automation paper.</td></tr>
+<tr><td><span class="p p-md">A standard or spec</span></td><td>memory-ledger · handoff-receipts</td><td>W3C provenance standards (PROV-O, PROV-DM). Legitimate, but a spec is not evidence the tool works.</td></tr>
+<tr><td><span class="p p-md">Industry text</span></td><td>airlocks · loss-weighted-unknowns</td><td>The Google SRE book; the Stanford Encyclopedia of Philosophy entry on decision theory. Respectable, not research.</td></tr>
+<tr><td><span class="p p-hi">Vendor page / blog / repo</span></td><td>settlement-proof · permission-surface · second-opinion · agent-fleet-control</td><td>A Modern Treasury marketing explainer; a NIST landing page (never naming the standard by number); Karpathy's llm-council repo; Claude Code's own docs.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-w">
+  <div class="cot">The honest summary of the evidence</div>
+  <p>The citations establish that the <em>underlying ideas</em> are real — retrieval practice works, provenance matters, fault-seeded testing is a legitimate method. <strong>They do not establish that these particular 13 implementations deliver those benefits.</strong> There are no evals, no user studies, no adoption data. The only evidence any of it works is one person's self-report about his own company.</p>
+  <p>That's not damning for a 3-day-old project — it's just the accurate status. Treat these as <strong>well-argued hypotheses with unusually good documentation</strong>, not proven practice.</p>
+</div>
+</section>
+
+<!-- ============ DOCTRINE VS CODE ============ -->
+<section id="real">
+<div class="tag"><span class="badge">8</span> The most important distinction</div>
+<h2 class="sec">How much of this is actually software?</h2>
+<p class="sec-lead">This is the thing his READMEs hide best, and the thing that most changes how you'd adopt it.</p>
+
+<p>His repos look substantial — schemas, templates, policies, test suites. But when you read the code, a lot of that structure turns out to be <strong>documentation wearing a program's clothes.</strong> Concretely, from reading every file:</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Tool</th><th>What you think you're getting</th><th>What's actually executing</th></tr></thead>
+<tbody>
+<tr><td class="nm">airlocks</td><td>A verification tool</td><td><strong>A 34-line rulebook.</strong> The demo is a hardcoded illustration you can't import or reuse.</td></tr>
+<tr><td class="nm">quiz-me</td><td>A quiz engine</td><td><strong>~35 lines of prompt.</strong> Shipped twice — <code>SKILL.md</code> and <code>QUIZ_ME.md</code> are the same text.</td></tr>
+<tr><td class="nm">voice-calibration</td><td>A calibration tool</td><td><strong>A blank fill-in template + 4 paragraphs.</strong> No prompt ships. You build the method yourself.</td></tr>
+<tr><td class="nm">night-watch</td><td>A repo scanner</td><td><strong>4 prompts + a 176-line format checker.</strong> No analyzer. The checks are instructions to an AI.</td></tr>
+<tr><td class="nm">second-opinion</td><td>A review pipeline</td><td><strong>A prompt + an 81-line printer.</strong> It formats two JSON files you write by hand; it detects nothing.</td></tr>
+<tr><td class="nm">agent-fleet-control</td><td>Enforced isolation</td><td>Real code — but path territory is <em>advisory</em>. Nothing stops an agent writing elsewhere. The <code>policies/</code> file is never read.</td></tr>
+<tr><td class="nm">memory-ledger</td><td>Schema-validated memory</td><td>Real validator — but the shipped JSON schema is <strong>never loaded by any code</strong>. Two sources of truth, free to drift.</td></tr>
+<tr><td class="nm">route-ledger</td><td>Routing economics</td><td>Real calculator — but <strong>ships no collector.</strong> You build the entire logging pipeline.</td></tr>
+<tr><td class="nm">settlement-proof</td><td>Payment verification</td><td>Real logic — but <strong>zero integrations.</strong> "V1 ships no processor, database, or reconciliation integrations."</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-v">
+  <div class="cot">Why this is good news, not bad</div>
+  <p>Read this the right way. <strong>The doctrine is the product, and the doctrine is free.</strong> If <code>airlocks</code> were a 5,000-line framework you'd have to install it, learn it, and maintain it. Because it's 34 lines of rules, <strong>you can read it in two minutes and have 90% of the value immediately</strong> — the value is knowing that "success" appears inside error messages, and that the doer must never verify its own work.</p>
+  <p>The practical consequence: <strong>for most of this collection, "adopting" means reading, not installing.</strong> The ones where you'd genuinely install something are <code>agent-fleet-control</code>, <code>permission-surface</code>, and <code>loss-weighted-unknowns</code>. The rest are ideas with a repo attached.</p>
+</div>
+</section>
+
+<!-- ============ FIT ============ -->
+<section id="fit">
+<div class="tag"><span class="badge">9</span> Relevance to you</div>
+<h2 class="sec">What's built for you, and what isn't</h2>
+<p class="sec-lead">A first pass only — the real comparison against your setup is the next session. This is just the sorting.</p>
+
+<p>The deciding question for almost every tool here is not "how big is your team" — it's <strong>"can an agent take a consequential action without you watching?"</strong> Where the answer is yes, his tools apply to you at any scale. Where it's no, they're ceremony.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Tool</th><th>Fit</th><th>Reasoning</th></tr></thead>
+<tbody>
+<tr><td class="nm">quiz-me</td><td><span class="p p-lo">Strongest</span></td><td>The premise <em>is</em> your situation: a non-coder accountable for a system agents wrote. Unlike a developer, your misses aren't forgotten knowledge — they're decisions an agent made and never mentioned. Point it at code, not the vault.</td></tr>
+<tr><td class="nm">airlocks</td><td><span class="p p-lo">Strong (doctrine)</span></td><td>34 lines, free, and directly relevant to anything that deploys or writes to a sheet. Steal the five rules; skip the demo.</td></tr>
+<tr><td class="nm">loss-weighted-unknowns</td><td><span class="p p-lo">Strong</span></td><td>The only one that <strong>needs no counterparty</strong>. Value lands the moment <em>you</em> write a concrete harmful outcome down. Runs solo.</td></tr>
+<tr><td class="nm">voice-calibration</td><td><span class="p p-md">High value, real work</span></td><td>You write business messages in RU/EN daily and have years of Telegram. Code-switching is an explicit target. But you'd build the missing half, and there's a privacy decision to make first.</td></tr>
+<tr><td class="nm">night-watch</td><td><span class="p p-md">Doctrine only</span></td><td>Its checks are code-repo-shaped. But its rule — an unattended agent reports contradictions, never resolves them — matters the moment anything runs on a schedule.</td></tr>
+<tr><td class="nm">memory-ledger</td><td><span class="p p-md">Two ideas, not the tool</span></td><td>Can't be retrofitted onto your notes (closed field list). But <code>expires:</code> and a real <code>source:</code> on the few memories that could authorise an action costs nothing.</td></tr>
+<tr><td class="nm">second-opinion</td><td><span class="p p-md">Good, needs a 2nd model</span></td><td>Genuinely requires a second vendor and costs a model call per review. Worth it on money-touching changes only.</td></tr>
+<tr><td class="nm">permission-surface</td><td><span class="p p-md">Useful, noisy</span></td><td>You do install skills. But given the false-alarm bugs, the <em>habit</em> (pause and look before installing) is worth more than the scanner.</td></tr>
+<tr><td class="nm">agent-fleet-control</td><td><span class="p p-md">Only if parallel</span></td><td>Solid, low-risk, macOS-tested. Pays off only when you actually run 2+ agents on one repo.</td></tr>
+<tr><td class="nm">handoff-receipts</td><td><span class="p p-hi">Thin solo</span></td><td>Needs a second party with standing to refuse. Alone, a receipt you write and validate yourself is a diary entry.</td></tr>
+<tr><td class="nm">settlement-proof</td><td><span class="p p-hi">Wrong shape</span></td><td>Needs a double-entry ledger, an idempotency store and a reconciliation job. Without all four it correctly returns UNVERIFIABLE forever.</td></tr>
+<tr><td class="nm">route-ledger</td><td><span class="p p-hi">Not yet</span></td><td>Needs 270+ labelled runs with <em>timed</em> human review for high confidence. But its 0.1% finding is free to learn from.</td></tr>
+<tr><td class="nm">second-opinion-bench</td><td><span class="p p-hi">Niche</span></td><td>Only if you're deciding whether to pay for a second reviewer.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-i">
+  <div class="cot">Three things I noticed that you'll want for next session</div>
+  <p>I'm not doing the comparison yet — but three convergences are too striking to leave out, because <strong>you independently built the same patterns he did:</strong></p>
+  <p><strong>1. You already built settlement-proof's core check.</strong> His idempotency rule is "exactly one applied effect, and every retry accounted for as suppressed." That is precisely what your Chunk 6 sale-UID dedup does — same uid returns the same success and writes nothing. You arrived there from a real double-sale risk; he arrived from fraud work. Same answer.</p>
+  <p><strong>2. Your BAD_TOKEN bug is airlocks in reverse.</strong> His story is a log saying "success" while the deploy failed. Yours is a response saying failure while the sale <em>succeeded</em>. Both are the same lesson — the words and the state disagreed, and only the state was true.</p>
+  <p><strong>3. You already have night-watch's doctrine.</strong> Your vault rule — flag a contradiction with a callout on both sides and let Asom decide, never silently overwrite — is his "file, don't fix," written independently.</p>
+  <p>That convergence is the real headline of this report: <strong>you're not behind him on principles. The gap is that he wrote his down as reusable artifacts and you wrote yours as project-specific fixes.</strong></p>
+</div>
+</section>
+
+<!-- ============ ARCHIVE ============ -->
+<section id="archive">
+<div class="tag"><span class="badge">10</span> The back catalogue</div>
+<h2 class="sec">The other five repos</h2>
+<p class="sec-lead">18 repos total. Five aren't part of the stack.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Repo</th><th>What</th><th>Date</th></tr></thead>
+<tbody>
+<tr><td class="nm">agent-stack</td><td>The map. No code — a README and a routing table showing how the 13 compose. <strong>Read this first if you read nothing else.</strong></td><td>Jul 2026</td></tr>
+<tr><td class="nm">runsagents</td><td>His profile repo — the landing page with the five-family table and his six operating principles. 45MB, mostly images.</td><td>2021→now</td></tr>
+<tr><td class="nm">LLM_chatbot</td><td>GPT-4 + LangChain + Pinecone RAG over PDF sets. His own note: <em>"built June 2023, early-RAG era. Adapted from mayooear's template. Archived as history."</em></td><td>Jun 2023</td></tr>
+<tr><td class="nm">FaceMaskDetector</td><td>PyTorch / FaceNet / MobileNetV2. His note: <em>"built January 2021, two years before ChatGPT. Archived as history."</em></td><td>Jan 2021</td></tr>
+<tr><td class="nm">ML_Portfolio</td><td>"Historical ML coursework, 2020–21." Jupyter notebooks, untouched since Jan 2021.</td><td>2020–21</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The three old ones are deliberately kept and re-labelled as history — he went back on 13 July and rewrote their descriptions to date-stamp them ("two years before ChatGPT"). That's a person <strong>curating a public narrative</strong>: data scientist → early RAG → agent infrastructure. Worth noting, because the whole account was reframed in the same 48 hours the 13 tools appeared.</p>
+</section>
+
+<!-- ============ VERDICT ============ -->
+<section id="verdict">
+<div class="tag"><span class="badge">11</span> Verdict</div>
+<h2 class="sec">What to make of it</h2>
+
+<div class="score">
+  <div class="cell yes">
+    <div class="q">Quality of thinking</div>
+    <div class="a"><span class="word">High</span></div>
+    <div class="sub">Coherent, self-consistent, unusually honest. The loop is a genuine idea, not a marketing frame.</div>
+  </div>
+  <div class="cell yes">
+    <div class="q">Quality of execution</div>
+    <div class="a"><span class="word">Good</span></div>
+    <div class="sub">70/71 tests pass. Every documented output reproduces exactly. Zero dependencies throughout.</div>
+  </div>
+  <div class="cell no">
+    <div class="q">Maturity</div>
+    <div class="a"><span class="word">3 days</span></div>
+    <div class="sub">All v1.0.0, published 13–14 July. No CI. Zero stars, zero forks, one author, no external users.</div>
+  </div>
+  <div class="cell no">
+    <div class="q">Proof it works</div>
+    <div class="a"><span class="word">None</span></div>
+    <div class="sub">No evals, no user studies. Evidence is one founder's self-report about his own company.</div>
+  </div>
+</div>
+
+<div class="bottomline">
+  <div class="lab">The honest read</div>
+  <p>This is <strong>a very good thinker's first public draft</strong>, shipped fast and documented far better than it is proven. The ideas are strong and several are genuinely valuable to you. The code is small, clean, and mostly beside the point — <strong>the doctrine is the asset.</strong></p>
+  <p>Do not treat it as a mature toolkit to install wholesale; it isn't one, and he doesn't claim it is. Treat it as <strong>a well-argued curriculum</strong>. The right move is to read the five or six that apply to you, take the rules, and install almost nothing. CC0 means there's no cost to doing exactly that.</p>
+</div>
+
+<div class="co co-i">
+  <div class="cot">The single best thing here</div>
+  <p>Not any tool. It's the framing: <strong>as agents write more, the bottleneck stops being agent output and becomes whether a human still understands enough to be accountable.</strong> Every one of his 13 tools refuses to decide — they gather evidence and hand it to a person. That is the whole design, and it's correct.</p>
+  <p>His sharpest line, from <code>night-watch</code>, is the one to remember: an unattended agent that fixes what it doesn't understand leaves you with a system that is <strong>"internally consistent and more wrong."</strong></p>
+</div>
+</section>
+
+<div class="foot">
+  <p><strong>Method.</strong> All 18 repos enumerated via the GitHub API. All 14 agent repos cloned locally and read file-by-file — not summarised from READMEs. Every test suite executed on Node v22.23.1; every documented example output regenerated and diffed against the committed version. All quotes are verbatim. All bugs listed were reproduced.</p>
+  <p><strong>Sources.</strong> github.com/runsagents · agent-stack · the 13 artifact repos · his profile README. Nothing in this report comes from the open web beyond resolving his citation links to confirm they say what he claims.</p>
+  <p><strong>Next.</strong> The comparison against your own setup — where you already match him, where you're ahead, and the short list worth adopting.</p>
+  <p style="margin-top:18px;color:var(--line-2);">Research report · 16 July 2026 · My Mind vault</p>
+</div>
+
+</div>
+</body>
+</html>
