@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>His Stack vs Mine — Where I Can Upgrade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,600;1,18..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --surface:#FFFFFF;
+    --surface-2:#FCFAF6;
+    --ink:#221F1B;
+    --body:#3C3833;
+    --muted:#6E6960;
+    --faint:#9A948A;
+    --line:#E7E2D8;
+    --line-2:#D8D2C6;
+
+    --coral:#D85A30; --coral-d:#993C1D; --coral-bg:#FAECE7; --coral-ink:#712B13;
+    --teal:#1D9E75; --teal-d:#0F6E56; --teal-bg:#E1F5EE; --teal-ink:#085041;
+    --green:#3B6D11; --green-bg:#EAF3DE; --green-ink:#27500A;
+    --amber:#BA7517; --amber-d:#854F0B; --amber-bg:#FAEEDA; --amber-ink:#633806;
+    --red:#A32D2D; --red-bg:#FCEBEB; --red-ink:#791F1F;
+    --violet:#6B4E9E; --violet-bg:#F0EAF9; --violet-ink:#48326F;
+    --blue:#2C6BAF; --blue-bg:#E6EFF8; --blue-ink:#1B456F;
+
+    --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px;
+    --maxw:860px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"Newsreader",Georgia,"Iowan Old Style",Palatino,serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--body);
+    font-family:var(--sans);font-size:17px;line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 26px 96px;}
+  ::selection{background:var(--coral-bg);}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:600;letter-spacing:-.01em;line-height:1.2;}
+  p{margin:1em 0;}
+  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);transition:border-color .15s;}
+  a:hover{border-color:var(--coral);}
+  strong{font-weight:600;color:var(--ink);}
+  em{font-style:italic;}
+  code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--r-sm);padding:1px 5px;color:var(--coral-ink);white-space:nowrap;}
+
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block;}
+  h1.title{font-size:clamp(34px,6vw,52px);font-weight:600;line-height:1.04;margin:0 0 18px;
+    letter-spacing:-.025em;font-family:var(--serif);}
+  .dek{font-size:21px;line-height:1.5;color:var(--muted);margin:0 0 28px;max-width:36em;font-weight:400;}
+  .meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .meta .m{flex:1 1 150px;padding:14px 18px 14px 0;border-right:1px solid var(--line);}
+  .meta .m:last-child{border-right:0;}
+  .meta .ml{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px;}
+  .meta .mv{font-size:13.5px;color:var(--body);font-weight:500;line-height:1.35;}
+
+  section{margin-top:68px;}
+  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .tag .badge{width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:0;flex:0 0 auto;}
+  h2.sec{font-size:29px;margin:0 0 6px;font-family:var(--serif);}
+  .sec-lead{font-size:18px;color:var(--muted);margin:.3em 0 0;}
+  h3.sub{font-size:20px;margin:38px 0 4px;}
+
+  .bottomline{border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:0 var(--r-md) var(--r-md) 0;
+    background:var(--surface);padding:18px 22px;margin:26px 0;}
+  .bottomline p{margin:0;font-size:16.5px;}
+  .bottomline p + p{margin-top:.8em;}
+  .bottomline .lab{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:6px;}
+
+  .score{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 18px;}
+  @media(max-width:560px){.score{grid-template-columns:1fr;}}
+  .score .cell{border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;background:var(--surface);}
+  .score .cell.yes{background:var(--teal-bg);border-color:#CFE9DE;}
+  .score .cell.no{background:var(--amber-bg);border-color:#F0E2C5;}
+  .score .q{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:8px;color:var(--faint);}
+  .score .yes .q{color:var(--teal-d);}
+  .score .no .q{color:var(--amber-d);}
+  .score .a .word{font-size:32px;font-weight:600;line-height:1.05;letter-spacing:-.02em;color:var(--ink);font-family:var(--serif);}
+  .score .yes .a .word{color:var(--teal-ink);}
+  .score .no .a .word{color:var(--amber-ink);}
+  .score .sub{font-size:13.5px;line-height:1.45;margin-top:10px;color:var(--muted);}
+  .score .yes .sub{color:var(--teal-ink);}
+  .score .no .sub{color:var(--amber-ink);}
+
+  /* Tables */
+  .tw{overflow-x:auto;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);}
+  .tw.wide{width:min(1180px,94vw);margin-left:50%;transform:translateX(-50%);}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;}
+  .tw.wide table{font-size:14px;}
+  th{background:var(--surface-2);text-align:left;padding:12px 14px;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line-2);white-space:nowrap;}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;}
+  .tw.wide td{padding:13px 15px;}
+  tr:last-child td{border-bottom:0;}
+  tbody tr:hover{background:var(--surface-2);}
+  td.nm{font-weight:600;color:var(--ink);white-space:nowrap;font-family:var(--mono);font-size:13px;}
+  .tnote{font-size:13px;color:var(--faint);margin:-14px 0 26px;padding:0 4px;}
+  .tw.wide col.c-tool{width:170px;}
+  .tw.wide col.c-you{width:44%;}
+  .tw.wide col.c-verdict{width:130px;}
+
+  /* Pills */
+  .p{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;padding:2.5px 8px;
+    border-radius:20px;white-space:nowrap;line-height:1.5;}
+  .p-have{background:var(--teal-bg);color:var(--teal-ink);}
+  .p-gap{background:var(--amber-bg);color:var(--amber-ink);}
+  .p-gapR{background:var(--red-bg);color:var(--red-ink);}
+  .p-skip{background:var(--surface-2);color:var(--muted);border:1px solid var(--line);}
+  .p-n{background:var(--surface-2);color:var(--muted);border:1px solid var(--line);}
+
+  /* Versus split */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+  @media(max-width:620px){.vs{grid-template-columns:1fr;}}
+  .vs .col{border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;background:var(--surface);}
+  .vs .col.him{background:var(--blue-bg);border-color:#CFE0F0;}
+  .vs .col.you{background:var(--coral-bg);border-color:#EBCBBE;}
+  .vs .col h4{margin:0 0 4px;font-size:17px;}
+  .vs .col .who{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+  .vs .col.him .who{color:var(--blue-ink);}
+  .vs .col.you .who{color:var(--coral-d);}
+  .vs ul{list-style:none;padding:0;margin:0;}
+  .vs li{position:relative;padding-left:20px;margin:10px 0;font-size:14.5px;line-height:1.5;}
+  .vs li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;}
+  .vs .him li::before{background:var(--blue);}
+  .vs .you li::before{background:var(--coral);}
+  .vs .col b{color:var(--ink);}
+
+  /* Callouts */
+  .co{border-radius:var(--r-md);padding:16px 20px;margin:24px 0;font-size:15.5px;line-height:1.6;}
+  .co .cot{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:7px;}
+  .co p{margin:.55em 0;}
+  .co p:first-of-type{margin-top:0;}
+  .co p:last-child{margin-bottom:0;}
+  .co-w{background:var(--amber-bg);border:1px solid #F0E2C5;color:var(--amber-ink);}
+  .co-w .cot{color:var(--amber-d);}
+  .co-i{background:var(--teal-bg);border:1px solid #CFE9DE;color:var(--teal-ink);}
+  .co-i .cot{color:var(--teal-d);}
+  .co-r{background:var(--red-bg);border:1px solid #F2D5D5;color:var(--red-ink);}
+  .co-r .cot{color:var(--red);}
+  .co-v{background:var(--violet-bg);border:1px solid #DFD2F0;color:var(--violet-ink);}
+  .co-v .cot{color:var(--violet);}
+  .co b,.co strong{color:inherit;font-weight:700;}
+  .co code{background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.08);color:inherit;}
+
+  /* Ranked upgrade cards */
+  .up{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:22px 24px;margin:16px 0;
+    display:grid;grid-template-columns:auto 1fr;gap:0 20px;align-items:start;}
+  .up .rank{grid-row:1/3;width:44px;height:44px;border-radius:50%;background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;font-family:var(--serif);}
+  .up .uh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .up .ut{font-size:18px;font-weight:600;color:var(--ink);}
+  .up .um{font-family:var(--mono);font-size:13px;color:var(--coral-ink);}
+  .up .ub{margin:0;font-size:15px;line-height:1.6;color:var(--body);}
+  .up .ub b{color:var(--ink);}
+  .up .eff{font-size:12px;color:var(--muted);margin-top:9px;padding-top:9px;border-top:1px solid var(--line);}
+  @media(max-width:560px){.up{grid-template-columns:1fr;gap:12px;}.up .rank{grid-row:auto;}}
+
+  ul.clean{list-style:none;padding:0;margin:16px 0;}
+  ul.clean li{position:relative;padding-left:22px;margin:9px 0;line-height:1.6;}
+  ul.clean li::before{content:"";position:absolute;left:3px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--coral);}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;border:1px solid var(--line);
+    border-radius:var(--r-lg);overflow:hidden;background:var(--surface);margin:26px 0;}
+  .strip .st{padding:18px 16px;border-right:1px solid var(--line);text-align:center;}
+  .strip .st:last-child{border-right:0;}
+  .strip .sv{font-size:27px;font-weight:600;color:var(--ink);line-height:1.05;font-family:var(--serif);letter-spacing:-.02em;}
+  .strip .sl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-top:7px;}
+
+  .foot{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);line-height:1.65;}
+  .foot p{margin:.5em 0;}
+
+  @media(max-width:640px){
+    .wrap{padding:44px 18px 70px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">Strategy Report · Companion to "Inside runsagents"</div>
+<h1 class="title">His Stack vs Mine</h1>
+<p class="dek">I read Shakhzod's 13 agent tools against my own setup — the vault, the VPS, both bots, the whole Cloud Sport stack, and how I actually work. Here's where I already match him, and the short list worth upgrading.</p>
+
+<div class="meta">
+  <div class="m"><div class="ml">Compared</div><div class="mv">runsagents (13 tools)<br>vs. my live infrastructure</div></div>
+  <div class="m"><div class="ml">Verdict</div><div class="mv">Peer, not student —<br>the gap is packaging</div></div>
+  <div class="m"><div class="ml">Real gaps</div><div class="mv">1 capability + 1 habit</div></div>
+  <div class="m"><div class="ml">Date</div><div class="mv">16 July 2026</div></div>
+</div>
+
+<!-- ===== BOTTOM LINE ===== -->
+<section id="thesis" style="margin-top:52px;">
+<div class="tag"><span class="badge">1</span> The verdict</div>
+<h2 class="sec">I'm a peer, not a student</h2>
+<p class="sec-lead">The idea that his repo "inspired my infrastructure" undersells where I actually am.</p>
+
+<div class="bottomline">
+  <div class="lab">Bottom line</div>
+  <p>Reading his 13 tools against my last two months of work, <strong>I already practice most of his doctrine — and at higher intensity than he does.</strong> He ships mostly solo-model tools. I routinely run 8-, 19-, and 22-agent adversarial workflows with dedup and multi-lens verification against a <em>live business with real money in it.</em> On the thinking, I'm not behind him.</p>
+  <p><strong>The gap is almost entirely packaging.</strong> His real skill isn't doing more — it's freezing his practices into named, reusable, tested, versioned artifacts with written-down limits. Mine live as one-off workflow runs whose output isn't even saved, and as prose buried in <code>hot.md</code>. Same doctrine — his compounds, mine evaporates after each session.</p>
+</div>
+
+<p>There is <strong>one genuine capability I lack</strong> (a way to test my own comprehension of agent-written code), <strong>one habit worth fixing</strong> (making my audits repeatable and their findings tracked to closure), and a handful of cheap ideas worth stealing. Everything else, I already have a version of — often a stronger one.</p>
+</section>
+
+<!-- ===== INTENSITY ===== -->
+<section id="intensity">
+<div class="tag"><span class="badge">2</span> The asymmetry</div>
+<h2 class="sec">Where each of us is actually ahead</h2>
+<p class="sec-lead">This cuts both ways, and being honest about it is the whole point.</p>
+
+<div class="vs">
+  <div class="col him">
+    <div class="who">He's ahead on</div>
+    <h4>Packaging &amp; reuse</h4>
+    <ul>
+      <li><b>Reusability.</b> 13 named, CC0, tested, versioned artifacts. Anyone can install them. My equivalent value dies in a scratchpad.</li>
+      <li><b>Written-down limits.</b> Every tool states what it can't do. That honesty habit is the best thing in his collection.</li>
+      <li><b>Persistence.</b> His findings survive as files with schemas. Mine survive as prose I have to re-derive.</li>
+      <li><b>Comprehension checks.</b> <code>quiz-me</code> — he tests whether the human still understands the code. I have nothing for this.</li>
+    </ul>
+  </div>
+  <div class="col you">
+    <div class="who">I'm ahead on</div>
+    <h4>Doing it for real</h4>
+    <ul>
+      <li><b>Multi-agent intensity.</b> 8-auditor → dedup → 2-lens verify; a 19-agent infra audit; a 22-agent analytics plan + red-team. His tools are mostly one model.</li>
+      <li><b>Real stakes, not fixtures.</b> His repos ship <em>synthetic</em> data. I run 377 pairs of real inventory, real cash, a real employee, real double-sale risks I've actually solved.</li>
+      <li><b>End-to-end shipping.</b> I built and deployed bots, a sales mini-app, an analytics site, a snapshot+restore system. He ships tools; I ship products.</li>
+      <li><b>Security actually deployed.</b> scrypt+HMAC auth, per-IP lockout, low-privilege tokens, a passed restore drill. Live, not theoretical.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="co co-i">
+  <div class="cot">The sharp version</div>
+  <p>He wrote the <em>textbook</em>; I'm running the <em>factory</em>. His artifacts are a 3-day-old v1.0.0 with synthetic fixtures and no users. My stack is a live business that has already survived the exact failures his tools are designed to prevent. <strong>The one thing his textbook has that my factory doesn't is a way to make my hard-won lessons reusable instead of re-earned every session.</strong></p>
+</div>
+</section>
+
+<!-- ===== MAPPING ===== -->
+<section id="mapping">
+<div class="tag"><span class="badge">3</span> Tool by tool</div>
+<h2 class="sec">His 13 vs. what I already do</h2>
+<p class="sec-lead">For each tool: do I already have a version of it, and is it a real gap or a skip?</p>
+
+<div class="tw wide">
+<table>
+<colgroup><col class="c-tool"><col class="c-you"><col class="c-verdict"></colgroup>
+<thead><tr><th>His tool</th><th>What I already do about it</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr>
+  <td class="nm">quiz-me</td>
+  <td>Nothing. I'm a non-coder personally accountable for 221KB of <code>Код.js</code> plus <code>compute.js</code>, <code>auth.js</code>, <code>server.js</code> and a dozen n8n workflows I didn't write — and my history is full of agent decisions I caught and corrected <em>late</em> (the attribution rule, the FX handling, the circular USD reconciliation).</td>
+  <td><span class="p p-gapR">The real gap</span></td>
+</tr>
+<tr>
+  <td class="nm">loss-weighted-unknowns</td>
+  <td>My "Open Qs to Asom" lists already surface unknowns — but I rank them by what feels uncertain, not by what being wrong would <em>cost</em>.</td>
+  <td><span class="p p-gap">Small gap</span></td>
+</tr>
+<tr>
+  <td class="nm">voice-calibration</td>
+  <td>I write RU/EN business messages every day and have years of Telegram — but no voice guide exists, so "draft in my voice" means nothing yet.</td>
+  <td><span class="p p-gap">Gap (real work)</span></td>
+</tr>
+<tr>
+  <td class="nm">airlocks</td>
+  <td>I <em>wrote the rule</em>: <em>"the service started proves nothing — check the value the process actually received"</em> and <em>"verify via wallets math before any retry."</em> My BAD_TOKEN bug is his origin story in reverse.</td>
+  <td><span class="p p-have">Have it</span></td>
+</tr>
+<tr>
+  <td class="nm">settlement-proof</td>
+  <td>My Chunk 6 sale-UID dedup is his exact rule — same uid returns the same success and writes nothing. Verified live against a real double-sale risk.</td>
+  <td><span class="p p-have">Have it</span></td>
+</tr>
+<tr>
+  <td class="nm">night-watch</td>
+  <td>My 19-agent read-only infra audit <em>is</em> this, and my <code>[!contradiction]</code> convention is "file, don't fix." But I hit its adoption trap — see the warning below.</td>
+  <td><span class="p p-have">Have it*</span></td>
+</tr>
+<tr>
+  <td class="nm">second-opinion</td>
+  <td>My 8-auditor → dedup → 2-lens verify workflow is a stronger version of "have an independent reviewer attack it."</td>
+  <td><span class="p p-have">Have it (stronger)</span></td>
+</tr>
+<tr>
+  <td class="nm">handoff-receipts</td>
+  <td><code>hot.md</code> <em>is</em> a handoff receipt between memoryless sessions. It works — but it's bloated (my own audit flagged it: 63KB, 92% frozen history).</td>
+  <td><span class="p p-have">Have it (informal)</span></td>
+</tr>
+<tr>
+  <td class="nm">memory-ledger</td>
+  <td>My memory system + <code>hot.md</code> already carry provenance; the "owner-draw divergence is deliberate, don't re-ask" note is his pattern exactly.</td>
+  <td><span class="p p-have">Have it — steal 1 idea</span></td>
+</tr>
+<tr>
+  <td class="nm">agent-fleet-control</td>
+  <td>I run parallel agents for <em>audits</em> (read-only). When they <em>write</em> code I go sequential with <code>.bak</code> backups — so parallel-writer collisions aren't my failure mode.</td>
+  <td><span class="p p-skip">Skip</span></td>
+</tr>
+<tr>
+  <td class="nm">route-ledger</td>
+  <td>I pick models by intuition (Sonnet 5 for Q&amp;A, Haiku for reminders). Low volume — not enough runs to price anything yet.</td>
+  <td><span class="p p-skip">Skip for now</span></td>
+</tr>
+<tr>
+  <td class="nm">permission-surface</td>
+  <td>I install a few skills. Minor relevance, and the scanner is buggy (false alarms on ordinary Markdown).</td>
+  <td><span class="p p-skip">Skip</span></td>
+</tr>
+<tr>
+  <td class="nm">second-opinion-bench</td>
+  <td>Only useful if I'm formally benchmarking whether a second reviewer earns its cost. Not a question I have.</td>
+  <td><span class="p p-skip">Skip</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="tnote">Nine of thirteen I already have a version of, four of those stronger than his. Three are real gaps. One is a skip-for-now. *night-watch: I have the doctrine but hit its adoption trap — see §5.</p>
+</section>
+
+<!-- ===== WHAT TO DO ===== -->
+<section id="upgrades">
+<div class="tag"><span class="badge">4</span> The short list</div>
+<h2 class="sec">What's actually worth doing</h2>
+<p class="sec-lead">Ranked. Only three things move the needle — the rest is already handled or not my problem yet.</p>
+
+<div class="up">
+  <div class="rank">1</div>
+  <div class="uh"><span class="ut">Close the comprehension gap</span> <span class="um">quiz-me</span></div>
+  <p class="ub">The one genuine capability hole. Every other tool of his I have a version of; this one I have <b>nothing</b> for — and I'm the most exposed person possible to the problem it solves. I'm personally accountable for a large body of code I didn't write, and my own history proves the failure mode is real: I've repeatedly discovered agent decisions <em>weeks late</em>. Point it at the Cloud Sport code, <b>not</b> the vault (the vault has no architecture to interrogate). A bad first score is the tool working.</p>
+  <div class="eff">Effort: ~20 min · Reversible · Cost: near zero · Expected first score: low, and that's the point</div>
+</div>
+
+<div class="up">
+  <div class="rank">2</div>
+  <div class="uh"><span class="ut">Make my audits reusable</span> <span class="um">the packaging habit</span></div>
+  <p class="ub">This is the real lesson <em>from</em> him, not a tool <em>of</em> his. My infra audit and adversarial audit are better than anything single he built — but they're not saved as runnable workflows and their findings aren't tracked to closure. <b>Turn the recurring ones into named, saved workflows, and give their findings a durable home</b> (a tracked list, not a scratchpad). That's how I get his compounding value without adopting a line of his code.</p>
+  <div class="eff">Effort: a few sessions · High leverage · Fixes the "value evaporates" problem at the root</div>
+</div>
+
+<div class="up">
+  <div class="rank">3</div>
+  <div class="uh"><span class="ut">Rank my unknowns by cost</span> <span class="um">loss-weighted-unknowns</span></div>
+  <p class="ub">The only tool of his that needs <b>no second party</b>, and it maps onto a habit I already have — the "Open Qs to Asom" lists. It just adds the missing step: score each unknown by severity × likelihood × irreversibility × blast-radius × compliance, so the costly-but-quiet questions stop getting buried under the loud-but-cheap ones. His own example: "will customers understand the button label?" felt the most uncertain and ranked dead last; the settlement-ledger question felt routine and ranked top.</p>
+  <div class="eff">Effort: low · Works solo · Best when I have 10+ open questions to sort (I regularly do)</div>
+</div>
+
+<h3 class="sub">Worth stealing later (cheap, not urgent)</h3>
+<ul class="clean">
+  <li><strong>Expiry dates on action-authorizing facts</strong> (from <code>memory-ledger</code>) — put an <code>expires:</code> on the handful of memories that could trigger a consequential action (tokens, standing approvals), so a stale one can't quietly authorize the wrong thing.</li>
+  <li><strong>The handoff-receipt discipline</strong> (from <code>handoff-receipts</code>) — my <code>hot.md</code> is already a handoff receipt; borrowing its "the risk can't hide in a success-shaped summary" structure would help the rotation problem my own audit flagged.</li>
+  <li><strong>voice-calibration</strong> — real value for my daily RU/EN messages, but it ships no working prompt and my corpus won't fit a context window, so it's a genuine build, not a copy-paste. Park it.</li>
+</ul>
+</section>
+
+<!-- ===== WARNING ===== -->
+<section id="trap">
+<div class="tag"><span class="badge">5</span> The warning</div>
+<h2 class="sec">I've already hit the trap he warns about</h2>
+
+<div class="co co-r">
+  <div class="cot">night-watch's adoption trap — I'm already in it</div>
+  <p><code>night-watch</code>'s whole risk is that findings pile up and the human never actions them. <strong>That's already my pattern.</strong> My 19-agent infra audit produced a ranked fix list (A–F): off-server backups got fixed, but secret rotation, VPS staleness, and the <code>hot.md</code> diet were mostly still open weeks later. My adversarial app audit produced R1–R9; most are still unapplied.</p>
+  <p>So my gap is <strong>not</strong> "file, don't fix" — I do that well. It's <strong>triage-to-closure.</strong> Adopting more finding-<em>generators</em> would make this worse, not better. The fix in upgrade #2 (a durable, tracked findings list) matters more than any new audit tool, because I'm already generating more findings than I close.</p>
+</div>
+</section>
+
+<!-- ===== CONVERGENCE ===== -->
+<section id="convergence">
+<div class="tag"><span class="badge">6</span> The pattern underneath</div>
+<h2 class="sec">Three tools I built before I saw his</h2>
+<p class="sec-lead">This is the proof that the gap is packaging, not principles.</p>
+
+<p>Three of his named artifacts are things I independently arrived at from real production pain — before ever reading his repo:</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>His artifact</th><th>What I built, independently, and why</th></tr></thead>
+<tbody>
+<tr>
+  <td class="nm">settlement-proof</td>
+  <td>His idempotency rule — "exactly one applied effect, every retry accounted for" — is precisely my Chunk 6 sale-UID dedup. He got there from fraud work; I got there from a real double-sale risk when a response was lost behind a busy sheet lock.</td>
+</tr>
+<tr>
+  <td class="nm">airlocks</td>
+  <td>His story: a log said "success" while the deploy failed. Mine: a response said failure while the sale <em>succeeded</em> (BAD_TOKEN). Same lesson, opposite direction — the words and the state disagreed, and only the state was true. I even wrote his rule verbatim: "check the value the process actually received."</td>
+</tr>
+<tr>
+  <td class="nm">night-watch</td>
+  <td>His doctrine: an unattended agent reports a contradiction but never resolves it. My vault rule: flag a contradiction with a callout on both sides and let me decide — never silently overwrite. Written independently.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-v">
+  <div class="cot">What this means</div>
+  <p>Two people, working on different problems, converged on the same three safety rules. That's strong evidence the rules are <em>right</em> — and strong evidence that <strong>the difference between us isn't insight, it's form.</strong> He turned each lesson into a reusable artifact the moment he learned it. I turned each into a project-specific fix and moved on. Closing that habit gap is worth more than adopting any single tool he built.</p>
+</div>
+</section>
+
+<!-- ===== VERDICT ===== -->
+<section id="close">
+<div class="tag"><span class="badge">7</span> Where this leaves me</div>
+<h2 class="sec">The upgrade, in one line</h2>
+
+<div class="score">
+  <div class="cell yes">
+    <div class="q">Principles</div>
+    <div class="a"><span class="word">Already there</span></div>
+    <div class="sub">9 of 13 covered, 4 of them stronger than his. Not behind on the thinking.</div>
+  </div>
+  <div class="cell yes">
+    <div class="q">Real-world proof</div>
+    <div class="a"><span class="word">Ahead</span></div>
+    <div class="sub">A live business with real money vs. his synthetic 3-day-old fixtures.</div>
+  </div>
+  <div class="cell no">
+    <div class="q">Reusability</div>
+    <div class="a"><span class="word">Behind</span></div>
+    <div class="sub">My value evaporates per session; his compounds as named artifacts.</div>
+  </div>
+  <div class="cell no">
+    <div class="q">Comprehension check</div>
+    <div class="a"><span class="word">Missing</span></div>
+    <div class="sub">No way to test what I can actually answer for. The one true hole.</div>
+  </div>
+</div>
+
+<div class="bottomline">
+  <div class="lab">The whole comparison in one sentence</div>
+  <p>Don't adopt his stack — I already run a stronger version of most of it on a real business. <strong>Adopt his two habits I lack: test my own comprehension (<code>quiz-me</code>), and make my audits reusable with findings tracked to closure.</strong> Then steal the cheap ideas (rank unknowns by cost, expiry-date the dangerous memories) and skip the rest.</p>
+</div>
+
+<div class="co co-i">
+  <div class="cot">Immediate next step</div>
+  <p><strong>Set up <code>quiz-me</code> and point it at the Cloud Sport code.</strong> It's 20 minutes, reversible, and it directly attacks the one real hole this comparison found — whether I can answer for the system agents built me. Everything else can wait for a session with more time.</p>
+</div>
+</section>
+
+<div class="foot">
+  <p><strong>Companion report.</strong> This is the second of two. The first, <a href="https://spectral7.github.io/my-reports/runsagents-agent-stack-research-16.07.2026.html">"Inside runsagents"</a>, is the full breakdown of what he built. This one compares it against my own setup.</p>
+  <p><strong>Basis.</strong> His side: all 13 repos cloned and read, all test suites run. My side: my live infrastructure as recorded across the vault — the VPS, both Telegram bots, the Cloud Sport GAS backend + sales mini-app + analytics site + snapshot system, the reports pipeline, and two months of session history.</p>
+  <p style="margin-top:18px;color:var(--line-2);">Strategy report · 16 July 2026 · My Mind vault</p>
+</div>
+
+</div>
+</body>
+</html>
