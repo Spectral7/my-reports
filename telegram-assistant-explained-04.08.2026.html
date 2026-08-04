@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>An Assistant for Your Telegram — What It Is, What It Sees</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,18..72,400;0,18..72,600;1,18..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --surface:#FFFFFF;
+    --surface-2:#FCFAF6;
+    --ink:#221F1B;
+    --body:#3C3833;
+    --muted:#6E6960;
+    --faint:#9A948A;
+    --line:#E7E2D8;
+    --line-2:#D8D2C6;
+
+    --coral:#D85A30; --coral-d:#993C1D; --coral-bg:#FAECE7; --coral-ink:#712B13;
+    --teal:#1D9E75; --teal-d:#0F6E56; --teal-bg:#E1F5EE; --teal-ink:#085041;
+    --green:#3B6D11; --green-bg:#EAF3DE; --green-ink:#27500A;
+    --amber:#BA7517; --amber-d:#854F0B; --amber-bg:#FAEEDA; --amber-ink:#633806;
+    --red:#A32D2D; --red-bg:#FCEBEB; --red-ink:#791F1F;
+    --violet:#6B4E9E; --violet-bg:#F0EAF9; --violet-ink:#48326F;
+    --blue:#2C6BAF; --blue-bg:#E6EFF8; --blue-ink:#1B456F;
+
+    --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px;
+    --maxw:860px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"Newsreader",Georgia,"Iowan Old Style",Palatino,serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--body);
+    font-family:var(--sans);font-size:17px;line-height:1.7;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 26px 96px;}
+  ::selection{background:var(--coral-bg);}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:600;letter-spacing:-.01em;line-height:1.2;}
+  p{margin:1em 0;}
+  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);transition:border-color .15s;}
+  a:hover{border-color:var(--coral);}
+  strong{font-weight:600;color:var(--ink);}
+  em{font-style:italic;}
+  code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--r-sm);padding:1px 5px;color:var(--coral-ink);white-space:nowrap;}
+
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block;}
+  h1.title{font-size:clamp(34px,6vw,52px);font-weight:600;line-height:1.04;margin:0 0 18px;
+    letter-spacing:-.025em;font-family:var(--serif);}
+  .dek{font-size:21px;line-height:1.5;color:var(--muted);margin:0 0 28px;max-width:36em;font-weight:400;}
+  .meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .meta .m{flex:1 1 150px;padding:14px 18px 14px 0;border-right:1px solid var(--line);}
+  .meta .m:last-child{border-right:0;}
+  .meta .ml{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px;}
+  .meta .mv{font-size:13.5px;color:var(--body);font-weight:500;line-height:1.35;}
+
+  section{margin-top:68px;}
+  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .tag .badge{width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:0;flex:0 0 auto;}
+  h2.sec{font-size:29px;margin:0 0 6px;font-family:var(--serif);}
+  .sec-lead{font-size:18px;color:var(--muted);margin:.3em 0 0;}
+  h3.sub{font-size:20px;margin:38px 0 4px;}
+
+  .bottomline{border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:0 var(--r-md) var(--r-md) 0;
+    background:var(--surface);padding:18px 22px;margin:26px 0;}
+  .bottomline p{margin:0;font-size:16.5px;}
+  .bottomline p + p{margin-top:.8em;}
+  .bottomline .lab{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:6px;}
+
+  /* Tables */
+  .tw{overflow-x:auto;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;}
+  th{background:var(--surface-2);text-align:left;padding:12px 14px;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line-2);}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;}
+  tr:last-child td{border-bottom:0;}
+  tbody tr:hover{background:var(--surface-2);}
+  td.nm{font-weight:600;color:var(--ink);}
+
+  /* Callouts */
+  .co{border-radius:var(--r-md);padding:16px 20px;margin:24px 0;font-size:15.5px;line-height:1.6;}
+  .co .cot{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:600;margin-bottom:7px;}
+  .co p{margin:.55em 0;}
+  .co p:first-of-type{margin-top:0;}
+  .co p:last-child{margin-bottom:0;}
+  .co-w{background:var(--amber-bg);border:1px solid #F0E2C5;color:var(--amber-ink);}
+  .co-w .cot{color:var(--amber-d);}
+  .co-i{background:var(--teal-bg);border:1px solid #CFE9DE;color:var(--teal-ink);}
+  .co-i .cot{color:var(--teal-d);}
+  .co-r{background:var(--red-bg);border:1px solid #F2D5D5;color:var(--red-ink);}
+  .co-r .cot{color:var(--red);}
+  .co-v{background:var(--violet-bg);border:1px solid #DFD2F0;color:var(--violet-ink);}
+  .co-v .cot{color:var(--violet);}
+  .co b,.co strong{color:inherit;font-weight:700;}
+  .co code{background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.08);color:inherit;}
+
+  /* Two-column split */
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+  @media(max-width:620px){.vs{grid-template-columns:1fr;}}
+  .vs .col{border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;background:var(--surface);}
+  .vs .col.can{background:var(--teal-bg);border-color:#CFE9DE;}
+  .vs .col.cant{background:var(--amber-bg);border-color:#F0E2C5;}
+  .vs .col h4{margin:0 0 4px;font-size:17px;}
+  .vs .col .who{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+  .vs .col.can .who{color:var(--teal-d);}
+  .vs .col.cant .who{color:var(--amber-d);}
+  .vs ul{list-style:none;padding:0;margin:0;}
+  .vs li{position:relative;padding-left:20px;margin:11px 0;font-size:14.5px;line-height:1.5;}
+  .vs li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;}
+  .vs .can li::before{background:var(--teal);}
+  .vs .cant li::before{background:var(--amber);}
+  .vs .col b{color:var(--ink);}
+
+  /* Numbered step cards */
+  .up{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:22px 24px;margin:16px 0;
+    display:grid;grid-template-columns:auto 1fr;gap:0 20px;align-items:start;}
+  .up .rank{grid-row:1/3;width:44px;height:44px;border-radius:50%;background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:600;font-family:var(--serif);}
+  .up .uh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .up .ut{font-size:18px;font-weight:600;color:var(--ink);}
+  .up .um{font-family:var(--mono);font-size:13px;color:var(--coral-ink);}
+  .up .ub{margin:0;font-size:15px;line-height:1.6;color:var(--body);}
+  .up .ub b{color:var(--ink);}
+  .up .eff{font-size:12px;color:var(--muted);margin-top:9px;padding-top:9px;border-top:1px solid var(--line);}
+  @media(max-width:560px){.up{grid-template-columns:1fr;gap:12px;}.up .rank{grid-row:auto;}}
+
+  ul.clean{list-style:none;padding:0;margin:16px 0;}
+  ul.clean li{position:relative;padding-left:22px;margin:9px 0;line-height:1.6;}
+  ul.clean li::before{content:"";position:absolute;left:3px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--coral);}
+
+  /* Chat mockup */
+  .chat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;margin:26px 0;}
+  .chat .ch{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);font-weight:600;
+    padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--line);}
+  .chat .msg{display:flex;gap:14px;margin:16px 0;align-items:flex-start;}
+  .chat .t{font-family:var(--mono);font-size:12px;color:var(--faint);flex:0 0 42px;padding-top:10px;}
+  .chat .b{background:var(--surface-2);border:1px solid var(--line);border-radius:14px 14px 14px 4px;
+    padding:10px 15px;font-size:15px;line-height:1.55;max-width:min(470px,88%);}
+  .chat .b .lead{font-weight:600;color:var(--ink);}
+  .chat .btns{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+  .chat .btn{font-size:12.5px;border:1px solid var(--line-2);border-radius:8px;padding:4px 11px;
+    background:var(--paper);color:var(--body);font-weight:500;}
+  .chat .small{font-size:13.5px;color:var(--muted);}
+
+  .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;border:1px solid var(--line);
+    border-radius:var(--r-lg);overflow:hidden;background:var(--surface);margin:26px 0;}
+  .strip .st{padding:18px 16px;border-right:1px solid var(--line);text-align:center;}
+  .strip .st:last-child{border-right:0;}
+  .strip .sv{font-size:27px;font-weight:600;color:var(--ink);line-height:1.05;font-family:var(--serif);letter-spacing:-.02em;}
+  .strip .sl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-top:7px;}
+
+  .foot{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);line-height:1.65;}
+  .foot p{margin:.5em 0;}
+
+  @media(max-width:640px){
+    .wrap{padding:44px 18px 70px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">Prepared for you by Asomiddin · Read before you agree to anything</div>
+<h1 class="title">An Assistant for Your Telegram</h1>
+<p class="dek">A small program that reminds you who you forgot to answer, puts meetings in your calendar, and tells you to take your supplements. It needs access to your Telegram, so this page explains exactly what it will see, what it will never see, and how you switch it off.</p>
+
+<div class="meta">
+  <div class="m"><div class="ml">What it is</div><div class="mv">A private assistant<br>that messages you on Telegram</div></div>
+  <div class="m"><div class="ml">Who runs it</div><div class="mv">Asomiddin, on his own<br>server in Finland</div></div>
+  <div class="m"><div class="ml">Cost to you</div><div class="mv">Nothing</div></div>
+  <div class="m"><div class="ml">Date</div><div class="mv">4 August 2026</div></div>
+</div>
+
+<!-- ===== 1. THE POINT ===== -->
+<section id="point" style="margin-top:52px;">
+<div class="tag"><span class="badge">1</span> The short version</div>
+<h2 class="sec">Four small jobs</h2>
+<p class="sec-lead">Nothing clever. Four things people are bad at remembering.</p>
+
+<div class="bottomline">
+  <div class="lab">What it does</div>
+  <p><strong>1. Tells you who you left hanging.</strong> Once or twice a day: "three people wrote to you and never got a reply."</p>
+  <p><strong>2. Catches meetings you agree to in chat.</strong> If you write "let's meet tomorrow at 3", it asks whether to put that in your calendar.</p>
+  <p><strong>3. Reminds you about meetings.</strong> The evening before, and an hour before.</p>
+  <p><strong>4. Reminds you about supplements.</strong> At the times you choose.</p>
+</div>
+
+<p>That's the whole thing. It sends you a handful of short messages a day and otherwise stays quiet.</p>
+
+<div class="co co-i">
+  <div class="cot">The one thing worth knowing up front</div>
+  <p><strong>The program can read, but it can never write.</strong> It will never send a message as you, never reply to anyone, never post anything, never touch your contacts. Everything you receive from it comes from a <em>separate</em> bot that talks only to you.</p>
+  <p>So the worst thing a mistake in this system can do is send <em>you</em> a wrong reminder. It cannot embarrass you in front of anyone else, because it has no way to speak to anyone else.</p>
+</div>
+</section>
+
+<!-- ===== 2. A NORMAL DAY ===== -->
+<section id="day">
+<div class="tag"><span class="badge">2</span> What you'd actually see</div>
+<h2 class="sec">A normal day</h2>
+<p class="sec-lead">Five messages. This is the entire product.</p>
+
+<div class="chat">
+  <div class="ch">Assistant</div>
+
+  <div class="msg"><div class="t">08:00</div><div class="b">
+    ☀️ <span class="lead">Today:</span> meeting with Aziz at 15:00
+  </div></div>
+
+  <div class="msg"><div class="t">09:00</div><div class="b">
+    💊 Time for creatine
+    <div class="btns"><span class="btn">✅ Taken</span><span class="btn">⏰ In 30 min</span></div>
+  </div></div>
+
+  <div class="msg"><div class="t">13:20</div><div class="b">
+    🗓 Looks like a meeting with <b>Ibrohim</b><br>tomorrow, 5 August, at 12:00
+    <div class="btns"><span class="btn">✅ Add</span><span class="btn">✏️ Change</span><span class="btn">❌ No</span></div>
+  </div></div>
+
+  <div class="msg"><div class="t">14:00</div><div class="b">
+    ⏰ In one hour — meeting with Aziz
+  </div></div>
+
+  <div class="msg"><div class="t">19:00</div><div class="b">
+    📬 <span class="lead">3 people are waiting for a reply</span><br>
+    <span class="small">· Aziz — 5 hours<br>· Mum — since yesterday<br>· Ibrohim — 2 days</span>
+  </div></div>
+</div>
+
+<p>If you don't like the volume, you can turn any of the four off, or pause everything for a few days.</p>
+</section>
+
+<!-- ===== 3. HOW IT READS ===== -->
+<section id="reads">
+<div class="tag"><span class="badge">3</span> The part that matters</div>
+<h2 class="sec">How it reads your Telegram</h2>
+<p class="sec-lead">This is the section to read slowly. Everything else is details.</p>
+
+<p>First, something that surprises most people: <strong>a normal Telegram bot cannot read your chats.</strong> Bots only see messages sent directly to them. Your private conversations are invisible to them. So this is not a bot — a bot could not do this job.</p>
+
+<p>Instead, a program <strong>logs in as you</strong>. It's the same thing that happens when you install Telegram on a new laptop: you approve it once, and from then on that laptop sees your chats. This program is one more "device" on your account, sitting on a server instead of a desk.</p>
+
+<p>Once it's logged in, it looks at your Telegram in <strong>two completely different ways</strong> — and only one of them involves words at all.</p>
+
+<h3 class="sub">Way one — the chat list. No words, ever.</h3>
+
+<p>Telegram can hand over your chat list: the same list you see when you open the app. For each chat, it says who it's with, <strong>who sent the last message</strong>, and <strong>when</strong>.</p>
+
+<p>That's the entire input for the "who's waiting" reminder. The program asks three questions per chat:</p>
+
+<ul class="clean">
+  <li>Was the last message from them, rather than from you?</li>
+  <li>How long ago?</li>
+  <li>Have you written anything since?</li>
+</ul>
+
+<p>It doesn't read the message. Not skimmed, not summarised — <strong>not read</strong>. To know that Aziz is waiting, you only need to know that Aziz spoke last and you haven't answered. The contents are irrelevant.</p>
+
+<h3 class="sub">Way two — new messages. This is where words happen.</h3>
+
+<p>A second piece watches messages as they arrive, looking for meetings. For each new message:</p>
+
+<ul class="clean">
+  <li>It checks for time and date words — <em>tomorrow, let's meet, call, what time, 15:00, ertaga, uchrashamiz, завтра, созвон</em>.</li>
+  <li><strong>No match, and the message is thrown away immediately.</strong> That's roughly 99 out of every 100 messages.</li>
+  <li>Only if it matches does anything at all leave the server.</li>
+</ul>
+
+<div class="co co-w">
+  <div class="cot">The honest caveat — please read this one</div>
+  <p>Telegram hands the program the <strong>whole message</strong>. There's no way to ask Telegram for "just the timestamps." So the text of your messages <em>does</em> pass through the server's memory for a fraction of a second before being discarded.</p>
+  <p>What we control is that <strong>nothing reads it, nothing saves it, and nothing records it.</strong> It arrives and is thrown away, the way a phone call passes through a telephone exchange without being recorded.</p>
+  <p>So the accurate promise is <b>"nothing is kept,"</b> not <b>"nothing arrives."</b> Anybody who tells you otherwise about a system like this is either confused or overselling.</p>
+</div>
+
+<h3 class="sub">The 1% that goes to an AI</h3>
+
+<p>When a message <em>does</em> mention a time, that snippet is sent to Claude — an AI service — with one narrow question: <em>is a specific meeting being agreed here, and when?</em> It answers with a date and time, or with nothing.</p>
+
+<p>Two things about that:</p>
+
+<ul class="clean">
+  <li><strong>The AI gets the words only — never who said them.</strong> Not the name, not the chat, not any history. We already know which chat it came from, so the name is attached afterwards, on our side. The words leave; your contact's identity does not.</li>
+  <li><strong>Nothing is added to your calendar without you tapping "Add."</strong> Ever. You see exactly what the AI concluded, and you approve it or you don't.</li>
+</ul>
+</section>
+
+<!-- ===== 4. CAN / CANNOT ===== -->
+<section id="cando">
+<div class="tag"><span class="badge">4</span> Limits</div>
+<h2 class="sec">What it can and cannot do</h2>
+<p class="sec-lead">The second column is longer than most people expect. That's deliberate.</p>
+
+<div class="vs">
+  <div class="col can">
+    <div class="who">It can</div>
+    <ul>
+      <li>See <b>who</b> messaged you and <b>when</b>, in every normal chat</li>
+      <li>Notice a time or date being discussed and offer to save it</li>
+      <li>Add and edit events in <b>one calendar</b> it creates for itself</li>
+      <li>Message <b>you</b>, on Telegram, and nobody else</li>
+      <li>Be paused, limited to certain chats, or switched off entirely by you</li>
+    </ul>
+  </div>
+  <div class="col cant">
+    <div class="who">It cannot</div>
+    <ul>
+      <li><b>Send any message as you.</b> Not to anyone, not ever. It has no ability to write</li>
+      <li>Read your <b>Secret Chats</b> — those are locked to your phone and invisible to everything else</li>
+      <li>See your <b>other calendars</b> — work, personal, family. Only the one it made</li>
+      <li>See anything that was in your calendar <b>before setup</b></li>
+      <li>Touch your contacts, photos, files, email, or anything outside Telegram and that one calendar</li>
+      <li>Make a payment, change a setting, or delete anything</li>
+    </ul>
+  </div>
+</div>
+
+<p>Two limits are worth saying twice, because they'll show up as "why didn't it remind me?":</p>
+
+<div class="co co-v">
+  <div class="cot">Where it will genuinely fall short</div>
+  <p><strong>Meetings in your other calendars are invisible.</strong> The assistant can only see the one calendar it created. If you put an event somewhere else, you get no reminder for it. We'll set your phone up so that new events land in the right place by default — but if you deliberately file one elsewhere, the assistant won't know.</p>
+  <p><strong>It will misread some messages.</strong> Dates in Russian and Uzbek are genuinely hard — "next Thursday", "the day after tomorrow", "at half past". Sometimes it will suggest the wrong time, and sometimes it will miss a meeting entirely. That's why it always asks before saving, and why it is a helper rather than a secretary.</p>
+</div>
+</section>
+
+<!-- ===== 5. SAFETY ===== -->
+<section id="safety">
+<div class="tag"><span class="badge">5</span> Safety</div>
+<h2 class="sec">How safe this actually is</h2>
+<p class="sec-lead">Including the parts that aren't comfortable.</p>
+
+<h3 class="sub">Nothing is written down</h3>
+
+<p>There is no database of your messages, because <strong>there is nowhere to put one.</strong> The place where the assistant stores things has no column for message text — it's not that we chose not to save messages, it's that the storage was built without the ability to hold them, and a check refuses to start the program if that ever changes.</p>
+
+<p>What does get stored is deliberately boring:</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>Stored</th><th>Not stored</th></tr></thead>
+  <tbody>
+    <tr><td class="nm">Which chat</td><td>What was said, in any chat, ever</td></tr>
+    <tr><td class="nm">Who sent the last message</td><td>Any part of any message</td></tr>
+    <tr><td class="nm">When</td><td>Photos, voice notes, files</td></tr>
+    <tr><td class="nm">Whether we already nudged you</td><td>Your contacts list</td></tr>
+    <tr><td class="nm">Your supplement times</td><td>Anything from a Secret Chat</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The point of building it this way isn't only today. It's that <strong>if that server were broken into next year, there would be nothing there to take.</strong> No archive of your conversations exists, so none can leak, be stolen, or be handed to anyone.</p>
+
+<h3 class="sub">Your login file</h3>
+
+<p>When you approve the program, it creates a small file on the server. That file <em>is</em> the login — anyone holding it could read your Telegram as you. It's kept locked to the server's administrator account and deliberately left out of every backup, so it exists in exactly one place and never travels.</p>
+
+<p><strong>It's also the thing you can destroy at any moment</strong> — see the kill switch below.</p>
+
+<div class="co co-r">
+  <div class="cot">The uncomfortable one, said plainly</div>
+  <p><strong>This runs on Asomiddin's server, so Asomiddin technically holds the keys.</strong> He isn't going to read your messages — but "he won't" is a promise about a person, and you should know the difference between that and a technical impossibility.</p>
+  <p>What <em>is</em> technically enforced: no copy of your messages is ever saved anywhere, so there is no stored history for him or anyone else to look at, now or later. What is <em>not</em> enforced is the moment-to-moment: someone with full control of that machine could, in principle, watch messages as they pass through.</p>
+  <p>If that bothers you — and it's reasonable if it does — the fix is straightforward: the same system can run on a small server that <em>you</em> own and pay for, about $6 a month, with Asomiddin building it and you holding the keys. Say so and that's what we'll do.</p>
+</div>
+
+<h3 class="sub">Your kill switch</h3>
+
+<p>On your phone: <strong>Telegram → Settings → Devices.</strong> You'll see an entry called <strong>"Assistant"</strong> alongside your phone and any computers. Tap it, tap <em>Terminate</em>, and it's over — instantly, completely, and without asking anyone.</p>
+
+<p>We named it clearly on purpose. You should never have to guess which entry is us, and you should never need our permission or our help to end this.</p>
+</section>
+
+<!-- ===== 6. WHAT WE NEED ===== -->
+<section id="need">
+<div class="tag"><span class="badge">6</span> Setup</div>
+<h2 class="sec">What we need from you</h2>
+<p class="sec-lead">About twenty minutes, once.</p>
+
+<div class="up">
+  <div class="rank">1</div>
+  <div>
+    <div class="uh"><span class="ut">Ten minutes together, in person or on a call</span></div>
+    <p class="ub">You'll approve the program by <b>scanning a QR code</b> with your phone — Telegram → Settings → Devices → Link Desktop Device. Same as connecting Telegram on a new computer.<br><br>If you have a Telegram password (two-step verification), <b>you type it yourself.</b> Don't send it to anyone, including Asomiddin — not by message, not out loud. That's not a formality; it's the rule that keeps this clean.</p>
+  </div>
+</div>
+
+<div class="up">
+  <div class="rank">2</div>
+  <div>
+    <div class="uh"><span class="ut">A Google account</span></div>
+    <p class="ub">Existing or new, your choice. The assistant creates <b>one new calendar</b> inside it and is given permission to touch <b>only calendars it created itself</b> — so it cannot see anything else in that account.<br><br>If you'd rather this be completely separate from your normal life, make a fresh Google account just for it. Perfectly reasonable.</p>
+  </div>
+</div>
+
+<div class="up">
+  <div class="rank">3</div>
+  <div>
+    <div class="uh"><span class="ut">Two settings on your iPhone</span></div>
+    <p class="ub">Add that Google account to your phone under <b>Settings → Calendar → Accounts</b>, then set the new calendar as your <b>Default</b>. That's it.<br><br>You keep using the normal Apple Calendar app exactly as you do now. The assistant's events simply appear in it, and you can edit or delete any of them like any other event.</p>
+    <div class="eff">Why the default matters: it's what makes meetings you add yourself visible to the assistant, so it can remind you about them.</div>
+  </div>
+</div>
+
+<div class="up">
+  <div class="rank">4</div>
+  <div>
+    <div class="uh"><span class="ut">Your supplement list</span></div>
+    <p class="ub">What you take and at what times. You can also just tell the bot later in chat and change it whenever — you'll never need Asomiddin to edit a list for you.</p>
+  </div>
+</div>
+
+<div class="up">
+  <div class="rank">5</div>
+  <div>
+    <div class="uh"><span class="ut">Any chats to leave alone</span> <span class="um">optional</span></div>
+    <p class="ub">If there are conversations you'd rather the assistant ignored entirely — family, work, anything — name them and they're excluded from the start. No reason needed.</p>
+  </div>
+</div>
+</section>
+
+<!-- ===== 7. ALARMS ===== -->
+<section id="alarms">
+<div class="tag"><span class="badge">7</span> During setup</div>
+<h2 class="sec">Two things that will look alarming</h2>
+<p class="sec-lead">Both are normal. We're telling you now so they don't scare you later.</p>
+
+<div class="co co-w">
+  <div class="cot">1 · Telegram will warn you about a login from Finland</div>
+  <p>You'll get a security alert saying your account was accessed from <b>Helsinki</b>. That's us — the server lives there. It's expected. But do check the timing matches when we set it up, and if you ever see a login from somewhere else, that's real and you should terminate it.</p>
+</div>
+
+<div class="co co-w">
+  <div class="cot">2 · Google will say the app isn't verified</div>
+  <p>When you grant calendar access, Google will show a red-ish screen: <b>"Google hasn't verified this app."</b> That's because this was built for exactly one person — you — and Google's verification process is meant for public apps with thousands of users.</p>
+  <p>You'll need to tap <b>Advanced</b>, then <b>Continue</b>. It looks like something you shouldn't do. In this case it's fine, and it happens once.</p>
+</div>
+</section>
+
+<!-- ===== 8. CONTROLS ===== -->
+<section id="controls">
+<div class="tag"><span class="badge">8</span> Your controls</div>
+<h2 class="sec">Turning things off</h2>
+<p class="sec-lead">All of these are yours. None of them need us.</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>If you want to</th><th>You do this</th></tr></thead>
+  <tbody>
+    <tr><td class="nm">Stop nudges about one chat</td><td>Tell the bot, or just mute that chat in Telegram</td></tr>
+    <tr><td class="nm">Go quiet for a few days</td><td>Send <code>/pause</code> to the bot</td></tr>
+    <tr><td class="nm">Keep the reminders but stop the message-reading</td><td>Send <code>/private</code> — the other three features keep working</td></tr>
+    <tr><td class="nm">Change your supplements</td><td>Tell the bot, any time</td></tr>
+    <tr><td class="nm"><b>End everything, immediately</b></td><td><b>Telegram → Settings → Devices → "Assistant" → Terminate</b></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>That last one works whether or not anyone is awake to help you, and it doesn't require a conversation. If you ever feel uneasy about this, use it first and ask questions afterwards. Nothing is lost — it can always be set up again in ten minutes.</p>
+</section>
+
+<!-- ===== 9. QUESTIONS ===== -->
+<section id="questions">
+<div class="tag"><span class="badge">9</span> Before you say yes</div>
+<h2 class="sec">Fair questions to ask us</h2>
+<p class="sec-lead">You should be able to get a straight answer to all of these. If you don't, don't agree.</p>
+
+<ul class="clean">
+  <li><b>"Show me the list of what gets stored."</b> It's short, and it's in this document. Ask to see the real thing on the server.</li>
+  <li><b>"What happens to my messages the moment they arrive?"</b> The answer should mention that they pass through memory and are discarded — not that they never arrive.</li>
+  <li><b>"Who else has access to that server?"</b> Today the honest answer is: Asomiddin.</li>
+  <li><b>"Can you turn on message-saving later without telling me?"</b> Technically yes — it's his server. This is why the offer to move it onto your own server is on the table.</li>
+  <li><b>"What if I want out in three months?"</b> Terminate the device in Telegram, remove the Google permission, done. Nothing of yours is left behind, because nothing of yours was ever kept.</li>
+</ul>
+
+<div class="bottomline">
+  <div class="lab">The one-sentence version</div>
+  <p>It watches <em>who</em> writes to you and <em>when</em> so it can nudge you, glances at the small fraction of messages that mention a time so it can offer to save a meeting, <strong>keeps none of it</strong>, can never speak to anyone but you — and you can end it in three taps, without asking.</p>
+</div>
+</section>
+
+<div class="foot">
+  <p><strong>Prepared for you by Asomiddin · 4 August 2026.</strong> Nothing has been built yet, and nothing will be until you've read this and said yes.</p>
+  <p>If any part of this is unclear, or if something here bothers you, say so before setup rather than after. Changing the design now costs nothing.</p>
+</div>
+
+</div>
+</body>
+</html>
