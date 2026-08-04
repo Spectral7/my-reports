@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Помощник для вашего Telegram — коротко</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --surface:#FFFFFF;
+    --surface-2:#FCFAF6;
+    --ink:#221F1B;
+    --body:#3C3833;
+    --muted:#6E6960;
+    --faint:#9A948A;
+    --line:#E7E2D8;
+    --line-2:#D8D2C6;
+
+    --coral:#D85A30; --coral-d:#993C1D; --coral-bg:#FAECE7; --coral-ink:#712B13;
+    --teal:#1D9E75; --teal-d:#0F6E56; --teal-bg:#E1F5EE; --teal-ink:#085041;
+    --amber:#BA7517; --amber-d:#854F0B; --amber-bg:#FAEEDA; --amber-ink:#633806;
+    --red:#A32D2D; --red-bg:#FCEBEB; --red-ink:#791F1F;
+    --violet:#6B4E9E; --violet-bg:#F0EAF9; --violet-ink:#48326F;
+
+    --r-sm:6px; --r-md:10px; --r-lg:14px;
+    --maxw:860px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"PT Serif",Georgia,"Times New Roman",serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--body);
+    font-family:var(--sans);font-size:17px;line-height:1.72;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 26px 96px;}
+  ::selection{background:var(--coral-bg);}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:700;letter-spacing:-.01em;line-height:1.22;}
+  p{margin:1em 0;}
+  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);}
+  strong{font-weight:600;color:var(--ink);}
+  code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--r-sm);padding:1px 5px;color:var(--coral-ink);white-space:nowrap;}
+
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block;flex:0 0 auto;}
+  h1.title{font-size:clamp(32px,5.6vw,50px);font-weight:700;line-height:1.06;margin:0 0 18px;
+    letter-spacing:-.02em;font-family:var(--serif);}
+  .dek{font-size:20px;line-height:1.58;color:var(--muted);margin:0 0 28px;max-width:35em;}
+  .meta{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .meta .m{flex:1 1 150px;padding:14px 18px 14px 0;border-right:1px solid var(--line);}
+  .meta .m:last-child{border-right:0;}
+  .meta .ml{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px;}
+  .meta .mv{font-size:13.5px;color:var(--body);font-weight:500;line-height:1.35;}
+
+  section{margin-top:68px;}
+  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .tag .badge{width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:0;flex:0 0 auto;}
+  h2.sec{font-size:28px;margin:0 0 6px;font-family:var(--serif);}
+  .sec-lead{font-size:18px;color:var(--muted);margin:.3em 0 0;}
+  h3.sub{font-size:20px;margin:40px 0 4px;}
+
+  .bottomline{border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:0 var(--r-md) var(--r-md) 0;
+    background:var(--surface);padding:18px 22px;margin:26px 0;}
+  .bottomline p{margin:0;font-size:16.5px;}
+  .bottomline p + p{margin-top:.85em;}
+  .bottomline .lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:8px;}
+
+  .tw{overflow-x:auto;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;}
+  th{background:var(--surface-2);text-align:left;padding:12px 14px;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line-2);}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;}
+  tr:last-child td{border-bottom:0;}
+  tbody tr:hover{background:var(--surface-2);}
+  td.nm{font-weight:600;color:var(--ink);}
+
+  .co{border-radius:var(--r-md);padding:16px 20px;margin:24px 0;font-size:15.5px;line-height:1.64;}
+  .co .cot{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;margin-bottom:7px;}
+  .co p{margin:.6em 0;}
+  .co p:first-of-type{margin-top:0;}
+  .co p:last-child{margin-bottom:0;}
+  .co-w{background:var(--amber-bg);border:1px solid #F0E2C5;color:var(--amber-ink);}
+  .co-w .cot{color:var(--amber-d);}
+  .co-i{background:var(--teal-bg);border:1px solid #CFE9DE;color:var(--teal-ink);}
+  .co-i .cot{color:var(--teal-d);}
+  .co-r{background:var(--red-bg);border:1px solid #F2D5D5;color:var(--red-ink);}
+  .co-r .cot{color:var(--red);}
+  .co-v{background:var(--violet-bg);border:1px solid #DFD2F0;color:var(--violet-ink);}
+  .co-v .cot{color:var(--violet);}
+  .co b,.co strong{color:inherit;font-weight:700;}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+  @media(max-width:620px){.vs{grid-template-columns:1fr;}}
+  .vs .col{border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;background:var(--surface);}
+  .vs .col.can{background:var(--teal-bg);border-color:#CFE9DE;}
+  .vs .col.cant{background:var(--amber-bg);border-color:#F0E2C5;}
+  .vs .col .who{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+  .vs .col.can .who{color:var(--teal-d);}
+  .vs .col.cant .who{color:var(--amber-d);}
+  .vs ul{list-style:none;padding:0;margin:0;}
+  .vs li{position:relative;padding-left:20px;margin:11px 0;font-size:14.5px;line-height:1.52;}
+  .vs li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;}
+  .vs .can li::before{background:var(--teal);}
+  .vs .cant li::before{background:var(--amber);}
+  .vs .col b{color:var(--ink);}
+
+  .up{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:22px 24px;margin:16px 0;
+    display:grid;grid-template-columns:auto 1fr;gap:0 20px;align-items:start;}
+  .up .rank{grid-row:1/3;width:44px;height:44px;border-radius:50%;background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;font-family:var(--serif);}
+  .up .ut{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .up .um{font-family:var(--mono);font-size:12.5px;color:var(--coral-ink);font-weight:400;}
+  .up .ub{margin:0;font-size:15px;line-height:1.64;color:var(--body);}
+  .up .ub b{color:var(--ink);}
+  .up .eff{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);line-height:1.55;}
+  @media(max-width:560px){.up{grid-template-columns:1fr;gap:12px;}.up .rank{grid-row:auto;}}
+  .up.part .rank{background:var(--ink);}
+  ul.pl{list-style:none;padding:0;margin:10px 0 0;}
+  ul.pl li{margin:8px 0;font-size:14.5px;line-height:1.56;}
+  ul.pl li b{color:var(--ink);}
+  ul.pl li.no b{color:var(--coral-ink);}
+
+  ul.clean{list-style:none;padding:0;margin:16px 0;}
+  ul.clean li{position:relative;padding-left:22px;margin:10px 0;line-height:1.64;}
+  ul.clean li::before{content:"";position:absolute;left:3px;top:12px;width:5px;height:5px;border-radius:50%;background:var(--coral);}
+
+  .ex{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--line-2);
+    border-radius:0 var(--r-md) var(--r-md) 0;padding:16px 20px;margin:24px 0;font-size:15.5px;}
+  .ex .exl{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:10px;}
+  .ex .row{display:flex;gap:12px;margin:9px 0;align-items:baseline;line-height:1.5;}
+  .ex .row .mark{flex:0 0 auto;font-size:13px;}
+  .ex .row .txt{flex:1 1 auto;}
+  .ex .row .txt i{font-style:normal;color:var(--muted);font-size:14px;}
+  .ex .row.hit .txt b{color:var(--coral-ink);}
+
+  .qa{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);margin:14px 0;padding:18px 22px;}
+  .qa .q{font-weight:600;color:var(--ink);font-size:16.5px;margin:0 0 7px;}
+  .qa .a{margin:0;font-size:15.5px;line-height:1.64;color:var(--body);}
+
+  .chat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;margin:26px 0;}
+  .chat .ch{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;
+    padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--line);}
+  .chat .msg{display:flex;gap:14px;margin:16px 0;align-items:flex-start;}
+  .chat .t{font-family:var(--mono);font-size:12px;color:var(--faint);flex:0 0 42px;padding-top:10px;}
+  .chat .b{background:var(--surface-2);border:1px solid var(--line);border-radius:14px 14px 14px 4px;
+    padding:10px 15px;font-size:15px;line-height:1.55;max-width:min(470px,88%);}
+  .chat .b .lead{font-weight:600;color:var(--ink);}
+  .chat .btns{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
+  .chat .btn{font-size:12.5px;border:1px solid var(--line-2);border-radius:8px;padding:4px 11px;
+    background:var(--paper);color:var(--body);font-weight:500;}
+  .chat .small{font-size:13.5px;color:var(--muted);}
+
+  .foot{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);line-height:1.68;}
+  .foot p{margin:.5em 0;}
+
+  @media(max-width:640px){ .wrap{padding:44px 18px 70px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+
+<div class="kicker">Асомиддин — для вас · Коротко</div>
+<h1 class="title">Помощник для вашего Telegram</h1>
+<p class="dek">Напоминает, кому вы не ответили. Заносит встречи в календарь. Следит за добавками. Ему нужен доступ к вашей переписке — вот что он увидит, чего не увидит никогда и как его выключить.</p>
+
+<div class="meta">
+  <div class="m"><div class="ml">Что это</div><div class="mv">Личный помощник,<br>который пишет вам в Telegram</div></div>
+  <div class="m"><div class="ml">У кого он стоит</div><div class="mv">У Асомиддина,<br>на его сервере в Финляндии</div></div>
+  <div class="m"><div class="ml">Читать</div><div class="mv">3 минуты<br><a href="telegram-assistant-explained-04.08.2026.html">Подробная версия →</a></div></div>
+</div>
+
+<!-- 1 -->
+<section id="what" style="margin-top:52px;">
+<div class="tag"><span class="badge">1</span> Что он делает</div>
+<h2 class="sec">Пять задач</h2>
+
+<div class="bottomline">
+  <p><strong>📬 Кому вы не ответили.</strong> Раз-два в день короткий список: кто написал и сколько ждёт.</p>
+  <p><strong>🗓 Встречи из переписки.</strong> Прозвучало «давай завтра в три» — спросит, занести ли в календарь.</p>
+  <p><strong>⏰ Напоминания о встречах.</strong> Вечером накануне и за час до.</p>
+  <p><strong>💊 Напоминания про добавки.</strong> В то время, которое вы назовёте.</p>
+  <p><strong>🎙 Всё это можно наговорить голосом.</strong> Печатать необязательно.</p>
+</div>
+
+<div class="co co-i">
+  <div class="cot">Самое важное — сразу</div>
+  <p><strong>Он умеет только читать. Написать он не может — никому и никогда.</strong> Всё, что приходит вам, шлёт отдельный бот, а бот разговаривает только с вами.</p>
+  <p>Худшее, что может натворить ошибка в программе, — прислать <em>вам самому</em> неправильное напоминание. Написать кому-то от вашего имени она не в состоянии: такой функции нет.</p>
+</div>
+</section>
+
+<!-- 2 -->
+<section id="sees">
+<div class="tag"><span class="badge">2</span> Границы</div>
+<h2 class="sec">Что он видит и чего не видит</h2>
+
+<div class="vs">
+  <div class="col can">
+    <div class="who">Видит</div>
+    <ul>
+      <li><b>Кто</b> вам написал и <b>когда</b> — по всем обычным чатам</li>
+      <li>Те <b>~1%</b> сообщений, где упомянуто время</li>
+      <li>Голосовые на русском и английском</li>
+      <li>Один календарь, который завёл себе сам</li>
+    </ul>
+  </div>
+  <div class="col cant">
+    <div class="who">Не видит и не может</div>
+    <ul>
+      <li><b>Секретные чаты</b> — они привязаны к телефону</li>
+      <li>Остальные ваши календари — рабочий, семейный</li>
+      <li>Контакты, фотографии, файлы, почту</li>
+      <li>Ничего, что было до настройки</li>
+      <li><b>Написать кому-либо от вашего имени</b>, что-то оплатить или удалить</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- 3 -->
+<section id="how">
+<div class="tag"><span class="badge">3</span> Как устроено</div>
+<h2 class="sec">Три механизма</h2>
+<p class="sec-lead">Обычный Telegram-бот переписку читать не может — поэтому программа входит в аккаунт как вы, так же, как Telegram на новом ноутбуке.</p>
+
+<h3 class="sub">Кому вы не ответили — без единого слова</h3>
+<p>Достаточно посмотреть на список чатов, не заходя внутрь: от кого последнее сообщение и когда. Этого хватает, чтобы понять, кто ждёт ответа. <strong>Сами сообщения при этом не открываются.</strong></p>
+
+<h3 class="sub">Встречи — через фильтр</h3>
+<p>Каждое новое сообщение проверяется на слова о времени: «завтра», «в три», «созвон», «во сколько». Не нашлось — выброшено сразу, прямо на сервере. Так отсеивается <strong>99 из 100</strong>. Оставшийся один процент уходит к искусственному интеллекту <strong>одной фразой, без имён и без названия чата</strong>. В календарь ничего не попадает без вашего нажатия.</p>
+
+<h3 class="sub">Голосовые — расшифровка у нас</h3>
+<p>В аудиофайле слова искать нельзя — значит, его сначала надо расшифровать. И если отправлять голосовые куда-то наружу, наружу уйдут <strong>все сто процентов</strong>, а не один.</p>
+<p>Поэтому расшифровка идёт на нашем сервере: <strong>аудио не уходит никуда</strong>, а получившийся текст проходит тот же фильтр. Сам файл лежит в оперативной памяти, а не на диске, и стирается сразу — в резервную копию попасть физически не может. <strong>Только русский и английский</strong>; узбекский не поддерживаем сознательно.</p>
+</section>
+
+<!-- 4 -->
+<section id="parts">
+<div class="tag"><span class="badge">4</span> Из чего собрано</div>
+<h2 class="sec">Четыре детали, а не одна умная штука</h2>
+<p class="sec-lead">«Искусственный интеллект» здесь — не всё сразу, а одна деталь из четырёх.</p>
+
+<div class="tw">
+<table>
+  <thead><tr><th>Деталь</th><th>Что у неё есть</th><th>Чего не умеет</th></tr></thead>
+  <tbody>
+    <tr><td class="nm">Программа<br><span style="font-weight:400;color:var(--muted)">та, что пишем мы</span></td><td>Ключи от вашего Telegram — из четырёх только у неё</td><td><b>Думать.</b> Обычный код: делает буква в букву написанное. И отправлять сообщения не умеет</td></tr>
+    <tr><td class="nm">Расшифровщик</td><td>Превращает звук в буквы, на нашем сервере</td><td>Выходить в интернет. Понимать смысл</td></tr>
+    <tr><td class="nm">Искусственный интеллект<br><span style="font-weight:400;color:var(--muted)">Claude</span></td><td>Одну фразу — без имён, без чата, без переписки вокруг</td><td><b>Ничего.</b> Ни доступа к Telegram, календарю, серверу или интернету. Не может действовать и не помнит прошлых вопросов</td></tr>
+    <tr><td class="nm">Бот</td><td>Один адрес — ваш</td><td>Читать вашу переписку</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="co co-i">
+  <div class="cot">Отсюда — ответ на главный страх</div>
+  <p><strong>У той детали, у которой есть доступ, нет ума. У той, у которой есть ум, нет доступа.</strong></p>
+  <p>Поэтому «искусственный интеллект всё взломает» здесь не срабатывает: у него нет рук. Он не выполняет команд и ничего не может запустить — ему присылают текст, он отвечает текстом. Мы сознательно не дали ему никаких инструментов.</p>
+</div>
+</section>
+
+<!-- 5 -->
+<section id="honest">
+<div class="tag"><span class="badge">5</span> Честно</div>
+<h2 class="sec">Три вещи, о которых приятнее было бы промолчать</h2>
+
+<div class="co co-w">
+  <div class="cot">1 · Текст проходит через сервер</div>
+  <p>Telegram отдаёт сообщение целиком — попросить «только время и отправителя» невозможно. Поэтому правильный вопрос не «приходит ли текст на сервер». Приходит. Правильный вопрос — <b>«остаётся ли он там».</b></p>
+  <p>Не остаётся: ни в файле, ни в журнале, ни в резервной копии. Базы с вашими сообщениями просто не существует — <strong>в таблице помощника нет колонки под текст</strong>, сохранять физически некуда.</p>
+</div>
+
+<div class="co co-r">
+  <div class="cot">2 · Ключи — у Асомиддина</div>
+  <p>Сервер его. Читать вашу переписку он не собирается, но «не собирается» — это обещание человека, а не техническая невозможность, и разницу честнее назвать вслух.</p>
+  <p>Если это смущает — нормальная реакция, — ту же систему можно поставить на <strong>отдельный сервер, оформленный на вас</strong>: около $6 в месяц. Собирает Асомиддин, ключи у вас.</p>
+</div>
+
+<div class="co co-w">
+  <div class="cot">3 · Одна фраза из ста уходит наружу</div>
+  <p>К искусственному интеллекту — без вашего имени и без названия чата. Это и есть плата за то, чтобы «давай завтра в три» превратилось в запись в календаре. Остальные 99 сообщений не уходят никуда.</p>
+</div>
+
+<p><strong>А если взломают сам сервер?</strong> Возьмут названия чатов, отметки времени и расписание ваших добавок. Переписки там нет — её неоткуда взять. Настоящая ценность одна: файл входа в ваш Telegram. Поэтому он лежит отдельно, вне резервных копий, — и поэтому же вы можете обнулить его сами.</p>
+</section>
+
+<!-- 6 -->
+<section id="need">
+<div class="tag"><span class="badge">6</span> Настройка</div>
+<h2 class="sec">Что нужно от вас</h2>
+<p class="sec-lead">Примерно двадцать минут, один раз.</p>
+
+<ul class="clean">
+  <li><b>Десять минут вместе.</b> Подтвердить вход QR-кодом: Telegram → Настройки → Устройства → Подключить устройство. Пароль Telegram, если он у вас есть, <b>вводите сами</b> — не пересылайте никому, включая Асомиддина.</li>
+  <li><b>Аккаунт Google.</b> Помощник заведёт внутри него один календарь и получит доступ <b>только к нему</b> — ни почты, ни диска, ни вашего основного календаря.</li>
+  <li><b>Две настройки на iPhone.</b> Добавить этот аккаунт и сделать новый календарь <b>календарём по умолчанию</b> — иначе помощник не увидит встречи, которые вы заводите сами.</li>
+  <li><b>Список добавок</b> и время приёма. Менять сможете когда угодно, прямо в чате.</li>
+  <li><b>По желанию:</b> чаты, куда помощнику лучше не заглядывать совсем. Причину объяснять не нужно.</li>
+</ul>
+
+<div class="co co-w">
+  <div class="cot">Два экрана вас напугают — оба нормальные</div>
+  <p><b>Telegram сообщит о входе из Хельсинки.</b> Это мы, сервер стоит там. Но если когда-нибудь увидите вход откуда-то ещё — вот это уже по-настоящему.</p>
+  <p><b>Google скажет «приложение не проверено».</b> Оно сделано для одного человека — для вас, — а проверка рассчитана на публичные сервисы. Нажимаете «Дополнительные настройки» → «Перейти». Один раз.</p>
+</div>
+</section>
+
+<!-- 7 -->
+<section id="off">
+<div class="tag"><span class="badge">7</span> Выключить</div>
+<h2 class="sec">Как это прекратить</h2>
+
+<div class="bottomline">
+  <div class="lab">Насовсем, прямо сейчас</div>
+  <p><strong>Telegram → Настройки → Устройства → «Assistant» → Завершить сеанс.</strong></p>
+  <p>Мгновенно, целиком и ни у кого не спрашивая. Название выбрано понятное специально: вам не должно приходиться гадать, какая строчка наша.</p>
+</div>
+
+<p>Помягче: <code>/pause</code> — тишина на несколько дней. <code>/private</code> — оставить напоминания и добавки, но выключить чтение переписки и голосовых. Отдельный чат можно исключить в любой момент.</p>
+
+<div class="bottomline">
+  <div class="lab">Если совсем коротко</div>
+  <p>Он смотрит, <em>кто</em> вам написал и <em>когда</em>. Заглядывает в тот один процент сообщений, где упомянуто время. <strong>Не хранит из этого ничего.</strong> Не может заговорить ни с кем, кроме вас. И выключается вами в три касания.</p>
+</div>
+</section>
+
+<div class="foot">
+  <p><strong>Асомиддин — для вас · 4 августа 2026.</strong> Пока не сделано ничего, и не будет, пока вы это не прочитаете и не скажете «да».</p>
+  <p>Это короткая версия. Если хочется разобраться детальнее — есть <a href="telegram-assistant-explained-04.08.2026.html">подробная</a>: там то же самое, но с примерами и объяснениями.</p>
+</div>
+
+</div>
+</body>
+</html>
