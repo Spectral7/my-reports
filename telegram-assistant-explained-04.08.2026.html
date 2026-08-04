@@ -25,9 +25,8 @@
     --amber:#BA7517; --amber-d:#854F0B; --amber-bg:#FAEEDA; --amber-ink:#633806;
     --red:#A32D2D; --red-bg:#FCEBEB; --red-ink:#791F1F;
     --violet:#6B4E9E; --violet-bg:#F0EAF9; --violet-ink:#48326F;
-    --blue:#2C6BAF; --blue-bg:#E6EFF8; --blue-ink:#1B456F;
 
-    --r-sm:6px; --r-md:10px; --r-lg:14px; --r-xl:20px;
+    --r-sm:6px; --r-md:10px; --r-lg:14px;
     --maxw:860px;
     --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --serif:"PT Serif",Georgia,"Times New Roman",serif;
@@ -36,46 +35,44 @@
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
   body{margin:0;background:var(--paper);color:var(--body);
-    font-family:var(--sans);font-size:17px;line-height:1.7;font-weight:400;
+    font-family:var(--sans);font-size:17px;line-height:1.72;font-weight:400;
     -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 26px 96px;}
   ::selection{background:var(--coral-bg);}
 
-  h1,h2,h3,h4{color:var(--ink);font-weight:700;letter-spacing:-.01em;line-height:1.2;}
+  h1,h2,h3,h4{color:var(--ink);font-weight:700;letter-spacing:-.01em;line-height:1.22;}
   p{margin:1em 0;}
-  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);transition:border-color .15s;}
-  a:hover{border-color:var(--coral);}
+  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);}
   strong{font-weight:600;color:var(--ink);}
-  em{font-style:italic;}
   code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);border:1px solid var(--line);
     border-radius:var(--r-sm);padding:1px 5px;color:var(--coral-ink);white-space:nowrap;}
 
   .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
-    letter-spacing:.14em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
+    letter-spacing:.12em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
   .kicker::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block;flex:0 0 auto;}
   h1.title{font-size:clamp(32px,5.6vw,50px);font-weight:700;line-height:1.06;margin:0 0 18px;
     letter-spacing:-.02em;font-family:var(--serif);}
-  .dek{font-size:20px;line-height:1.55;color:var(--muted);margin:0 0 28px;max-width:36em;font-weight:400;}
-  .meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .dek{font-size:20px;line-height:1.58;color:var(--muted);margin:0 0 28px;max-width:35em;}
+  .meta{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
   .meta .m{flex:1 1 150px;padding:14px 18px 14px 0;border-right:1px solid var(--line);}
   .meta .m:last-child{border-right:0;}
   .meta .ml{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px;}
   .meta .mv{font-size:13.5px;color:var(--body);font-weight:500;line-height:1.35;}
 
   section{margin-top:68px;}
-  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.12em;
+  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.11em;
     text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
   .tag .badge{width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;
     display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:0;flex:0 0 auto;}
   h2.sec{font-size:28px;margin:0 0 6px;font-family:var(--serif);}
   .sec-lead{font-size:18px;color:var(--muted);margin:.3em 0 0;}
-  h3.sub{font-size:20px;margin:38px 0 4px;}
+  h3.sub{font-size:20px;margin:40px 0 4px;}
 
   .bottomline{border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:0 var(--r-md) var(--r-md) 0;
     background:var(--surface);padding:18px 22px;margin:26px 0;}
   .bottomline p{margin:0;font-size:16.5px;}
-  .bottomline p + p{margin-top:.8em;}
-  .bottomline .lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:6px;}
+  .bottomline p + p{margin-top:.85em;}
+  .bottomline .lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:8px;}
 
   .tw{overflow-x:auto;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);}
   table{border-collapse:collapse;width:100%;font-size:14.5px;}
@@ -86,9 +83,9 @@
   tbody tr:hover{background:var(--surface-2);}
   td.nm{font-weight:600;color:var(--ink);}
 
-  .co{border-radius:var(--r-md);padding:16px 20px;margin:24px 0;font-size:15.5px;line-height:1.62;}
+  .co{border-radius:var(--r-md);padding:16px 20px;margin:24px 0;font-size:15.5px;line-height:1.64;}
   .co .cot{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;margin-bottom:7px;}
-  .co p{margin:.55em 0;}
+  .co p{margin:.6em 0;}
   .co p:first-of-type{margin-top:0;}
   .co p:last-child{margin-bottom:0;}
   .co-w{background:var(--amber-bg);border:1px solid #F0E2C5;color:var(--amber-ink);}
@@ -100,19 +97,17 @@
   .co-v{background:var(--violet-bg);border:1px solid #DFD2F0;color:var(--violet-ink);}
   .co-v .cot{color:var(--violet);}
   .co b,.co strong{color:inherit;font-weight:700;}
-  .co code{background:rgba(255,255,255,.6);border-color:rgba(0,0,0,.08);color:inherit;}
 
   .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
   @media(max-width:620px){.vs{grid-template-columns:1fr;}}
   .vs .col{border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;background:var(--surface);}
   .vs .col.can{background:var(--teal-bg);border-color:#CFE9DE;}
   .vs .col.cant{background:var(--amber-bg);border-color:#F0E2C5;}
-  .vs .col h4{margin:0 0 4px;font-size:17px;}
   .vs .col .who{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
   .vs .col.can .who{color:var(--teal-d);}
   .vs .col.cant .who{color:var(--amber-d);}
   .vs ul{list-style:none;padding:0;margin:0;}
-  .vs li{position:relative;padding-left:20px;margin:11px 0;font-size:14.5px;line-height:1.5;}
+  .vs li{position:relative;padding-left:20px;margin:11px 0;font-size:14.5px;line-height:1.52;}
   .vs li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;}
   .vs .can li::before{background:var(--teal);}
   .vs .cant li::before{background:var(--amber);}
@@ -122,384 +117,434 @@
     display:grid;grid-template-columns:auto 1fr;gap:0 20px;align-items:start;}
   .up .rank{grid-row:1/3;width:44px;height:44px;border-radius:50%;background:var(--coral);color:#fff;
     display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;font-family:var(--serif);}
-  .up .uh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
-  .up .ut{font-size:18px;font-weight:600;color:var(--ink);}
-  .up .um{font-family:var(--mono);font-size:12.5px;color:var(--coral-ink);}
-  .up .ub{margin:0;font-size:15px;line-height:1.62;color:var(--body);}
+  .up .ut{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .up .um{font-family:var(--mono);font-size:12.5px;color:var(--coral-ink);font-weight:400;}
+  .up .ub{margin:0;font-size:15px;line-height:1.64;color:var(--body);}
   .up .ub b{color:var(--ink);}
-  .up .eff{font-size:12.5px;color:var(--muted);margin-top:9px;padding-top:9px;border-top:1px solid var(--line);}
+  .up .eff{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);line-height:1.55;}
   @media(max-width:560px){.up{grid-template-columns:1fr;gap:12px;}.up .rank{grid-row:auto;}}
 
   ul.clean{list-style:none;padding:0;margin:16px 0;}
-  ul.clean li{position:relative;padding-left:22px;margin:9px 0;line-height:1.62;}
-  ul.clean li::before{content:"";position:absolute;left:3px;top:11px;width:5px;height:5px;border-radius:50%;background:var(--coral);}
+  ul.clean li{position:relative;padding-left:22px;margin:10px 0;line-height:1.64;}
+  ul.clean li::before{content:"";position:absolute;left:3px;top:12px;width:5px;height:5px;border-radius:50%;background:var(--coral);}
+
+  .ex{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--line-2);
+    border-radius:0 var(--r-md) var(--r-md) 0;padding:16px 20px;margin:24px 0;font-size:15.5px;}
+  .ex .exl{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:10px;}
+  .ex .row{display:flex;gap:12px;margin:9px 0;align-items:baseline;line-height:1.5;}
+  .ex .row .mark{flex:0 0 auto;font-size:13px;}
+  .ex .row .txt{flex:1 1 auto;}
+  .ex .row .txt i{font-style:normal;color:var(--muted);font-size:14px;}
+  .ex .row.hit .txt b{color:var(--coral-ink);}
+
+  .qa{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);margin:14px 0;padding:18px 22px;}
+  .qa .q{font-weight:600;color:var(--ink);font-size:16.5px;margin:0 0 7px;}
+  .qa .a{margin:0;font-size:15.5px;line-height:1.64;color:var(--body);}
 
   .chat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 22px;margin:26px 0;}
-  .chat .ch{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:600;
+  .chat .ch{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;
     padding-bottom:14px;margin-bottom:6px;border-bottom:1px solid var(--line);}
   .chat .msg{display:flex;gap:14px;margin:16px 0;align-items:flex-start;}
   .chat .t{font-family:var(--mono);font-size:12px;color:var(--faint);flex:0 0 42px;padding-top:10px;}
   .chat .b{background:var(--surface-2);border:1px solid var(--line);border-radius:14px 14px 14px 4px;
     padding:10px 15px;font-size:15px;line-height:1.55;max-width:min(470px,88%);}
-  .chat .b.out{background:var(--coral-bg);border-color:#EBCBBE;border-radius:14px 14px 4px 14px;margin-left:auto;}
   .chat .b .lead{font-weight:600;color:var(--ink);}
   .chat .btns{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;}
   .chat .btn{font-size:12.5px;border:1px solid var(--line-2);border-radius:8px;padding:4px 11px;
     background:var(--paper);color:var(--body);font-weight:500;}
   .chat .small{font-size:13.5px;color:var(--muted);}
-  .chat .voice{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--coral-ink);}
 
-  .foot{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);line-height:1.65;}
+  .foot{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);line-height:1.68;}
   .foot p{margin:.5em 0;}
 
-  @media(max-width:640px){
-    .wrap{padding:44px 18px 70px;}
-  }
+  @media(max-width:640px){ .wrap{padding:44px 18px 70px;} }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<div class="kicker">Подготовлено для вас Асомиддином · Прочитайте, прежде чем соглашаться</div>
+<div class="kicker">Асомиддин — для вас · Прочитайте, прежде чем соглашаться</div>
 <h1 class="title">Помощник для вашего Telegram</h1>
-<p class="dek">Небольшая программа, которая напоминает, кому вы не ответили, добавляет встречи в календарь и напоминает про добавки. Ей нужен доступ к вашему Telegram — поэтому здесь подробно написано, что именно она увидит, чего не увидит никогда и как её выключить.</p>
+<p class="dek">Программа, которая подсказывает, кому вы забыли ответить, заносит встречи в календарь и напоминает про добавки. Чтобы всё это делать, ей нужен доступ к вашей переписке — поэтому здесь честно расписано, что она увидит, чего не увидит никогда и как выключить её одним движением.</p>
 
 <div class="meta">
   <div class="m"><div class="ml">Что это</div><div class="mv">Личный помощник,<br>который пишет вам в Telegram</div></div>
-  <div class="m"><div class="ml">Кто им управляет</div><div class="mv">Асомиддин, на своём<br>сервере в Финляндии</div></div>
-  <div class="m"><div class="ml">Сколько стоит вам</div><div class="mv">Ничего</div></div>
+  <div class="m"><div class="ml">У кого он стоит</div><div class="mv">У Асомиддина,<br>на его сервере в Финляндии</div></div>
+  <div class="m"><div class="ml">Для вас это стоит</div><div class="mv">Ноль</div></div>
   <div class="m"><div class="ml">Дата</div><div class="mv">4 августа 2026</div></div>
 </div>
 
-<!-- ===== 1 ===== -->
+<!-- 1 -->
 <section id="point" style="margin-top:52px;">
-<div class="tag"><span class="badge">1</span> Короткая версия</div>
-<h2 class="sec">Пять небольших задач</h2>
-<p class="sec-lead">Ничего хитрого. Пять вещей, о которых люди обычно забывают.</p>
+<div class="tag"><span class="badge">1</span> Коротко</div>
+<h2 class="sec">Что он берёт на себя</h2>
+<p class="sec-lead">Пять вещей, о которых обычно вспоминаешь слишком поздно.</p>
 
 <div class="bottomline">
-  <div class="lab">Что он делает</div>
-  <p><strong>1. Показывает, кому вы не ответили.</strong> Раз или два в день: «трое написали вам и остались без ответа».</p>
-  <p><strong>2. Замечает встречи, о которых вы договариваетесь в переписке.</strong> Если в чате появляется «давай завтра в три» — он спросит, добавить ли это в календарь.</p>
-  <p><strong>3. Напоминает о встречах.</strong> Вечером накануне и за час до начала.</p>
-  <p><strong>4. Напоминает про добавки.</strong> В то время, которое вы сами выберете.</p>
-  <p><strong>5. Понимает голосовые.</strong> Можно просто наговорить: «поставь встречу с Азизом завтра в три».</p>
+  <div class="lab">Пять задач</div>
+  <p><strong>1. Подсказывает, кому вы не ответили.</strong> Раз или два в день — короткий список: кто написал и сколько уже ждёт. Не «у вас 47 непрочитанных», а именно те люди, где мяч на вашей стороне.</p>
+  <p><strong>2. Ловит встречи прямо в переписке.</strong> Если в чате прозвучало «давай завтра в три», помощник это заметит и спросит, занести ли встречу в календарь.</p>
+  <p><strong>3. Напоминает о встречах.</strong> Вечером накануне — чтобы завтрашний день не стал неожиданностью. И за час до — чтобы успеть выехать.</p>
+  <p><strong>4. Напоминает про добавки.</strong> В то время, которое вы сами назовёте.</p>
+  <p><strong>5. Понимает голос.</strong> Печатать необязательно: наговариваете «поставь встречу с Азизом завтра в три» — и всё.</p>
 </div>
 
-<p>Это всё. Несколько коротких сообщений в день, в остальное время он молчит.</p>
-
 <div class="co co-i">
-  <div class="cot">Главное, что стоит знать сразу</div>
-  <p><strong>Программа умеет читать, но не умеет писать.</strong> Она никогда не отправит сообщение от вашего имени, никому не ответит, ничего не опубликует и не тронет ваши контакты. Всё, что вы получаете, приходит от <em>отдельного</em> бота, который разговаривает только с вами.</p>
-  <p>Поэтому худшее, что может натворить ошибка в этой системе, — прислать <em>вам самому</em> неправильное напоминание. Опозорить вас перед кем-то она не может: у неё физически нет способа с кем-то заговорить.</p>
+  <div class="cot">Самое важное — сразу</div>
+  <p><strong>Помощник умеет только читать. Написать он не может — вообще, никому, никогда.</strong> Всё, что приходит вам, приходит от отдельного бота, и этот бот разговаривает только с вами.</p>
+  <p>Из этого следует простая вещь: самое худшее, что может натворить ошибка в программе, — это прислать <em>вам самому</em> неправильное напоминание. Написать кому-то от вашего имени, ответить не тому человеку, куда-то что-то выложить — она не в состоянии. Не «не станет», а <b>не может</b>: такой функции у неё просто нет.</p>
 </div>
 </section>
 
-<!-- ===== 2 ===== -->
+<!-- 2 -->
 <section id="day">
 <div class="tag"><span class="badge">2</span> Как это выглядит</div>
-<h2 class="sec">Обычный день</h2>
-<p class="sec-lead">Пять сообщений. Это и есть весь продукт целиком.</p>
+<h2 class="sec">Один обычный день</h2>
+<p class="sec-lead">Пять сообщений за сутки. Больше он не пишет.</p>
 
 <div class="chat">
   <div class="ch">Помощник</div>
-
-  <div class="msg"><div class="t">08:00</div><div class="b">
-    ☀️ <span class="lead">Сегодня:</span> встреча с Азизом в 15:00
-  </div></div>
-
-  <div class="msg"><div class="t">09:00</div><div class="b">
-    💊 Пора принять креатин
-    <div class="btns"><span class="btn">✅ Принял</span><span class="btn">⏰ Через 30 минут</span></div>
-  </div></div>
-
-  <div class="msg"><div class="t">13:20</div><div class="b">
-    🗓 Похоже, встреча с <b>Иброхимом</b><br>завтра, 5 августа, в 12:00
-    <div class="btns"><span class="btn">✅ Добавить</span><span class="btn">✏️ Изменить</span><span class="btn">❌ Нет</span></div>
-  </div></div>
-
-  <div class="msg"><div class="t">14:00</div><div class="b">
-    ⏰ Через час — встреча с Азизом
-  </div></div>
-
-  <div class="msg"><div class="t">19:00</div><div class="b">
-    📬 <span class="lead">Трое ждут ответа</span><br>
-    <span class="small">· Азиз — 5 часов<br>· Мама — со вчера<br>· Иброхим — 2 дня</span>
-  </div></div>
+  <div class="msg"><div class="t">08:00</div><div class="b">☀️ <span class="lead">Сегодня:</span> встреча с Азизом в 15:00</div></div>
+  <div class="msg"><div class="t">09:00</div><div class="b">💊 Пора принять креатин
+    <div class="btns"><span class="btn">✅ Принял</span><span class="btn">⏰ Через 30 минут</span></div></div></div>
+  <div class="msg"><div class="t">13:20</div><div class="b">🗓 Похоже, вы договорились о встрече<br>с <b>Иброхимом</b> — завтра, 5 августа, в 12:00
+    <div class="btns"><span class="btn">✅ Занести</span><span class="btn">✏️ Поправить</span><span class="btn">❌ Нет</span></div></div></div>
+  <div class="msg"><div class="t">14:00</div><div class="b">⏰ Через час — встреча с Азизом</div></div>
+  <div class="msg"><div class="t">19:00</div><div class="b">📬 <span class="lead">Трое ждут ответа</span><br>
+    <span class="small">· Азиз — 5 часов<br>· Мама — со вчера<br>· Иброхим — 2 дня</span></div></div>
 </div>
 
-<p>Если сообщений покажется много — любую из пяти задач можно отключить, а всего помощника поставить на паузу на несколько дней.</p>
+<p>Если и этого покажется много — любую из пяти задач можно отключить по отдельности, а всего помощника отправить в тишину на несколько дней.</p>
 </section>
 
-<!-- ===== 3 ===== -->
+<!-- 3 -->
 <section id="reads">
-<div class="tag"><span class="badge">3</span> Самое важное</div>
+<div class="tag"><span class="badge">3</span> Главное</div>
 <h2 class="sec">Как он читает ваш Telegram</h2>
-<p class="sec-lead">Этот раздел стоит прочитать медленно. Остальное — детали.</p>
+<p class="sec-lead">Этот раздел стоит прочитать не спеша. Всё остальное — подробности.</p>
 
-<p>Сначала то, что удивляет почти всех: <strong>обычный Telegram-бот не может читать вашу переписку.</strong> Боты видят только те сообщения, которые отправлены им самим. Личные чаты для них невидимы. Значит, это не бот — бот такую задачу выполнить бы не смог.</p>
+<p>Начнём с того, что многих удивляет: <strong>обычный Telegram-бот вашу переписку читать не может.</strong></p>
 
-<p>Вместо этого программа <strong>входит в аккаунт как вы</strong>. То же самое происходит, когда вы ставите Telegram на новый ноутбук: вы один раз подтверждаете вход, и с этого момента ноутбук видит ваши чаты. Эта программа — ещё одно такое «устройство», только стоит оно на сервере, а не на столе.</p>
+<p>Бот в Telegram — это, по сути, ещё один собеседник. Он видит только то, что написали лично ему. Заглянуть в вашу переписку с другим человеком он не в состоянии, и это не настройка, которую можно где-то включить, — так устроен сам Telegram.</p>
 
-<p>Дальше она смотрит на ваш Telegram <strong>тремя разными способами</strong> — и слова появляются только в двух из них.</p>
+<p>Значит, ботом эту задачу не решить. Нужен другой подход.</p>
 
-<h3 class="sub">Способ первый — список чатов. Без единого слова.</h3>
+<p>Программа <strong>входит в ваш аккаунт</strong> — ровно так же, как это делает Telegram на новом ноутбуке. Вы один раз подтверждаете вход, и с этого момента ноутбук показывает все ваши чаты. Здесь то же самое, только вместо ноутбука — сервер. В вашем списке устройств появится ещё одна строчка.</p>
 
-<p>Telegram может отдать список чатов — тот самый, который вы видите, открывая приложение. По каждому чату известно: с кем он, <strong>кто написал последним</strong> и <strong>когда</strong>.</p>
+<p>А дальше начинается самое интересное. Смотреть на Telegram можно очень по-разному, и помощник делает это <strong>тремя способами</strong> — причём слова из ваших сообщений участвуют только в двух из них.</p>
 
-<p>Этого достаточно для напоминания «вам не ответили». Программа задаёт три вопроса по каждому чату:</p>
+<h3 class="sub">Способ первый. Список чатов — сюда слова не попадают вообще</h3>
 
-<ul class="clean">
-  <li>Последнее сообщение было от собеседника, а не от вас?</li>
-  <li>Как давно?</li>
-  <li>Вы что-нибудь написали после?</li>
-</ul>
+<p>Представьте, что вы открыли Telegram и просто смотрите на список чатов, не заходя ни в один. Что вы уже видите? От кого последнее сообщение и когда оно было. Этого достаточно, чтобы понять, кому вы не ответили.</p>
 
-<p>Само сообщение при этом не читается. Не просматривается, не пересказывается — <strong>не читается</strong>. Чтобы знать, что Азиз ждёт ответа, достаточно знать, что Азиз написал последним, а вы не ответили. Содержание тут ни при чём.</p>
-
-<h3 class="sub">Способ второй — новые сообщения. Здесь появляются слова.</h3>
-
-<p>Вторая часть смотрит на приходящие сообщения — ищет встречи. По каждому новому сообщению:</p>
+<p>Ровно это и делает помощник. По каждому чату он проверяет три вещи:</p>
 
 <ul class="clean">
-  <li>Проверяются слова про время и дату — <em>завтра, послезавтра, встретимся, созвон, во сколько, 15:00, tomorrow, meeting at</em>.</li>
-  <li><strong>Совпадения нет — сообщение сразу выбрасывается.</strong> Это примерно 99 сообщений из 100.</li>
-  <li>Только при совпадении что-то вообще покидает сервер.</li>
+  <li>последним написал собеседник — или всё-таки вы?</li>
+  <li>как давно это было?</li>
+  <li>вы что-нибудь ответили после?</li>
 </ul>
 
-<div class="co co-w">
-  <div class="cot">Честная оговорка — вот этот абзац стоит прочитать</div>
-  <p>Telegram передаёт программе <strong>сообщение целиком</strong>. Попросить у Telegram «только время и отправителя» нельзя — такой возможности просто нет. Поэтому текст ваших сообщений <em>действительно</em> проходит через память сервера на долю секунды, прежде чем быть выброшенным.</p>
-  <p>Мы контролируем другое: <strong>его никто не читает, никуда не сохраняет и нигде не записывает.</strong> Он приходит и исчезает — примерно как телефонный разговор проходит через станцию, не записываясь на неё.</p>
-  <p>Поэтому честная формулировка звучит так: <b>«ничего не хранится»</b>, а не <b>«ничего не приходит»</b>. Если про подобную систему вам говорят иначе — человек либо сам путается, либо продаёт.</p>
+<p>Само сообщение при этом не открывается. Не читается, не пересказывается, не разбирается. Чтобы знать, что Азиз ждёт ответа, <strong>совершенно не нужно знать, что именно Азиз написал.</strong></p>
+
+<p>Из этого списка сразу выбрасываются каналы, большие группы, боты и те чаты, у которых вы сами отключили уведомления. Иначе вместо полезной подсказки получился бы шум, который вы перестанете читать через неделю.</p>
+
+<h3 class="sub">Способ второй. Новые сообщения — вот здесь появляются слова</h3>
+
+<p>Вторая часть смотрит на приходящие сообщения и ищет одну-единственную вещь: договорённость о встрече.</p>
+
+<p>Работает это как спам-фильтр в почте. Каждое сообщение проверяется на слова про время и дату — <em>завтра, послезавтра, встретимся, созвон, во сколько, 15:00, tomorrow, meeting at.</em> Ни одного такого слова не нашлось — сообщение выбрасывается, и на этом всё заканчивается.</p>
+
+<p>Так отсеивается примерно <strong>99 сообщений из 100</strong>.</p>
+
+<div class="ex">
+  <div class="exl">Как это выглядит на практике</div>
+  <div class="row"><span class="mark">🗑</span><span class="txt">«Привет, как ты?» — <i>слов о времени нет → выброшено, дальше не пошло</i></span></div>
+  <div class="row"><span class="mark">🗑</span><span class="txt">«Скинь, пожалуйста, тот документ» — <i>нет → выброшено</i></span></div>
+  <div class="row hit"><span class="mark">➡️</span><span class="txt">«Давай <b>завтра</b> <b>в три</b> у меня» — <i>вот это единственное идёт дальше</i></span></div>
 </div>
 
-<h3 class="sub">Способ третий — голосовые. И почему расшифровка происходит у нас на сервере</h3>
+<p>Важная деталь: фильтр работает <strong>на самом сервере</strong>, до того как что-либо куда-либо отправляется. Те 99 сообщений не «проверили и решили не отправлять» — они никуда и не уходили.</p>
 
-<p><strong>Проще всего — просто наговорить боту.</strong> Открываете чат с помощником, зажимаете микрофон: <em>«поставь встречу с Азизом завтра в три»</em> — и он показывает карточку с датой и временем, которую вы подтверждаете или исправляете. Исправлять тоже можно голосом: <em>«нет, в четыре»</em>. Здесь никакого фильтра нет и не нужно — вы сами, специально, отправили это боту.</p>
+<div class="co co-w">
+  <div class="cot">Здесь придётся сказать неприятное</div>
+  <p>Telegram отдаёт программе <strong>сообщение целиком</strong>. Попросить у него «только время и отправителя, без текста» невозможно — такой возможности в Telegram нет. Значит, текст ваших сообщений действительно проходит через сервер.</p>
+  <p>Поэтому правильный вопрос звучит не «приходит ли текст на сервер». Приходит. Правильный вопрос — <b>«остаётся ли он там».</b></p>
+  <p>Не остаётся. Ни в файле, ни в журнале работы, ни в резервной копии. Прошёл — и его нет.</p>
+  <p>Мы пишем это прямым текстом, потому что рано или поздно вы задумались бы сами. И если про похожую систему вам когда-нибудь скажут «ваши сообщения к нам вообще не попадают» — знайте, что человек либо сам не разобрался, либо вам что-то продают.</p>
+</div>
 
-<p>Сложнее с голосовыми, которые присылают <em>вам</em>. И тут есть вещь, о которой честно стоит рассказать, потому что на ней держится всё написанное выше.</p>
+<h3 class="sub">Способ третий. Голосовые</h3>
 
-<p><strong>Фильтр по словам работает только с текстом.</strong> В аудиофайле слова искать нельзя. Чтобы понять, идёт ли в голосовом речь о встрече, его сначала нужно расшифровать. А значит, если отправлять голосовые куда-то наружу на расшифровку — наружу уйдут <strong>все сто процентов</strong>, а не один. Фильтр просто перестанет существовать.</p>
+<p>Тут два разных случая, и путать их не стоит.</p>
+
+<p><strong>Первый — вы сами наговариваете боту.</strong> Открываете чат с помощником, зажимаете микрофон: «поставь встречу с Азизом завтра в три». В ответ приходит карточка с датой и временем — подтверждаете или правите. Поправить тоже можно голосом: «нет, в четыре». Никакого фильтра здесь нет и не нужно — вы сами, специально, отправили это боту.</p>
+
+<p><strong>Второй — голосовые, которые присылают вам.</strong> И вот тут есть тонкость, на которой держится всё написанное выше.</p>
+
+<p>Фильтр по словам умеет искать только в тексте. В звуковом файле искать нечего: там нет слов, там есть звук. Чтобы понять, идёт ли в голосовом речь о встрече, его сначала нужно превратить в текст.</p>
+
+<p>А это меняет всю картину. Если отправлять голосовые куда-то наружу на расшифровку, то наружу уйдут <strong>все сто процентов</strong> — а не один. Фильтр просто перестанет что-либо значить.</p>
 
 <div class="co co-i">
   <div class="cot">Поэтому расшифровка идёт на том же сервере</div>
-  <p><strong>Аудио не отправляется никуда вообще.</strong> Программа превращает его в текст у себя, и дальше этот текст проходит <em>ровно тот же фильтр</em>, что и обычные сообщения: нет слов про время — текст выбрасывается. Один процент снова становится одним процентом.</p>
-  <p>И ещё одна деталь: файл с аудио кладётся <strong>в оперативную память, а не на диск.</strong> Он физически не может попасть в резервную копию или пережить перезагрузку и удаляется сразу, как только расшифрован.</p>
+  <p><strong>Аудио не уходит никуда вообще.</strong> Программа превращает его в текст у себя, а дальше этот текст идёт через тот же самый фильтр, что и обычные сообщения: нет слов о времени — выброшено. Один процент снова становится одним процентом.</p>
+  <p>И ещё одна деталь. Файл с голосовым кладётся <strong>в оперативную память, а не на диск.</strong> Разница простая: оперативная память живёт до перезагрузки, диск хранит всё подряд. Аудио живёт только в первой и стирается сразу, как превратилось в текст. Попасть в резервную копию оно физически не может.</p>
 </div>
 
-<p><strong>Только русский и английский.</strong> Узбекский мы сознательно решили не поддерживать: его плохо распознаёт любая существующая система, и вместо помощи получилось бы раздражение. Голосовое на узбекском просто не даст подсказки — неправильная встреча в календаре из-за этого не появится.</p>
+<p><strong>Только русский и английский.</strong> Узбекский мы решили не поддерживать, и это осознанный выбор: его плохо распознаёт вообще любая существующая система, и вместо помощи вышло бы одно раздражение. Голосовое на узбекском просто не даст подсказки — а вот неправильная встреча в календаре из-за него не появится.</p>
 
-<h3 class="sub">Тот один процент, который уходит к ИИ</h3>
+<h3 class="sub">Тот самый один процент</h3>
 
-<p>Когда в сообщении <em>действительно</em> упомянуто время, этот кусочек отправляется к Claude — сервису искусственного интеллекта — с одним узким вопросом: <em>договариваются ли здесь о конкретной встрече, и когда?</em> В ответ приходит дата и время либо ничего.</p>
+<p>Когда в сообщении действительно упомянуто время, этот кусочек уходит к Claude — это сервис искусственного интеллекта — с одним узким вопросом: <em>договариваются ли здесь о конкретной встрече, и на когда?</em> Ответ бывает двух видов: дата со временем либо «ничего нет».</p>
 
-<ul class="clean">
-  <li><strong>ИИ получает только слова — никогда не имя того, кто их сказал.</strong> Ни имени, ни названия чата, ни истории переписки. Мы и так знаем, из какого чата это пришло, поэтому имя подставляется уже потом, у нас. Слова уходят — личность вашего собеседника нет.</li>
-  <li><strong>Ничего не попадает в календарь без вашего «Добавить».</strong> Никогда. Вы видите, что именно понял ИИ, и подтверждаете или отклоняете.</li>
-</ul>
+<p>Про это стоит знать две вещи.</p>
+
+<p><strong>Первое: искусственный интеллект получает только слова.</strong> Ни имени того, кто их написал, ни названия чата, ни истории переписки. Мы и без него знаем, из какого чата пришло сообщение, — имя подставляется уже потом, у нас на сервере. То есть наружу уходит фраза, но не человек.</p>
+
+<p><strong>Второе: в календарь ничего не попадает без вашего нажатия.</strong> Никогда. Сначала вы видите карточку — с кем, какого числа, во сколько — и только потом решаете. Это не только страховка от ошибок: это ещё и способ показать вам, что именно программа про вас поняла. Никаких решений за вашей спиной.</p>
 </section>
 
-<!-- ===== 4 ===== -->
+<!-- 4 -->
 <section id="cando">
-<div class="tag"><span class="badge">4</span> Границы</div>
-<h2 class="sec">Что он может и чего не может</h2>
-<p class="sec-lead">Правая колонка длиннее, чем обычно ожидают. Это намеренно.</p>
+<div class="tag"><span class="badge">4</span> Честно о границах</div>
+<h2 class="sec">Что он умеет и чего не умеет</h2>
+<p class="sec-lead">Правая колонка получилась длиннее левой. Так и задумано.</p>
 
 <div class="vs">
   <div class="col can">
-    <div class="who">Может</div>
+    <div class="who">Умеет</div>
     <ul>
-      <li>Видеть, <b>кто</b> вам написал и <b>когда</b>, в обычных чатах</li>
-      <li>Заметить, что обсуждается время или дата, и предложить сохранить встречу</li>
+      <li>Видеть, <b>кто</b> вам написал и <b>когда</b> — по всем обычным чатам</li>
+      <li>Заметить, что в переписке обсуждают время, и предложить сохранить встречу</li>
       <li>Понимать <b>голосовые</b> на русском и английском — и ваши, и присланные вам</li>
-      <li>Добавлять и менять события в <b>одном календаре</b>, который создаёт себе сам</li>
+      <li>Заводить и менять события в <b>одном</b> календаре, который завёл себе сам</li>
       <li>Писать <b>вам</b> в Telegram — и больше никому</li>
-      <li>Быть поставленным на паузу, ограниченным по чатам или выключенным вами полностью</li>
+      <li>Замолчать, когда скажете: по одному чату, на пару дней или навсегда</li>
     </ul>
   </div>
   <div class="col cant">
-    <div class="who">Не может</div>
+    <div class="who">Не умеет</div>
     <ul>
-      <li><b>Отправить сообщение от вашего имени.</b> Никому и никогда — у него нет возможности писать</li>
-      <li>Читать <b>Секретные чаты</b> — они привязаны к вашему телефону и невидимы вообще ни для чего</li>
-      <li>Понимать <b>узбекский</b> в голосовых — сознательно вне поддержки</li>
-      <li>Видеть <b>остальные ваши календари</b> — рабочий, личный, семейный. Только свой собственный</li>
-      <li>Видеть то, что было в календаре <b>до настройки</b></li>
-      <li>Трогать контакты, фотографии, файлы, почту — вообще всё за пределами Telegram и одного календаря</li>
-      <li>Совершить платёж, поменять настройку или что-нибудь удалить</li>
+      <li><b>Написать кому-нибудь от вашего имени.</b> Ни одному человеку, ни разу — такой функции нет</li>
+      <li>Заглянуть в <b>Секретные чаты</b> — они привязаны к вашему телефону и недоступны ничему извне</li>
+      <li>Разобрать <b>узбекскую</b> речь — сознательно вне поддержки</li>
+      <li>Увидеть <b>остальные ваши календари</b>: рабочий, семейный, любой другой. Только свой</li>
+      <li>Узнать о встречах, которые были в календаре <b>до настройки</b></li>
+      <li>Дотянуться до контактов, фотографий, файлов, почты — до всего, что вне Telegram и одного календаря</li>
+      <li>Что-нибудь оплатить, что-нибудь удалить или поменять вам настройки</li>
     </ul>
   </div>
 </div>
 
-<p>Два ограничения стоит назвать дважды — именно они всплывут в виде «а почему он не напомнил?»:</p>
+<p>Два ограничения стоит назвать отдельно — именно они потом всплывут в виде «а почему он не напомнил?»:</p>
 
 <div class="co co-v">
-  <div class="cot">Где он действительно будет ошибаться</div>
-  <p><strong>Встречи в других ваших календарях невидимы.</strong> Помощник видит только тот календарь, который создал сам. Если событие попадёт в другой — напоминания не будет. Телефон мы настроим так, чтобы новые события по умолчанию попадали куда нужно, но если вы намеренно положите встречу в другой календарь, помощник о ней не узнает.</p>
-  <p><strong>Он будет неправильно понимать часть сообщений.</strong> Даты в живой речи — честно сложная вещь: «в следующий четверг», «послезавтра», «в полтретьего». Иногда он предложит не то время, а иногда пропустит встречу совсем. Поэтому он всегда спрашивает перед сохранением, и поэтому он помощник, а не секретарь.</p>
+  <div class="cot">Где он будет ошибаться по-настоящему</div>
+  <p><strong>Встречи в других календарях он не увидит.</strong> Помощник видит только тот календарь, который завёл сам. Телефон мы настроим так, чтобы новые события попадали именно туда, — но если вы сознательно положите встречу в другой календарь, напоминания по ней не будет.</p>
+  <p><strong>Часть сообщений он поймёт неправильно.</strong> Живая речь про даты — честно сложная штука: «в следующий четверг», «послезавтра», «в полтретьего», «давай после обеда». Иногда он предложит не то время, а иногда не заметит встречу вовсе. Поэтому он всегда переспрашивает, прежде чем сохранить. Это помощник, а не секретарь, и относиться к нему стоит так же.</p>
 </div>
 </section>
 
-<!-- ===== 5 ===== -->
+<!-- 5 -->
 <section id="safety">
 <div class="tag"><span class="badge">5</span> Безопасность</div>
-<h2 class="sec">Насколько это безопасно на самом деле</h2>
-<p class="sec-lead">Включая те части, которые не очень приятно писать.</p>
+<h2 class="sec">Насколько это безопасно</h2>
+<p class="sec-lead">Включая то, о чём приятнее было бы промолчать.</p>
 
-<h3 class="sub">Ничего не сохраняется</h3>
+<h3 class="sub">Сообщения не сохраняются — и дело тут не в обещании</h3>
 
-<p>Базы ваших сообщений не существует, потому что <strong>её физически некуда положить.</strong> В хранилище, которым пользуется помощник, <em>нет поля для текста сообщения</em> — дело не в том, что мы решили не сохранять, а в том, что хранилище построено без такой возможности, и проверка при запуске не даст программе стартовать, если это когда-нибудь изменится.</p>
+<p>Базы с вашими сообщениями не существует, потому что её <strong>физически негде разместить</strong>. В таблице, куда помощник записывает свои пометки, просто нет колонки под текст сообщения. Это не «мы решили не сохранять» — сохранять некуда. А при запуске программа проверяет сама себя и откажется работать, если однажды это изменится.</p>
 
-<p>Хранится подчёркнуто скучное:</p>
+<p>Список того, что всё-таки хранится, намеренно скучный:</p>
 
 <div class="tw">
 <table>
   <thead><tr><th>Хранится</th><th>Не хранится</th></tr></thead>
   <tbody>
-    <tr><td class="nm">Какой чат</td><td>Что было сказано — в любом чате, когда-либо</td></tr>
+    <tr><td class="nm">Какой это чат</td><td>Что в нём было сказано — в любом чате, когда угодно</td></tr>
     <tr><td class="nm">Кто написал последним</td><td>Любая часть любого сообщения</td></tr>
-    <tr><td class="nm">Когда</td><td>Фотографии, файлы</td></tr>
+    <tr><td class="nm">Когда это было</td><td>Фотографии и файлы</td></tr>
     <tr><td class="nm">Напоминали ли мы вам уже</td><td>Голосовые и их расшифровки</td></tr>
-    <tr><td class="nm">Время приёма добавок</td><td>Ваши контакты и всё из Секретных чатов</td></tr>
+    <tr><td class="nm">Во сколько принимать добавки</td><td>Ваши контакты и всё из Секретных чатов</td></tr>
   </tbody>
 </table>
 </div>
 
-<p>Смысл такой конструкции не только в сегодняшнем дне. Он в том, что <strong>если этот сервер взломают через год, там нечего будет забрать.</strong> Архива вашей переписки не существует — значит, его нельзя ни украсть, ни слить, ни кому-то передать.</p>
+<p>Смысл такой конструкции не только в сегодняшнем дне. Он в том, что <strong>если через год этот сервер кто-нибудь взломает — брать там будет нечего.</strong> Архива вашей переписки не существует, а значит, его нельзя ни украсть, ни слить, ни потребовать.</p>
 
-<h3 class="sub">Файл входа</h3>
+<h3 class="sub">Файл, который открывает доступ</h3>
 
-<p>Когда вы подтвердите доступ, на сервере появится небольшой файл. Этот файл <em>и есть</em> вход в аккаунт — тот, у кого он есть, может читать ваш Telegram как вы. Он лежит под замком администратора сервера и намеренно исключён из всех резервных копий: существует ровно в одном месте и никуда не путешествует.</p>
+<p>Когда вы подтвердите вход, на сервере появится небольшой файл. Этот файл <em>и есть</em> доступ к аккаунту: у кого он на руках, тот читает ваш Telegram как вы. Он лежит под замком администратора и намеренно не попадает ни в одну резервную копию — существует ровно в одном месте и никуда не путешествует.</p>
 
-<p><strong>Его же вы можете уничтожить в любой момент</strong> — см. ниже.</p>
+<p>И его же вы можете уничтожить в любую секунду — про это чуть ниже.</p>
 
 <div class="co co-r">
   <div class="cot">Неудобная правда, прямым текстом</div>
-  <p><strong>Всё это работает на сервере Асомиддина — значит, ключи технически у него.</strong> Он не собирается читать вашу переписку, но «не собирается» — это обещание человека, и стоит понимать разницу между обещанием и технической невозможностью.</p>
-  <p>Что действительно обеспечено технически: копия ваших сообщений <em>нигде и никогда</em> не сохраняется, поэтому нет архива, в который можно было бы заглянуть — ни ему, ни кому-то ещё, ни сейчас, ни через год. Что <em>не</em> обеспечено — момент «здесь и сейчас»: человек с полным доступом к машине в принципе может видеть сообщения, пока они через неё проходят.</p>
-  <p>Если вас это смущает — а это нормальная реакция — решение простое: ту же систему можно поставить на маленький сервер, который <em>принадлежит вам</em> и оплачивается вами, примерно $6 в месяц. Асомиддин соберёт, ключи будут у вас. Скажите — так и сделаем.</p>
+  <p><strong>Всё это работает на сервере Асомиддина. Значит, ключи от машины — у него.</strong></p>
+  <p>Читать вашу переписку он не собирается. Но «не собирается» — это обещание человека, а между обещанием человека и технической невозможностью есть разница, о которой честнее сказать вслух, чем промолчать.</p>
+  <p><b>Что обеспечено технически:</b> копия ваших сообщений нигде не сохраняется. Заглянуть в архив нельзя — ни ему, ни кому-то ещё, ни сегодня, ни через год, потому что архива не существует.</p>
+  <p><b>Что технически не обеспечено:</b> пока сообщение идёт через сервер, человек с полным доступом к машине в принципе способен его увидеть.</p>
+  <p>Если вам от этого не по себе — это нормальная реакция, и выход простой. Ту же самую систему можно поставить на отдельный маленький сервер, оформленный на вас и оплаченный вами: примерно $6 в месяц. Собирает Асомиддин, ключи у вас. Скажите — сделаем так.</p>
 </div>
 
-<h3 class="sub">Как всё выключить</h3>
+<h3 class="sub">Как выключить всё разом</h3>
 
-<p>На вашем телефоне: <strong>Telegram → Настройки → Устройства.</strong> Там среди телефона и компьютеров будет запись <strong>«Assistant»</strong>. Нажимаете на неё, нажимаете <em>Завершить сеанс</em> — и всё закончилось. Мгновенно, полностью и никого не спрашивая.</p>
+<p>На вашем телефоне: <strong>Telegram → Настройки → Устройства.</strong> В списке, рядом с телефоном и компьютерами, будет строчка <strong>«Assistant»</strong>. Нажимаете на неё, выбираете <em>«Завершить сеанс»</em> — и всё, конец. Мгновенно, целиком и ни у кого не спрашивая.</p>
 
-<p>Мы назвали её понятно специально. Вам не должно приходиться гадать, какая из записей наша, и не должно требоваться ни наше разрешение, ни наша помощь, чтобы это прекратить.</p>
+<p>Название выбрано понятное специально. Вам не должно приходиться гадать, какая из строчек наша, — и чтобы это прекратить, вам не нужны ни наше разрешение, ни наша помощь.</p>
 </section>
 
-<!-- ===== 6 ===== -->
+<!-- 6 -->
 <section id="need">
 <div class="tag"><span class="badge">6</span> Настройка</div>
-<h2 class="sec">Что нужно от вас</h2>
-<p class="sec-lead">Примерно двадцать минут, один раз.</p>
+<h2 class="sec">Что понадобится от вас</h2>
+<p class="sec-lead">Примерно двадцать минут, один раз в жизни.</p>
 
 <div class="up">
   <div class="rank">1</div>
   <div>
-    <div class="uh"><span class="ut">Десять минут вместе — лично или по видеосвязи</span></div>
-    <p class="ub">Вы подтверждаете доступ, <b>отсканировав QR-код</b> телефоном: Telegram → Настройки → Устройства → Подключить устройство. Ровно так же, как подключают Telegram на новом компьютере.<br><br>Если у вас включён пароль Telegram (двухэтапная проверка) — <b>вы вводите его сами.</b> Не пересылайте его никому, включая Асомиддина: ни сообщением, ни вслух. Это не формальность, а то самое правило, которое держит всю историю чистой.</p>
+    <div class="ut">Десять минут вместе — вживую или по видеосвязи</div>
+    <p class="ub">Вход подтверждается <b>QR-кодом</b>: Telegram → Настройки → Устройства → Подключить устройство, наводите камеру. Точно так же люди подключают Telegram на новом компьютере.<br><br>Если у вас включён пароль Telegram (двухэтапная проверка) — <b>вводите его сами, своими руками.</b> Не пересылайте его никому, включая Асомиддина: ни сообщением, ни вслух. Это не формальность и не вежливость — именно на этом всё и держится.</p>
   </div>
 </div>
 
 <div class="up">
   <div class="rank">2</div>
   <div>
-    <div class="uh"><span class="ut">Аккаунт Google</span></div>
-    <p class="ub">Существующий или новый — на ваш выбор. Помощник создаёт внутри него <b>один новый календарь</b>, и разрешение выдаётся только на <b>те календари, которые он создал сам</b> — то есть больше он в этом аккаунте не видит ничего.<br><br>Если хочется полностью отделить это от обычной жизни — заведите отдельный Google-аккаунт специально для помощника. Совершенно нормальное решение.</p>
+    <div class="ut">Аккаунт Google</div>
+    <p class="ub">Ваш нынешний или новый — как захотите. Помощник создаёт внутри него <b>один новый календарь</b>, и разрешение выдаётся только на <b>те календари, которые он создал сам</b>. То есть ничего другого в этом аккаунте он не видит — ни почту, ни диск, ни ваш основной календарь.<br><br>Если хочется отделить это от обычной жизни полностью — заведите отдельный Google-аккаунт специально под помощника. Нормальное решение, многие так делают.</p>
   </div>
 </div>
 
 <div class="up">
   <div class="rank">3</div>
   <div>
-    <div class="uh"><span class="ut">Две настройки на iPhone</span></div>
-    <p class="ub">Добавить этот Google-аккаунт в телефон: <b>Настройки → Календарь → Учётные записи</b>, а затем сделать новый календарь <b>календарём по умолчанию</b>. Всё.<br><br>Вы продолжаете пользоваться обычным приложением «Календарь» ровно как раньше. События помощника просто появляются в нём, и любое из них можно отредактировать или удалить как обычное.</p>
-    <div class="eff">Зачем нужен «по умолчанию»: именно благодаря ему встречи, которые вы добавляете сами, становятся видны помощнику — и он может о них напомнить.</div>
+    <div class="ut">Две настройки на iPhone</div>
+    <p class="ub">Добавить этот Google-аккаунт в телефон (<b>Настройки → Календарь → Учётные записи</b>) и сделать новый календарь <b>календарём по умолчанию</b>. Всё.<br><br>Дальше вы продолжаете пользоваться обычным приложением «Календарь» ровно как раньше. События помощника просто появляются в нём наравне с вашими, и любое можно передвинуть, переименовать или удалить как обычное.</p>
+    <div class="eff">Зачем нужен «по умолчанию»: когда вы заводите встречу сами, телефон кладёт её в календарь по умолчанию. Если это будет календарь помощника — он о встрече узнает и напомнит. Если другой — не узнает.</div>
   </div>
 </div>
 
 <div class="up">
   <div class="rank">4</div>
   <div>
-    <div class="uh"><span class="ut">Список добавок</span></div>
-    <p class="ub">Что вы принимаете и в какое время. Можно и не готовить заранее — просто скажете боту в чате позже и будете менять когда угодно. Обращаться к Асомиддину за правкой списка не придётся никогда.</p>
+    <div class="ut">Список добавок</div>
+    <p class="ub">Что принимаете и во сколько. Заранее готовить необязательно — просто скажете боту в чате, и менять сможете когда угодно. Обращаться к Асомиддину, чтобы поправить список, вам не придётся ни разу.</p>
   </div>
 </div>
 
 <div class="up">
   <div class="rank">5</div>
   <div>
-    <div class="uh"><span class="ut">Чаты, которые лучше не трогать</span> <span class="um">по желанию</span></div>
-    <p class="ub">Если есть переписки, которые помощнику лучше игнорировать полностью — семья, работа, что угодно — назовите их, и они будут исключены с самого начала. Объяснять причину не нужно.</p>
+    <div class="ut">Чаты, которые лучше не трогать <span class="um">по желанию</span></div>
+    <p class="ub">Если есть переписки, куда помощнику лучше не заглядывать совсем — семья, работа, что угодно, — назовите их, и они будут исключены с самого начала. Объяснять причину не нужно, и никто не спросит.</p>
   </div>
 </div>
 </section>
 
-<!-- ===== 7 ===== -->
+<!-- 7 -->
 <section id="alarms">
 <div class="tag"><span class="badge">7</span> Во время настройки</div>
-<h2 class="sec">Две вещи, которые выглядят тревожно</h2>
-<p class="sec-lead">Обе нормальные. Пишем заранее, чтобы потом не напугали.</p>
+<h2 class="sec">Две вещи, которые могут напугать</h2>
+<p class="sec-lead">Обе нормальные. Предупреждаем заранее, чтобы вы не решили, что вас взломали.</p>
 
 <div class="co co-w">
-  <div class="cot">1 · Telegram предупредит о входе из Финляндии</div>
-  <p>Вам придёт уведомление безопасности: в аккаунт вошли из <b>Хельсинки</b>. Это мы — сервер стоит там. Так и должно быть. Но проверьте, что время совпадает с моментом настройки, — а если когда-нибудь увидите вход откуда-то ещё, это уже по-настоящему, и сеанс нужно завершить.</p>
+  <div class="cot">1 · Telegram напишет о входе из Финляндии</div>
+  <p>Вам придёт уведомление безопасности: в аккаунт вошли из <b>Хельсинки</b>. Это мы — сервер стоит там, так и должно быть.</p>
+  <p>Но привычку стоит завести правильную: посмотрите, совпадает ли время с моментом настройки. И если когда-нибудь увидите вход откуда-то ещё — вот это уже по-настоящему, и сеанс нужно сразу завершить.</p>
 </div>
 
 <div class="co co-w">
-  <div class="cot">2 · Google скажет, что приложение не проверено</div>
-  <p>Когда вы будете давать доступ к календарю, Google покажет тревожный экран: <b>«Google не проверил это приложение»</b>. Так происходит потому, что оно сделано ровно для одного человека — для вас, — а проверка Google рассчитана на публичные приложения с тысячами пользователей.</p>
-  <p>Нужно нажать <b>«Дополнительные настройки»</b>, затем <b>«Перейти»</b>. Выглядит как то, чего делать не следует. В данном случае это нормально, и происходит один раз.</p>
+  <div class="cot">2 · Google скажет, что приложению нельзя доверять</div>
+  <p>Когда будете давать доступ к календарю, Google покажет тревожный экран: <b>«Google не проверил это приложение»</b>. Причина простая: приложение сделано ровно для одного человека — для вас, — а проверка Google рассчитана на публичные сервисы с тысячами пользователей. Проходить её ради одного аккаунта никто не станет.</p>
+  <p>Нужно нажать <b>«Дополнительные настройки»</b>, потом <b>«Перейти»</b>. Выглядит как то, чего делать не следует, — в этот раз можно. Один раз, дальше не повторится.</p>
 </div>
 </section>
 
-<!-- ===== 8 ===== -->
+<!-- 8 -->
 <section id="controls">
 <div class="tag"><span class="badge">8</span> Ваш контроль</div>
-<h2 class="sec">Как что-нибудь отключить</h2>
-<p class="sec-lead">Всё это ваше. Ничего из этого не требует нас.</p>
+<h2 class="sec">Как притормозить или выключить</h2>
+<p class="sec-lead">Всё это ваше, и ничего из этого не требует нашего участия.</p>
 
 <div class="tw">
 <table>
   <thead><tr><th>Если хотите</th><th>Делаете так</th></tr></thead>
   <tbody>
     <tr><td class="nm">Убрать напоминания по одному чату</td><td>Скажите боту — или просто отключите уведомления у этого чата в Telegram</td></tr>
-    <tr><td class="nm">Тишину на несколько дней</td><td>Отправьте боту <code>/pause</code></td></tr>
-    <tr><td class="nm">Оставить напоминания, но убрать чтение сообщений и голосовых</td><td>Отправьте <code>/private</code> — остальные задачи продолжат работать</td></tr>
-    <tr><td class="nm">Поменять добавки</td><td>Скажите боту, в любой момент</td></tr>
-    <tr><td class="nm"><b>Прекратить всё, немедленно</b></td><td><b>Telegram → Настройки → Устройства → «Assistant» → Завершить сеанс</b></td></tr>
+    <tr><td class="nm">Тишины на несколько дней</td><td>Отправьте боту <code>/pause</code></td></tr>
+    <tr><td class="nm">Оставить напоминания, но убрать чтение переписки и голосовых</td><td>Отправьте <code>/private</code> — остальное продолжит работать</td></tr>
+    <tr><td class="nm">Поменять добавки или время</td><td>Скажите боту, в любой момент</td></tr>
+    <tr><td class="nm"><b>Прекратить всё, прямо сейчас</b></td><td><b>Telegram → Настройки → Устройства → «Assistant» → Завершить сеанс</b></td></tr>
   </tbody>
 </table>
 </div>
 
-<p>Последний пункт работает независимо от того, бодрствует ли кто-то, чтобы вам помочь, и не требует никаких разговоров. Если вам когда-нибудь станет не по себе — сначала воспользуйтесь им, а вопросы задайте потом. Ничего не теряется: всё можно поднять заново за десять минут.</p>
+<p>Последняя строчка работает независимо от того, бодрствует ли кто-нибудь, чтобы вам помочь, и не требует никаких разговоров. Если когда-нибудь станет не по себе — сначала воспользуйтесь ею, а вопросы задайте потом. Ничего не пропадёт: поднять всё заново — те же десять минут.</p>
 </section>
 
-<!-- ===== 9 ===== -->
+<!-- 9 -->
+<section id="whatif">
+<div class="tag"><span class="badge">9</span> Что если</div>
+<h2 class="sec">Что будет, если что-то пойдёт не так</h2>
+<p class="sec-lead">Обычные опасения, на которые лучше ответить заранее.</p>
+
+<div class="qa">
+  <p class="q">А если он поставит не ту встречу?</p>
+  <p class="a">Поправите её в календаре как любое другое событие, прямо с телефона — передвинете время или удалите. И помните, что без вашего нажатия она бы туда вообще не попала: помощник только предлагает.</p>
+</div>
+
+<div class="qa">
+  <p class="q">А если я через три месяца передумаю?</p>
+  <p class="a">Завершаете сеанс в Telegram, убираете разрешение в настройках Google — и всё. Никаких «напишите нам письмо», никакого расставания через поддержку. Ваших данных нигде не останется, потому что их нигде и не было.</p>
+</div>
+
+<div class="qa">
+  <p class="q">А если сервер сломается или его украдут?</p>
+  <p class="a">Помощник перестанет вам писать — вот и все последствия. Ваш Telegram и ваш календарь живут не у нас, с ними ничего не случится. А из того, что лежит на сервере, красть нечего: переписки там нет.</p>
+</div>
+
+<div class="qa">
+  <p class="q">А если он будет писать слишком часто?</p>
+  <p class="a">Скажите — настроим. Как часто, в какое время, какие чаты учитывать, а какие не трогать. Это не переделка системы, а одна строчка в настройках.</p>
+</div>
+
+<div class="qa">
+  <p class="q">А если я хочу напоминания, но не хочу, чтобы он читал переписку?</p>
+  <p class="a">Команда <code>/private</code>. Встречи из календаря, напоминания и добавки останутся, а чтение сообщений и голосовых выключится. Помощник станет скромнее, но работать не перестанет.</p>
+</div>
+
+<div class="qa">
+  <p class="q">А если кто-то напишет мне что-то очень личное?</p>
+  <p class="a">С этим сообщением произойдёт ровно то же, что и со всеми: если в нём нет слов о времени — оно исчезнет, не покинув сервер. Если слова о времени есть, наружу уйдёт только сама фраза, без имени написавшего. Ни в каком виде оно нигде не сохранится.</p>
+</div>
+</section>
+
+<!-- 10 -->
 <section id="questions">
-<div class="tag"><span class="badge">9</span> Прежде чем соглашаться</div>
-<h2 class="sec">Вопросы, которые стоит нам задать</h2>
-<p class="sec-lead">На все эти вопросы вы должны получить прямой ответ. Если не получите — не соглашайтесь.</p>
+<div class="tag"><span class="badge">10</span> Прежде чем соглашаться</div>
+<h2 class="sec">О чём стоит нас спросить</h2>
+<p class="sec-lead">На каждый из этих вопросов вы должны получить прямой ответ. Не получите — не соглашайтесь.</p>
 
 <ul class="clean">
-  <li><b>«Покажите список того, что сохраняется».</b> Он короткий, он есть в этом документе. Попросите показать настоящий, на сервере.</li>
-  <li><b>«Что происходит с моими сообщениями в момент, когда они приходят?»</b> В ответе должно прозвучать, что они проходят через память и выбрасываются, — а не что они не приходят вовсе.</li>
-  <li><b>«Что происходит с голосовыми?»</b> Расшифровка на том же сервере, аудио не уходит никуда, файл лежит в оперативной памяти и удаляется сразу.</li>
-  <li><b>«У кого ещё есть доступ к этому серверу?»</b> Сегодня честный ответ: у Асомиддина.</li>
-  <li><b>«Можно ли потом включить сохранение сообщений, не сказав мне?»</b> Технически — да, это его сервер. Именно поэтому на столе лежит предложение перенести всё на ваш собственный сервер.</li>
-  <li><b>«А если я захочу выйти через три месяца?»</b> Завершаете сеанс в Telegram, убираете разрешение в Google — всё. Ничего вашего не останется, потому что ничего вашего и не хранилось.</li>
+  <li><b>«Покажите список того, что сохраняется».</b> Он короткий и есть в этом документе — попросите показать настоящий, прямо на сервере.</li>
+  <li><b>«Что происходит с моим сообщением в тот момент, когда оно приходит?»</b> В ответе должно прозвучать, что оно проходит через сервер и выбрасывается. Если вам скажут, что оно вообще не приходит, — ответ неправильный.</li>
+  <li><b>«А с голосовыми?»</b> Расшифровка на том же сервере, аудио не уходит никуда, файл лежит в оперативной памяти и стирается сразу.</li>
+  <li><b>«У кого ещё есть доступ к этому серверу?»</b> Честный ответ на сегодня: у Асомиддина.</li>
+  <li><b>«А можно потом втихую включить сохранение сообщений?»</b> Технически — да, сервер его. Именно поэтому на столе лежит предложение перенести всё на ваш собственный сервер.</li>
+  <li><b>«Что вы будете делать, если я скажу нет?»</b> Ничего. Это не обидно и не требует объяснений.</li>
 </ul>
 
 <div class="bottomline">
-  <div class="lab">Одним предложением</div>
-  <p>Он смотрит, <em>кто</em> вам пишет и <em>когда</em>, чтобы напоминать; заглядывает в ту небольшую часть сообщений и голосовых, где упомянуто время, чтобы предложить сохранить встречу; <strong>не хранит из этого ничего</strong>; не может заговорить ни с кем, кроме вас, — и выключается вами в три касания, ни у кого не спрашивая.</p>
+  <div class="lab">Если совсем коротко</div>
+  <p>Он смотрит, <em>кто</em> вам написал и <em>когда</em>, чтобы вовремя напомнить. Заглядывает в ту небольшую часть сообщений и голосовых, где упомянуто время, чтобы предложить сохранить встречу. <strong>Не хранит из этого ничего.</strong> Не может заговорить ни с кем, кроме вас. И выключается вами в три касания, ни у кого не спрашивая разрешения.</p>
 </div>
 </section>
 
 <div class="foot">
-  <p><strong>Подготовлено для вас Асомиддином · 4 августа 2026.</strong> Пока ничего не сделано, и ничего не будет сделано, пока вы это не прочитаете и не согласитесь.</p>
-  <p>Если что-то здесь непонятно или что-то вам не нравится — скажите до настройки, а не после. Поменять устройство системы сейчас не стоит ничего.</p>
+  <p><strong>Асомиддин — для вас · 4 августа 2026.</strong> Пока не сделано ничего, и не будет, пока вы это не прочитаете и не скажете «да».</p>
+  <p>Если что-то здесь непонятно или что-то вам не нравится — скажите до настройки, а не после. Переделать сейчас не стоит ничего.</p>
 </div>
 
 </div>
