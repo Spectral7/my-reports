@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Asom — Keto Protocol 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --surface:#FFFFFF;
+    --surface-2:#FCFAF6;
+    --ink:#221F1B;
+    --body:#3C3833;
+    --muted:#6E6960;
+    --faint:#9A948A;
+    --line:#E7E2D8;
+    --line-2:#D8D2C6;
+
+    --coral:#D85A30; --coral-d:#993C1D; --coral-bg:#FAECE7; --coral-ink:#712B13;
+    --teal:#1D9E75; --teal-d:#0F6E56; --teal-bg:#E1F5EE; --teal-ink:#085041;
+    --amber:#BA7517; --amber-d:#854F0B; --amber-bg:#FAEEDA; --amber-ink:#633806;
+    --red:#A32D2D; --red-bg:#FCEBEB; --red-ink:#791F1F;
+    --violet:#6B4E9E; --violet-bg:#F0EAF9; --violet-ink:#48326F;
+
+    --r-sm:6px; --r-md:10px; --r-lg:14px;
+    --maxw:880px;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:"PT Serif",Georgia,"Times New Roman",serif;
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--body);
+    font-family:var(--sans);font-size:17px;line-height:1.72;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:64px 26px 96px;}
+  ::selection{background:var(--coral-bg);}
+
+  h1,h2,h3,h4{color:var(--ink);font-weight:700;letter-spacing:-.01em;line-height:1.22;}
+  p{margin:1em 0;}
+  a{color:var(--coral-d);text-decoration:none;border-bottom:1px solid var(--coral-bg);}
+  strong{font-weight:600;color:var(--ink);}
+  code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:var(--r-sm);padding:1px 5px;color:var(--coral-ink);white-space:nowrap;}
+
+  .kicker{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--coral-d);margin-bottom:22px;}
+  .kicker::before{content:"";width:26px;height:2px;background:var(--coral);display:inline-block;flex:0 0 auto;}
+  h1.title{font-size:clamp(32px,5.6vw,50px);font-weight:700;line-height:1.06;margin:0 0 18px;
+    letter-spacing:-.02em;font-family:var(--serif);}
+  .dek{font-size:20px;line-height:1.58;color:var(--muted);margin:0 0 28px;max-width:35em;}
+  .meta{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .meta .m{flex:1 1 150px;padding:14px 18px 14px 0;border-right:1px solid var(--line);}
+  .meta .m:last-child{border-right:0;}
+  .meta .ml{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:3px;}
+  .meta .mv{font-size:13.5px;color:var(--body);font-weight:500;line-height:1.35;}
+
+  section{margin-top:68px;}
+  .tag{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+  .tag .badge{width:24px;height:24px;border-radius:50%;background:var(--coral);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;letter-spacing:0;flex:0 0 auto;}
+  h2.sec{font-size:28px;margin:0 0 6px;font-family:var(--serif);}
+  .sec-lead{font-size:18px;color:var(--muted);margin:.3em 0 0;}
+  h3.sub{font-size:20px;margin:40px 0 4px;}
+  h4.sub2{font-size:16px;margin:28px 0 2px;color:var(--ink);}
+
+  .bottomline{border:1px solid var(--line);border-left:3px solid var(--coral);border-radius:0 var(--r-md) var(--r-md) 0;
+    background:var(--surface);padding:18px 22px;margin:26px 0;}
+  .bottomline p{margin:0;font-size:16.5px;}
+  .bottomline p + p{margin-top:.85em;}
+  .bottomline .lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--coral-d);font-weight:600;margin-bottom:8px;}
+
+  .tw{overflow-x:auto;margin:26px 0;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;}
+  th{background:var(--surface-2);text-align:left;padding:12px 14px;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line-2);}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5;}
+  tr:last-child td{border-bottom:0;}
+  tbody tr:hover{background:var(--surface-2);}
+  td.nm{font-weight:600;color:var(--ink);}
+  td.mono,th.mono{font-family:var(--mono);font-size:13px;}
+  tr.hi td{background:var(--coral-bg);}
+  tr.hi:hover td{background:#F6E2DA;}
+
+  .co{border-radius:var(--r-md);padding:16px 20px;margin:24px 0;font-size:15.5px;line-height:1.64;}
+  .co .cot{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;margin-bottom:7px;}
+  .co p{margin:.6em 0;}
+  .co p:first-of-type{margin-top:0;}
+  .co p:last-child{margin-bottom:0;}
+  .co-w{background:var(--amber-bg);border:1px solid #F0E2C5;color:var(--amber-ink);}
+  .co-w .cot{color:var(--amber-d);}
+  .co-i{background:var(--teal-bg);border:1px solid #CFE9DE;color:var(--teal-ink);}
+  .co-i .cot{color:var(--teal-d);}
+  .co-r{background:var(--red-bg);border:1px solid #F2D5D5;color:var(--red-ink);}
+  .co-r .cot{color:var(--red);}
+  .co-v{background:var(--violet-bg);border:1px solid #DFD2F0;color:var(--violet-ink);}
+  .co-v .cot{color:var(--violet);}
+  .co b,.co strong{color:inherit;font-weight:700;}
+  .co ul{margin:.6em 0;padding-left:20px;}
+  .co li{margin:5px 0;}
+
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+  @media(max-width:620px){.vs{grid-template-columns:1fr;}}
+  .vs .col{border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;background:var(--surface);}
+  .vs .col.can{background:var(--teal-bg);border-color:#CFE9DE;}
+  .vs .col.cant{background:var(--amber-bg);border-color:#F0E2C5;}
+  .vs .col.no{background:var(--red-bg);border-color:#F2D5D5;}
+  .vs .col .who{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+  .vs .col.can .who{color:var(--teal-d);}
+  .vs .col.cant .who{color:var(--amber-d);}
+  .vs .col.no .who{color:var(--red);}
+  .vs ul{list-style:none;padding:0;margin:0;}
+  .vs li{position:relative;padding-left:20px;margin:11px 0;font-size:14.5px;line-height:1.52;}
+  .vs li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;}
+  .vs .can li::before{background:var(--teal);}
+  .vs .cant li::before{background:var(--amber);}
+  .vs .no li::before{background:var(--red);}
+  .vs .col b{color:var(--ink);}
+  .vs.three{grid-template-columns:1fr 1fr 1fr;}
+  @media(max-width:760px){.vs.three{grid-template-columns:1fr;}}
+
+  .up{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:22px 24px;margin:16px 0;
+    display:grid;grid-template-columns:auto 1fr;gap:0 20px;align-items:start;}
+  .up .rank{grid-row:1/3;width:44px;height:44px;border-radius:50%;background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;font-family:var(--serif);}
+  .up .ut{font-size:18px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .up .um{font-family:var(--mono);font-size:12.5px;color:var(--coral-ink);font-weight:400;}
+  .up .ub{margin:0;font-size:15px;line-height:1.64;color:var(--body);}
+  .up .ub b{color:var(--ink);}
+  .up .eff{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin-top:14px;padding-top:10px;border-top:1px solid var(--line);line-height:1.55;}
+  .up .ub{grid-column:2;}
+  @media(max-width:560px){.up{grid-template-columns:1fr;gap:12px;}.up .rank{grid-row:auto;}}
+  .up.part .rank{background:var(--ink);}
+  .up.teal .rank{background:var(--teal);}
+
+  ul.clean{list-style:none;padding:0;margin:16px 0;}
+  ul.clean li{position:relative;padding-left:22px;margin:10px 0;line-height:1.64;}
+  ul.clean li::before{content:"";position:absolute;left:3px;top:12px;width:5px;height:5px;border-radius:50%;background:var(--coral);}
+
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:18px 0;}
+  ol.steps li{counter-increment:s;position:relative;padding-left:40px;margin:14px 0;line-height:1.62;}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:25px;height:25px;border-radius:50%;
+    background:var(--ink);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+  ol.steps li b{color:var(--ink);}
+
+  .ex{background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--line-2);
+    border-radius:0 var(--r-md) var(--r-md) 0;padding:16px 20px;margin:24px 0;font-size:15.5px;}
+  .ex .exl{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:10px;}
+
+  .macro{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0;}
+  @media(max-width:700px){.macro{grid-template-columns:1fr;}}
+  .macro .mc{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:20px;}
+  .macro .mc.pri{border-color:var(--coral);border-width:2px;}
+  .macro .mn{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--coral-d);margin-bottom:4px;}
+  .macro .mc.b2 .mn{color:var(--violet);}
+  .macro .mc.b3 .mn{color:var(--teal-d);}
+  .macro .mw{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.45;}
+  .macro .kcal{font-family:var(--serif);font-size:30px;font-weight:700;color:var(--ink);line-height:1;margin-bottom:2px;}
+  .macro .kl{font-size:11.5px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px;}
+  .macro .row{display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-top:1px solid var(--line);}
+  .macro .row span:first-child{color:var(--muted);}
+  .macro .row span:last-child{font-family:var(--mono);font-size:13px;color:var(--ink);font-weight:500;}
+
+  .meals{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  @media(max-width:700px){.meals{grid-template-columns:1fr;}}
+  .meal{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:18px 20px;}
+  .meal .mt{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+  .meal .ms{font-size:12.5px;color:var(--faint);margin-bottom:12px;}
+  .meal ul{list-style:none;padding:0;margin:0 0 12px;}
+  .meal li{font-size:14.5px;line-height:1.5;margin:6px 0;padding-left:15px;position:relative;}
+  .meal li::before{content:"—";position:absolute;left:0;color:var(--line-2);}
+  .meal .mm{font-family:var(--mono);font-size:12.5px;color:var(--coral-ink);background:var(--coral-bg);
+    border-radius:var(--r-sm);padding:5px 9px;display:inline-block;}
+
+  .tl{margin:28px 0;border-left:2px solid var(--line-2);padding-left:0;}
+  .tl .ti{position:relative;padding:0 0 26px 26px;}
+  .tl .ti::before{content:"";position:absolute;left:-7px;top:7px;width:12px;height:12px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--coral);}
+  .tl .ti.done::before{background:var(--coral);}
+  .tl .tw2{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;color:var(--coral-d);}
+  .tl .tt{font-size:17px;font-weight:600;color:var(--ink);margin:1px 0 5px;}
+  .tl .tb{font-size:15px;line-height:1.62;margin:0;}
+  .tl .tb b{color:var(--ink);}
+
+  .pills{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0;}
+  .pill{font-size:13px;background:var(--surface);border:1px solid var(--line-2);border-radius:20px;padding:4px 13px;color:var(--body);}
+  .pill.g{background:var(--teal-bg);border-color:#CFE9DE;color:var(--teal-ink);}
+  .pill.r{background:var(--red-bg);border-color:#F2D5D5;color:var(--red-ink);}
+
+  .foot{margin-top:76px;padding-top:26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--faint);line-height:1.68;}
+  .foot p{margin:.5em 0;}
+
+  .toc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 24px;margin:34px 0;}
+  .toc .tct{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600;margin-bottom:12px;}
+  .toc ol{margin:0;padding-left:22px;font-size:15px;}
+  .toc li{margin:5px 0;}
+  .toc a{border-bottom:none;color:var(--body);}
+  .toc a:hover{color:var(--coral-d);}
+
+  @media(max-width:640px){ .wrap{padding:44px 18px 70px;} body{font-size:16px;} }
+  @media print{ body{background:#fff;} .wrap{padding:0;max-width:none;} section{page-break-inside:avoid;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="kicker">Asom · Personal protocol · v1.0</div>
+<h1 class="title">The Keto Protocol</h1>
+<p class="dek">A complete 12-week operating manual — what to eat, how to train through it, and how to read your Keto-Mojo meter. Built from the two 2026 videos you gave me, then fitted to your body, your gym program, your injuries, and what you can actually buy in Tashkent.</p>
+
+<div class="meta">
+  <div class="m"><div class="ml">Built for</div><div class="mv">80 kg · intermediate lifter<br>5 sessions/week · recomp</div></div>
+  <div class="m"><div class="ml">Sources</div><div class="mv">2 × Thomas DeLauer (2026)<br>+ your training master file</div></div>
+  <div class="m"><div class="ml">Horizon</div><div class="mv">12 weeks<br>First checkpoint: week 8</div></div>
+  <div class="m"><div class="ml">Written</div><div class="mv">7 August 2026</div></div>
+</div>
+
+<div class="toc">
+  <div class="tct">What's in here</div>
+  <ol>
+    <li><a href="#start">Start here — the first 72 hours</a></li>
+    <li><a href="#rules">The 12 rules that actually changed</a></li>
+    <li><a href="#numbers">Your numbers — three day-types</a></li>
+    <li><a href="#timeline">The 12-week timeline</a></li>
+    <li><a href="#food">What to eat in Tashkent — green / yellow / red</a></li>
+    <li><a href="#menu">The menu — nine meals, zero decisions</a></li>
+    <li><a href="#meter">The Keto-Mojo protocol — GKI &amp; uric acid</a></li>
+    <li><a href="#training">Training through it — your split, modified</a></li>
+    <li><a href="#minerals">Electrolytes &amp; fiber — the two things that break people</a></li>
+    <li><a href="#supps">Supplements — what to take, what to skip</a></li>
+    <li><a href="#life">Real life — plov, guests, Friday nights</a></li>
+    <li><a href="#track">The log you keep</a></li>
+    <li><a href="#flags">Red flags &amp; where I disagree with the videos</a></li>
+  </ol>
+</div>
+
+<!-- ============ 1 ============ -->
+<section id="start" style="margin-top:52px;">
+<div class="tag"><span class="badge">1</span> Start here</div>
+<h2 class="sec">The first 72 hours</h2>
+<p class="sec-lead">Everything below this is reference. This box is the only thing you have to act on right now.</p>
+
+<div class="bottomline">
+  <div class="lab">Before day 1</div>
+  <p><strong>1. Take three baseline readings with the meter</strong> — fasted glucose, ketones, uric acid, on a normal eating day <em>before</em> you start. Without a "before" number, the uric acid channel is useless later.</p>
+  <p><strong>2. Weigh yourself and measure your waist</strong> at the navel, first thing in the morning. Same two numbers, once a week, forever.</p>
+  <p><strong>3. Buy the list in §9</strong> — salt, magnesium, psyllium, creatine, fish oil, whey isolate. Missing electrolytes is the #1 reason week one feels like illness.</p>
+  <p><strong>4. Cook one batch of ground beef and boil ten eggs.</strong> Your documented failure mode is not carbs — it's an empty fridge at 14:00 and no decision made. Fix that before it happens.</p>
+  <p><strong>5. Do not start on a Monday.</strong> Start on a Thursday or Friday, so the two worst days land on the weekend and not on Lower Body day.</p>
+</div>
+
+<div class="co co-w">
+  <div class="cot">The one thing most likely to sink this</div>
+  <p>Your master file names it plainly: <b>under-eating on training days is your #1 limiter</b> — May 11, June 6, June 20, July 1, every weak session traced back to skipped food. Keto suppresses appetite <em>hard</em>. That is normally sold as a benefit; for you it is a hazard, because it makes your existing problem worse without you noticing.</p>
+  <p>So for the first two weeks this protocol runs at <b>maintenance calories, not a deficit</b>. One variable at a time. The deficit starts in week 3, once eating this way is automatic.</p>
+</div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="rules">
+<div class="tag"><span class="badge">2</span> The science</div>
+<h2 class="sec">The 12 rules that actually changed</h2>
+<p class="sec-lead">Both videos, merged and de-duplicated. Where they contradict each other, I say so and pick one.</p>
+
+<div class="up">
+  <div class="rank">1</div>
+  <div><div class="ut">Protein is the foundation now — not fat</div><div class="um">≥ 1 g per pound of bodyweight = 180 g/day for you</div></div>
+  <p class="ub">This is the single biggest change from old keto. Ketones are not just fuel, they're <b>signalling molecules</b>: BHB binds receptors that regulate lipolysis, so the higher you push ketones, the more you <em>down-regulate</em> your own fat release. Flooding yourself with fat — and especially with MCT oil — tells the body there's no reason to touch stored fat. Eat enough fat to function, then let the deficit come from your own tissue.</p>
+  <div class="eff">Practical: fat is the <em>filler</em> that brings you up to your calorie number after protein is hit. Never the goal.</div>
+</div>
+
+<div class="up">
+  <div class="rank">2</div>
+  <div><div class="ut">Stop fearing protein and gluconeogenesis</div><div class="um">GNG is demand-driven, not supply-driven</div></div>
+  <p class="ub">Your liver does not make glucose because amino acids showed up; it makes glucose because something needs glucose. Infusion studies drove a five-fold increase in substrate uptake and GNG barely moved. Very-low-carb diets raise GNG about <b>14%</b> at the high end — and that's hormonal, not protein. Over 90% of the raw material is lactate, glycerol, alanine and glutamine; roughly 40% has nothing to do with dietary protein at all. Fat drives GNG more than protein does, and nobody worries about that.</p>
+  <div class="eff">Practical: eat the 180 g. It will not "kick you out." It protects the muscle you spent 2026 rebuilding.</div>
+</div>
+
+<div class="up">
+  <div class="rank">3</div>
+  <div><div class="ut">Micronutrition — whole foods, not "keto products"</div><div class="um">Dirty keto is arguably worse than the junk it replaced</div></div>
+  <p class="ub">A bunless fast-food burger and a packaged keto bar are the same trade: swapping sugar for refined, oxidised oils. On keto the majority of your calories are fat, which means <b>fat quality is no longer a detail — it's most of your diet</b>. Ground beef is called "nature's multivitamin" for a reason. Broccoli, eggs, beef, fish, cheese. Boring works.</p>
+  <div class="eff">Local translation: this rule mostly means <b>stop cooking in cottonseed oil</b> (see §5).</div>
+</div>
+
+<div class="up">
+  <div class="rank">4</div>
+  <div><div class="ut">The fat you eat should be mostly monounsaturated</div><div class="um">Target roughly: ⅓ saturated · 45% mono · ~20% poly</div></div>
+  <p class="ub">Unsaturated fats raise ketones more efficiently than saturated fats do, and the MUFA sources are not the ones people expect: <b>eggs</b>, duck with the skin (~60% MUFA), pork loin (45–50%), dark-meat chicken, olive oil, avocado, macadamia. Keep saturated fat in the mix but get it from <b>aged dairy</b> — hard cheeses, parmesan, sharp cheddar, brynza — not only from fatty meat. There's more than one kind of saturated fat.</p>
+  <div class="eff">Lamb tail fat (курдючный жир), the traditional Uzbek cooking fat, is largely oleic acid — the same fat as olive oil. It's a legitimate green-light fat here.</div>
+</div>
+
+<div class="up">
+  <div class="rank">5</div>
+  <div><div class="ut">Omega-3 becomes disproportionately important</div><div class="um">Fatty fish 2× per week, minimum</div></div>
+  <p class="ub">EPA and DHA get stored in cell membranes, where long-chain omega-3s <b>displace omega-6</b> and compete with arachidonic acid for the enzymes that make inflammatory signalling molecules. A relatively small amount of omega-3 changes how a large amount of omega-6 behaves. Since your total fat intake just went up, this matters more than it did last month. If supplementing, buy the <b>triglyceride form</b>, not ethyl ester — it's markedly more resistant to oxidation.</p>
+  <div class="eff">Cheap local answer: tinned sardines and mackerel. Two tins ≈ 4 g of omega-3 for the price of a coffee.</div>
+</div>
+
+<div class="up">
+  <div class="rank">6</div>
+  <div><div class="ut">Fiber is not optional — soluble especially</div><div class="um">~20 g soluble · 30–35 g total</div></div>
+  <p class="ub">Soluble fiber forms a gel in water that physically slows fat and carbohydrate absorption and binds unesterified cholesterol. Because it draws in water, <b>a small amount creates a large mechanical effect</b> — you don't need huge quantities the way you would with insoluble fiber. It also feeds the bacteria that make butyrate, which supports ketone formation. Low fiber is worse than either zero or high.</p>
+  <div class="eff">Psyllium husk is the workhorse. Chia, flax, avocado, broccoli, Brussels sprouts, cabbage do the rest. Ramp slowly or you'll bloat.</div>
+</div>
+
+<div class="up">
+  <div class="rank">7</div>
+  <div><div class="ut">Minerals are non-negotiable</div><div class="um">Sodium 4,000–6,000 mg · potassium 3,000–4,000 · magnesium 400</div></div>
+  <p class="ub">Glycogen is stored with 3–4 g of water per gram. As glycogen empties, that water leaves — and under low insulin the kidneys reabsorb <b>less</b> sodium, taking potassium and magnesium with it. This is the actual cause of "keto flu." People think they're bonking from low carbs; they're bonking from low sodium. A salt craving also frequently presents as a <b>sugar</b> craving.</p>
+  <div class="eff">For you specifically: you have a documented history of lightheadedness mid-session. Sodium before training is a safety item, not a performance tweak. See §9.</div>
+</div>
+
+<div class="up">
+  <div class="rank">8</div>
+  <div><div class="ut">Ketosis ≠ keto adaptation. Eight weeks minimum.</div><div class="um">And the number going down later is a good sign</div></div>
+  <p class="ub">You can be in ketosis within a day of fasting. <b>Adaptation</b> is the liver, muscle, kidneys, mitochondria and gut all rebuilding machinery, and that takes weeks to months: ketolytic enzymes are significantly up-regulated at the 8-week mark; mitochondria have a half-life of 1–2 weeks so a new steady state takes 2–10 weeks depending on tissue. Muscle glycogen falls to ~57% of baseline in week one with performance visibly suffering, then partially recovers by week 6 — with endurance <em>better</em> than baseline even while glycogen is still low.</p>
+  <div class="eff">If you judge this at week 2 on fatigue and a stalled scale, you're grading a machine that isn't built yet.</div>
+</div>
+
+<div class="up">
+  <div class="rank">9</div>
+  <div><div class="ut">Don't chase ketone numbers</div><div class="um">The meter measures production, not utilisation</div></div>
+  <p class="ub">Early on, ketones spike to 1–2 mmol within a day or two — that tells you ketosis started, not that your tissues can use it. As adaptation improves, blood ketones <b>plateau or fall</b>, because utilisation caught up with production. Chasing the number back up with MCT oil is not just pointless, it's counterproductive — see rule 1. Kidneys also get better at reabsorbing ketones over time, which is why urine strips become useless after a few weeks.</p>
+  <div class="eff">Your meter is a blood meter, so it stays honest. But the <em>interpretation</em> has to change as you adapt. §7 handles this.</div>
+</div>
+
+<div class="up">
+  <div class="rank">10</div>
+  <div><div class="ut">Cycle it — both directions</div><div class="um">Lean protein blocks down · planned carb touches up</div></div>
+  <p class="ub">Two levers, opposite directions, same purpose. <b>Down:</b> after a stretch of higher-fat keto, run 3–4 days of protein-sparing modified fasting — very lean protein, low fat, low carb — so that the body, having become efficient at burning dietary fat, is forced to pull from your own. <b>Up:</b> 30–50 g of carbs once or twice a week, and a planned refeed week every 8–12 weeks. Carbohydrate overfeeding raised plasma leptin 28% and lifted 24-hour energy expenditure; fat overfeeding did neither. Strategic flexibility doesn't undo adaptation — in most cases it supports it.</p>
+  <div class="eff">And it protects glucose tolerance. Keto-adapted cyclists showed reduced GLUT4 and impaired glucose handling — reversible, but only if you occasionally use the machinery.</div>
+</div>
+
+<div class="up">
+  <div class="rank">11</div>
+  <div><div class="ut">Feed the gut deliberately</div><div class="um">Keto is either very good or very bad for the microbiome</div></div>
+  <p class="ub">Diet shapes the microbiome independently of fiber, and keto swings it hard in one direction or the other depending entirely on <em>what</em> you eat. Fermented dairy every day is the simplest lever. In a human study, microbial diversity got <b>worse at two weeks</b> and then recovered to healthy-control levels within a few months — so an early gut wobble is expected, not a verdict.</p>
+  <div class="eff">You live in the best country on earth for this rule. Suzma, katyk, kefir, tvorog — daily, unsweetened, full fat.</div>
+</div>
+
+<div class="up part">
+  <div class="rank">12</div>
+  <div><div class="ut">Keto is a tool, not an identity</div><div class="um">The thing that kills it is friction, not carbohydrate</div></div>
+  <p class="ub">The fastest way this fails is not a slice of non. It's food not being accessible, being stressed, and every meal turning into a negotiation. Default meals you don't have to think about. A kitchen stocked so the right choice is the lazy choice. And nobody around you needs to eat this way — you just need an environment where you're not defending it at every table.</p>
+  <div class="eff">This rule is why §6 exists as a fixed menu rather than a list of "allowed foods."</div>
+</div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="numbers">
+<div class="tag"><span class="badge">3</span> Your numbers</div>
+<h2 class="sec">Three day-types, one protein number</h2>
+<p class="sec-lead">80 kg = 176 lb. Protein floor is 180 g every single day, in all three modes. Everything else moves.</p>
+
+<div class="macro">
+  <div class="mc pri">
+    <div class="mn">Mode A — Standard</div>
+    <div class="mw">Your default. Weeks 1–2 at the induction number, weeks 3+ at the deficit number.</div>
+    <div class="kcal">2,400 <span style="font-size:17px;color:var(--faint);font-weight:400;">→ 2,150</span></div>
+    <div class="kl">kcal · induction → deficit</div>
+    <div class="row"><span>Protein</span><span>180 g</span></div>
+    <div class="row"><span>Fat</span><span>180 → 150 g</span></div>
+    <div class="row"><span>Net carbs</span><span>≤ 20 g</span></div>
+    <div class="row"><span>Fiber</span><span>30–35 g</span></div>
+  </div>
+  <div class="mc b2">
+    <div class="mn">Mode B — Lean (PSMF)</div>
+    <div class="mw">Weekends only, and <b>not before week 9</b>. This is where the videos' "50% protein" actually lives — here it's 65%.</div>
+    <div class="kcal">~1,550</div>
+    <div class="kl">kcal · deliberate deep deficit</div>
+    <div class="row"><span>Protein</span><span>240–250 g</span></div>
+    <div class="row"><span>Fat</span><span>50 g</span></div>
+    <div class="row"><span>Net carbs</span><span>≤ 20 g</span></div>
+    <div class="row"><span>Never on</span><span>Lower Body day</span></div>
+  </div>
+  <div class="mc b3">
+    <div class="mn">Mode C — Carb touch</div>
+    <div class="mw">Once a week from week 5. Carbs go <b>into the training window</b> or into the Friday dinner — never as a standalone snack.</div>
+    <div class="kcal">~1,900</div>
+    <div class="kl">kcal · fat drops to make room</div>
+    <div class="row"><span>Protein</span><span>180 g</span></div>
+    <div class="row"><span>Fat</span><span>110 g</span></div>
+    <div class="row"><span>Net carbs</span><span>30–50 g</span></div>
+    <div class="row"><span>Timing</span><span>peri-workout / evening</span></div>
+  </div>
+</div>
+
+<h3 class="sub">Where the fat comes from</h3>
+<p>Rule 4 in grams, out of the 150 g on a standard day. You will never hit this exactly — it's a shape to aim at, not a spreadsheet.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Type</th><th class="mono">Target</th><th>Get it from</th><th>Watch out</th></tr></thead>
+<tbody>
+<tr><td class="nm">Monounsaturated</td><td class="mono">~65 g</td><td>Eggs, olive oil, avocado, lamb tail fat, dark-meat chicken, almonds, macadamia, pork loin</td><td>The one to <b>maximise</b>. Raises ketones more efficiently than saturated fat.</td></tr>
+<tr><td class="nm">Saturated</td><td class="mono">~50 g</td><td>Aged cheese, butter, ghee, beef, lamb, smetana, kaymak</td><td>Get it from <b>dairy as well as meat</b> — different saturated fats do different things.</td></tr>
+<tr><td class="nm">Polyunsaturated ω-3</td><td class="mono">3–4 g</td><td>Mackerel, sardines, herring, trout, salmon, fish oil (TG form), flax, chia</td><td>The <b>floor you must hit</b>, not a cap. 2 fish dinners a week covers it.</td></tr>
+<tr><td class="nm">Polyunsaturated ω-6</td><td class="mono">keep low</td><td>Incidental — nuts, chicken, eggs</td><td>Cap walnuts at ~20 g/day. <b>Zero seed oils.</b></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-i">
+  <div class="cot">Why my protein number differs from the video</div>
+  <p>Video 1 says <b>"50% of calories from protein."</b> At 2,150 kcal that would be 270 g of protein a day, which is not a diet — it's a protein-sparing modified fast. Video 2 gives the usable version: <b>a minimum of 1 g per pound</b>. So: 180 g daily as the floor, and the 50%-protein configuration becomes Mode B, run in short blocks. Both videos are satisfied; neither is misread.</p>
+</div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="timeline">
+<div class="tag"><span class="badge">4</span> The plan</div>
+<h2 class="sec">Twelve weeks, phase by phase</h2>
+<p class="sec-lead">What you do, and — just as important — what you should expect to feel, so you don't misread normal adaptation as failure.</p>
+
+<div class="tl">
+  <div class="ti">
+    <div class="tw2">Days −3 to 0 · Prep</div>
+    <div class="tt">Baseline &amp; stock</div>
+    <p class="tb">Three meter readings on a normal diet. Weight + waist. Shopping done, beef batch-cooked, ten eggs boiled. Start Thursday. <b>If your current 8-week gym cycle is near a retest week, do the retest first</b> — you will not get a clean max reading again until week 8 of this.</p>
+  </div>
+  <div class="ti">
+    <div class="tw2">Days 1–4 · Induction</div>
+    <div class="tt">The hard part. Eat at maintenance.</div>
+    <p class="tb">Net carbs under 20 g. Muscle glycogen falls sharply and so does performance — this is documented and expected, not a sign anything is wrong. Electrolytes from hour one, not when you feel bad. Ketones will hit 1–2 mmol within 48 hours. <b>Scale drops 2–4 kg — that is water, not fat.</b> Every gram of glycogen took 3–4 g of water with it.</p>
+  </div>
+  <div class="ti">
+    <div class="tw2">Weeks 1–2</div>
+    <div class="tt">Volume down 20–25%, no PR attempts</div>
+    <p class="tb">Drop the last working set of every exercise; keep the loads. Uric acid <b>rises now</b> — expected, ketones and urate compete for the same kidney transporter. Fiber ramps from 5 g psyllium to 10 g. Half-dose the Pre JYM. Still eating at maintenance.</p>
+  </div>
+  <div class="ti">
+    <div class="tw2">Weeks 3–4</div>
+    <div class="tt">Deficit starts · full volume returns</div>
+    <p class="tb">Drop to 2,150 kcal (fat 180 g → 150 g; protein unchanged). Restore all working sets. If Lower Body is still more than 10% down, add the intra-workout honey — <b>Tuesday only</b>, 30 g sipped across the session. Uric acid should be heading back toward baseline by now.</p>
+  </div>
+  <div class="ti">
+    <div class="tw2">Weeks 5–6</div>
+    <div class="tt">Add the weekly carb touch · start pushing again</div>
+    <p class="tb">One Mode C day per week — Friday, wrapped around the evening gathering. Endurance and work capacity should now be noticeably better than week 2 even though glycogen is still below baseline. Begin attempting load progression again, back and legs first.</p>
+  </div>
+  <div class="ti">
+    <div class="tw2">Weeks 7–8</div>
+    <div class="tt">The checkpoint</div>
+    <p class="tb">Ketolytic enzymes are significantly up-regulated at 8 weeks — this is the earliest honest point to judge the whole thing. <b>Retest your key lifts</b>: leg press, leg extension, lat pulldown, chest-supported row, machine chest press. Expect legs at or near baseline, pressing possibly a little under, conditioning better.</p>
+  </div>
+  <div class="ti">
+    <div class="tw2">Weeks 9–11</div>
+    <div class="tt">Cycling begins</div>
+    <p class="tb">Now — and not before — introduce Mode B. Saturday and Sunday become lean days; Monday–Friday stays Mode A; Friday carries the carb touch. This is the fat-loss engine described in rule 10, and it only works once you're adapted enough to tolerate it.</p>
+  </div>
+  <div class="ti">
+    <div class="tw2">Week 12</div>
+    <div class="tt">Planned refeed · then decide</div>
+    <p class="tb">5–7 days of structured carbohydrate at maintenance — real food, 150–200 g carbs/day, protein unchanged. Leptin and energy expenditure come back up, glucose tolerance gets exercised, and you find out whether you want another block. Stepping out of ketosis on purpose does not erase what you built.</p>
+  </div>
+</div>
+
+<div class="co co-w">
+  <div class="cot">Expect this, and don't panic</div>
+  <p><b>Week 1–2:</b> fatigue, weaker lifts, headache, worse sleep, salt cravings, higher uric acid, a big whoosh on the scale. Every one of these is on the expected list.</p>
+  <p><b>Week 2:</b> gut diversity measurably dips before it improves. Bloating from the fiber ramp is a dose problem, not a keto problem — slow the ramp.</p>
+  <p><b>Weeks 4–6:</b> uric acid should return toward your baseline. If it hasn't by week 6, that's a real flag — see §13.</p>
+  <p><b>Week 6+:</b> ketone readings <em>falling</em> while energy is good = adaptation working. Do not "fix" it.</p>
+</div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="food">
+<div class="tag"><span class="badge">5</span> The shelf</div>
+<h2 class="sec">What to eat in Tashkent</h2>
+<p class="sec-lead">Adapted to what's actually in Korzinka, Makro and the bazaar — not a California shopping list.</p>
+
+<div class="vs three">
+  <div class="col can">
+    <div class="who">Green — eat freely</div>
+    <ul>
+      <li><b>Beef, lamb, ground beef (фарш)</b> — the base of everything</li>
+      <li><b>Eggs</b> — 4+ a day, your main MUFA source</li>
+      <li><b>Chicken thighs with skin, turkey</b></li>
+      <li><b>Fatty fish</b> — скумбрия, сардины, сельдь, форель; tinned counts</li>
+      <li><b>Tvorog, suzma, katyk, kefir, smetana, kaymak</b> — full fat, unsweetened</li>
+      <li><b>Hard/aged cheese</b> — parmesan, sharp cheddar, brynza, goat cheese</li>
+      <li><b>Butter, ghee, olive oil, lamb tail fat (курдючный жир)</b></li>
+      <li><b>Avocado, olives</b></li>
+      <li><b>Cabbage, cauliflower, broccoli, cucumber, zucchini, eggplant, pepper, spinach, radish</b></li>
+      <li><b>All зелень</b> — dill, cilantro, parsley, green onion</li>
+      <li><b>Almonds, pecans, macadamia, pumpkin seeds</b></li>
+      <li><b>Chia, flax, psyllium husk</b></li>
+    </ul>
+  </div>
+  <div class="col cant">
+    <div class="who">Yellow — count these</div>
+    <ul>
+      <li><b>Tomato, onion, carrot</b> — small amounts; they quietly add up in salads</li>
+      <li><b>Walnuts</b> — everywhere here, but high omega-6. Cap ~20 g/day</li>
+      <li><b>Berries</b> — 50–80 g, best saved for the carb-touch day</li>
+      <li><b>Nut butters</b> — easy to eat 400 kcal without noticing</li>
+      <li><b>Milk, ryazhenka</b> — ~5 g carbs per 100 ml</li>
+      <li><b>Erythritol / stevia sweets</b> — fine, but don't build the diet on them</li>
+      <li><b>Whey protein</b> — isolate, not concentrate</li>
+      <li><b>Honey</b> — <em>only</em> intra-workout, and only per §8</li>
+    </ul>
+  </div>
+  <div class="col no">
+    <div class="who">Red — out</div>
+    <ul>
+      <li><b>Non, plov, samsa, manti, lagman, chuchvara</b></li>
+      <li><b>Rice, pasta, potato, bread of any kind</b></li>
+      <li><b>Sugar, dried fruit, fresh fruit, juice, compote</b></li>
+      <li><b>Cottonseed oil (хлопковое масло)</b> — the single most important swap you'll make</li>
+      <li><b>Sunflower, corn, soybean oil</b></li>
+      <li><b>Packaged "keto" snacks made with sunflower oil</b> — this is exactly what video 1 warns about</li>
+      <li><b>Beer, sweet drinks</b></li>
+    </ul>
+  </div>
+</div>
+
+<div class="co co-r">
+  <div class="cot">The most important local rule in this whole document</div>
+  <p><b>Cottonseed oil is the default cooking fat in Uzbek kitchens</b> — plov, fried eggs, everything. It is a seed oil, and on a diet where fat is 60%+ of your calories, cooking in it undoes most of rule 3 and rule 4 at once. Replace it with butter, ghee, olive oil, or lamb tail fat. If someone else is cooking for you, this is the one thing worth asking about.</p>
+</div>
+
+<h3 class="sub">Two local adaptations worth knowing</h3>
+
+<div class="ex">
+  <div class="exl">A2 dairy</div>
+  <p style="margin-top:0;">Video 1 recommends A2 cow dairy. True A2-branded milk is essentially unavailable here. But <b>goat and sheep milk are naturally A2-type</b> — so goat cheese, brynza and sheep-milk products are the practical local route to the same thing. If cow dairy bothers your digestion, that's the swap to try before concluding you can't do dairy.</p>
+</div>
+
+<div class="ex">
+  <div class="exl">The fermented dairy advantage</div>
+  <p style="margin-top:0;">Video 1's gut section ends with a paid probiotic recommendation. You don't need it. <b>Suzma, katyk and kefir are the same intervention</b>, made locally, cheaper, and eaten daily instead of swallowed. One serving a day, unsweetened, full fat. Add a commercial probiotic later only if the gut is still unhappy at week 6.</p>
+</div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="menu">
+<div class="tag"><span class="badge">6</span> The menu</div>
+<h2 class="sec">Nine meals. No decisions.</h2>
+<p class="sec-lead">Your root cause is decision fatigue, not willpower. So there is no "what should I eat" — there are three breakfasts, three lunches, three dinners, and you rotate. Pick by what's in the fridge.</p>
+
+<h3 class="sub">Breakfast — non-negotiable, every single day</h3>
+<div class="meals">
+  <div class="meal">
+    <div class="mt">B1 · Eggs &amp; avocado</div>
+    <div class="ms">The default. 10 minutes.</div>
+    <ul>
+      <li>4 eggs fried in 15 g butter</li>
+      <li>100 g tvorog (9%)</li>
+      <li>½ avocado</li>
+      <li>Greens, dill, salt generously</li>
+    </ul>
+    <div class="mm">~700 kcal · P 43 · F 57 · NC 6</div>
+  </div>
+  <div class="meal">
+    <div class="mt">B2 · Suzma bowl</div>
+    <div class="ms">Sixty seconds. Zero cooking. No excuse.</div>
+    <ul>
+      <li>200 g suzma or full-fat Greek yogurt</li>
+      <li>1 scoop whey isolate stirred in</li>
+      <li>30 g almonds</li>
+      <li>15 g chia · stevia</li>
+    </ul>
+    <div class="mm">~540 kcal · P 54 · F 31 · NC 11</div>
+  </div>
+  <div class="meal">
+    <div class="mt">B3 · Beef &amp; eggs</div>
+    <div class="ms">Training mornings. Cook the beef the night before.</div>
+    <ul>
+      <li>150 g ground beef</li>
+      <li>3 eggs in the same pan</li>
+      <li>Handful of spinach</li>
+    </ul>
+    <div class="mm">~600 kcal · P 52 · F 42 · NC 2</div>
+  </div>
+  <div class="meal" style="background:var(--surface-2);">
+    <div class="mt">The rule</div>
+    <div class="ms">From your master file, ported to keto.</div>
+    <ul>
+      <li>Every weak session you've logged traces to a skipped breakfast</li>
+      <li>If you'd skip it, <b>B2 instead</b> — it takes a minute</li>
+      <li>Never train fasted on Lower Body day</li>
+    </ul>
+  </div>
+</div>
+
+<h3 class="sub">Lunch</h3>
+<div class="meals">
+  <div class="meal">
+    <div class="mt">L1 · Ground beef skillet</div>
+    <div class="ms">Batch-cook Sunday, eats three times.</div>
+    <ul>
+      <li>200 g ground beef</li>
+      <li>200 g cabbage or broccoli, fried in the beef fat</li>
+      <li>40 g parmesan or aged cheddar</li>
+    </ul>
+    <div class="mm">~690 kcal · P 63 · F 47 · NC 6</div>
+  </div>
+  <div class="meal">
+    <div class="mt">L2 · Chicken thigh &amp; big salad</div>
+    <div class="ms">Skin on. The skin is the point.</div>
+    <ul>
+      <li>250 g chicken thigh with skin</li>
+      <li>Cucumber, greens, 15 g olive oil, lemon</li>
+      <li>½ avocado</li>
+    </ul>
+    <div class="mm">~790 kcal · P 55 · F 60 · NC 8</div>
+  </div>
+  <div class="meal">
+    <div class="mt">L3 · Shashlik, out</div>
+    <div class="ms">Your restaurant default. Order this without thinking.</div>
+    <ul>
+      <li>300 g lamb or beef shashlik</li>
+      <li>Achichuk salad, light on the onion</li>
+      <li>Greens · <b>no non, no plov</b></li>
+    </ul>
+    <div class="mm">~680 kcal · P 60 · F 45 · NC 8</div>
+  </div>
+  <div class="meal" style="background:var(--surface-2);">
+    <div class="mt">Top-up · The protein net</div>
+    <div class="ms">Your existing "shake saves the day" rule.</div>
+    <ul>
+      <li>1 scoop whey isolate in water</li>
+      <li>15 g almond butter or 10 g MCT oil</li>
+      <li>Pinch of salt</li>
+    </ul>
+    <div class="mm">~190 kcal · P 27 · F 9 · NC 3</div>
+  </div>
+</div>
+
+<h3 class="sub">Dinner</h3>
+<div class="meals">
+  <div class="meal">
+    <div class="mt">D1 · Fatty fish</div>
+    <div class="ms"><b>Twice a week, mandatory.</b> This is rule 5.</div>
+    <ul>
+      <li>200 g mackerel, trout or salmon</li>
+      <li>Roasted zucchini + eggplant, 15 g olive oil</li>
+      <li>Budget version: 2 tins of sardines in olive oil</li>
+    </ul>
+    <div class="mm">~560 kcal · P 40 · F 41 · NC 8</div>
+  </div>
+  <div class="meal">
+    <div class="mt">D2 · Steak &amp; butter</div>
+    <div class="ms">The keto treat. When you want to indulge, indulge <em>here</em>.</div>
+    <ul>
+      <li>250 g beef steak</li>
+      <li>15 g butter melted over it</li>
+      <li>Grilled vegetables, greens</li>
+    </ul>
+    <div class="mm">~650 kcal · P 55 · F 45 · NC 6</div>
+  </div>
+  <div class="meal">
+    <div class="mt">D3 · Turkey &amp; cauliflower mash</div>
+    <div class="ms">Highest protein, lowest fat — good before a lean day.</div>
+    <ul>
+      <li>250 g turkey breast</li>
+      <li>250 g cauliflower mashed with 25 g butter</li>
+      <li>30 g cheddar melted in</li>
+    </ul>
+    <div class="mm">~620 kcal · P 68 · F 35 · NC 8</div>
+  </div>
+  <div class="meal" style="background:var(--surface-2);">
+    <div class="mt">A day that works</div>
+    <div class="ms">B1 + L1 + D1 + top-up</div>
+    <ul>
+      <li>Total: <b>~2,140 kcal · P 173 · F 154 · NC 23</b></li>
+      <li>That's Mode A, weeks 3+, hit almost exactly</li>
+      <li>For weeks 1–2 add 30 g almonds and a second top-up</li>
+    </ul>
+  </div>
+</div>
+
+<h3 class="sub">Mode B — the lean day (weekends, week 9 onward)</h3>
+<div class="tw">
+<table>
+<thead><tr><th>Meal</th><th>What</th><th class="mono">P</th><th class="mono">F</th><th class="mono">kcal</th></tr></thead>
+<tbody>
+<tr><td class="nm">Breakfast</td><td>6 egg whites + 1 whole egg + 150 g tvorog (2%)</td><td class="mono">38</td><td class="mono">9</td><td class="mono">270</td></tr>
+<tr><td class="nm">Lunch</td><td>300 g chicken breast + large salad + 5 g olive oil</td><td class="mono">66</td><td class="mono">12</td><td class="mono">390</td></tr>
+<tr><td class="nm">Snack</td><td>2 scoops whey isolate in water</td><td class="mono">50</td><td class="mono">2</td><td class="mono">226</td></tr>
+<tr><td class="nm">Dinner</td><td>300 g white fish or turkey breast + 300 g steamed veg</td><td class="mono">66</td><td class="mono">8</td><td class="mono">360</td></tr>
+<tr><td class="nm">Evening</td><td>200 g tvorog (2%) + olives</td><td class="mono">36</td><td class="mono">14</td><td class="mono">290</td></tr>
+<tr class="hi"><td class="nm">Total</td><td>65% of calories from protein — the real "50% protein" day</td><td class="mono">256</td><td class="mono">45</td><td class="mono">~1,540</td></tr>
+</tbody>
+</table>
+</div>
+<p>It is supposed to feel like a deficit. Two days, then back to Mode A. Never on a Lower Body day, never two weekends where you also trained hard on Friday evening.</p>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="meter">
+<div class="tag"><span class="badge">7</span> The meter</div>
+<h2 class="sec">Reading the Keto-Mojo properly</h2>
+<p class="sec-lead">Three channels — glucose, ketones, uric acid. Most people use one and misread it. Here's what each is actually for.</p>
+
+<h3 class="sub">GKI — the number that matters more than ketones alone</h3>
+<p>The Glucose–Ketone Index puts your two moving numbers into one ratio, which is far more informative than a ketone reading on its own. Both values must be in <strong>mmol/L</strong>:</p>
+
+<div class="ex">
+  <div class="exl">The formula</div>
+  <p style="margin-top:0;font-family:var(--mono);font-size:15px;"><b>GKI = glucose (mmol/L) ÷ ketones (mmol/L)</b></p>
+  <p style="margin-bottom:0;">If your meter is set to mg/dL, divide glucose by 18 first. Example: glucose 86 mg/dL ÷ 18 = 4.8; ketones 1.6 → <b>GKI = 3.0</b>.</p>
+</div>
+
+<div class="tw">
+<table>
+<thead><tr><th class="mono">GKI</th><th>Zone</th><th>What it means for you</th></tr></thead>
+<tbody>
+<tr><td class="mono">&gt; 9</td><td class="nm">Not ketogenic</td><td>Carbs got in somewhere. Check sauces, onion, "sugar-free" products, and the fruit you forgot about.</td></tr>
+<tr><td class="mono">6 – 9</td><td class="nm">Light ketosis</td><td>Fine for maintenance and general health. Not where fat loss lives.</td></tr>
+<tr class="hi"><td class="mono">3 – 6</td><td class="nm">Moderate — your target</td><td><b>This is the band you want.</b> Body recomposition, fat loss, stable energy. Aim here and stop.</td></tr>
+<tr><td class="mono">1 – 3</td><td class="nm">Deep ketosis</td><td>Fine occasionally — after a fast, on a lean day. Not a daily goal, and not "better."</td></tr>
+<tr><td class="mono">&lt; 1</td><td class="nm">Therapeutic</td><td>Used in supervised clinical protocols. No reason to chase it, and rule 1 says pushing ketones this high suppresses your own fat release.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="sub">Ketones on their own</h3>
+<div class="tw">
+<table>
+<thead><tr><th class="mono">BHB mmol/L</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td class="mono">&lt; 0.5</td><td>Not in ketosis</td></tr>
+<tr><td class="mono">0.5 – 1.0</td><td>Entering / light</td></tr>
+<tr class="hi"><td class="mono">1.0 – 3.0</td><td><b>Nutritional ketosis — the working band</b></td></tr>
+<tr><td class="mono">3.0 – 5.0</td><td>Deep, usually fasting. Not better for fat loss.</td></tr>
+<tr><td class="mono">&gt; 5.0 <em>with</em> high glucose + nausea, vomiting or rapid breathing</td><td>Stop and seek medical care. Very unlikely without diabetes — but the meter can show it, so you should know what it looks like.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-i">
+  <div class="cot">The interpretation flips at week 6</div>
+  <p><b>Weeks 1–6:</b> a rising ketone number means the machinery is switching on. Good.</p>
+  <p><b>Week 6 onward:</b> a <em>falling</em> ketone number — say 1.8 drifting down to 0.8 — while glucose stays low, energy is good and lifts are holding, means <b>your tissues got better at burning ketones</b>. Utilisation caught up with production. That is the goal, not a problem. Do not push it back up with MCT oil; per rule 1 that actively slows fat release.</p>
+  <p>The signal that something is actually wrong is not a low ketone number. It's a low ketone number <em>together with</em> rising glucose, bad energy and stalled lifts.</p>
+</div>
+
+<h3 class="sub">Uric acid — the channel nobody uses, and your best safety instrument</h3>
+<p>On keto, ketones and urate compete for the same kidney transporter, so uric acid <strong>rises in the first 1–2 weeks and returns to baseline by weeks 4–6</strong>. That curve is normal. What matters is whether yours follows it.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th class="mono">mg/dL</th><th class="mono">µmol/L</th><th>Reading</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td class="mono">3.5 – 7.2</td><td class="mono">210 – 430</td><td class="nm">Normal male range</td><td>Nothing. Carry on.</td></tr>
+<tr><td class="mono">7.2 – 9.0</td><td class="mono">430 – 535</td><td class="nm">Elevated — expected weeks 1–2</td><td>Water and sodium up. Recheck weekly. Should be falling by week 4.</td></tr>
+<tr class="hi"><td class="mono">&gt; 9.0 past week 6</td><td class="mono">&gt; 535</td><td class="nm">Real flag</td><td><b>See a doctor.</b> Especially relevant given your pelvis and joint history — you don't want to confuse a gout flare with a training injury.</td></tr>
+<tr><td class="mono">any level + joint pain</td><td class="mono">—</td><td class="nm">Symptomatic</td><td>Stop guessing, get it looked at. Big toe, ankle, knee — sudden, hot, swollen.</td></tr>
+</tbody>
+</table>
+</div>
+<p style="font-size:15px;color:var(--muted);">Conversion if your meter reads µmol/L: mg/dL × 59.48 = µmol/L.</p>
+
+<h3 class="sub">Fasting glucose will drift up. That's not diabetes.</h3>
+<p>After a few weeks you may see morning glucose settle around 5.0–5.6 mmol/L (90–100 mg/dL) even though you're eating almost no carbohydrate. This is adaptive glucose sparing — muscle deliberately stops taking up glucose so the brain can have it. Check an afternoon reading; it'll be lower. Watch it, don't panic about it.</p>
+
+<h3 class="sub">Testing schedule &amp; strip budget</h3>
+<div class="tw">
+<table>
+<thead><tr><th>Period</th><th>Glucose + ketones</th><th>Uric acid</th><th class="mono">Strips</th></tr></thead>
+<tbody>
+<tr><td class="nm">Baseline (pre-start)</td><td>3 readings across 3 days</td><td>All 3 days</td><td class="mono">3 + 3 + 3</td></tr>
+<tr><td class="nm">Weeks 1–2</td><td>Every morning, fasted</td><td>Day 1, 7, 14</td><td class="mono">14 + 14 + 3</td></tr>
+<tr><td class="nm">Weeks 3–8</td><td>Monday &amp; Thursday mornings</td><td>Weekly</td><td class="mono">12 + 12 + 6</td></tr>
+<tr><td class="nm">Week 9+</td><td>Once a week + after any refeed</td><td>Monthly</td><td class="mono">~4/mo</td></tr>
+<tr class="hi"><td class="nm">First 8 weeks total</td><td colspan="2">Order roughly this much before you start</td><td class="mono">29 G · 29 K · 12 UA</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-w">
+  <div class="cot">Make the readings comparable or don't bother</div>
+  <ul style="margin:0;">
+    <li><b>Same time every morning</b> — before coffee, food, or training.</li>
+    <li><b>Wash hands with plain water and dry them.</b> Alcohol wipes and any food residue on a fingertip will wreck a glucose reading.</li>
+    <li><b>Wipe away the first drop, test the second.</b></li>
+    <li><b>Never within 2 hours of a hard session.</b> Training transiently drops ketones (muscle takes them up) and raises glucose (adrenaline). You'll read it as failure. It isn't.</li>
+    <li><b>One bad night's sleep will move both numbers.</b> Note it in the log rather than reacting to it.</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="training">
+<div class="tag"><span class="badge">8</span> Training</div>
+<h2 class="sec">Your split, modified</h2>
+<p class="sec-lead">You keep all five sessions. What changes is volume, expectations, and the salt you drink before walking in.</p>
+
+<div class="co co-r">
+  <div class="cot">Non-negotiables that do not change</div>
+  <p><b>The shoulder-prep circuit stays exactly as written</b> — face pulls, arm circles, wall slides, external rotations, scapular push-ups, pendulums. It matters <em>more</em> now: lower glycogen and less body water means stiffer connective tissue. Still no incline barbell bench, no dips, no butterfly.</p>
+  <p><b>Back work is a medical priority</b>, not a preference — your therapist's directive on holding the pelvic alignment. So when volume gets cut, <b>Upper Pull is the last thing to lose a set.</b> Cut push and accessory work first.</p>
+</div>
+
+<h3 class="sub">Weeks 1–2 — protect, don't push</h3>
+<ul class="clean">
+  <li><b>Cut the last working set of every exercise.</b> Keep the load, lose the volume. That's roughly a 20–25% cut, which matches the glycogen drop.</li>
+  <li><b>No PR attempts. None.</b> If leg press 100×10×3 becomes 100×7, that is water and glycogen, not lost muscle. The research is explicit: performance suffers in week 1 and recovers by week 6.</li>
+  <li><b>Tuesday Lower Body is the highest-risk session</b> — 90 minutes, 660 kcal, high-rep work at your heaviest loads. In week 1, drop one exercise entirely (calves or lunges) rather than grinding through all four.</li>
+  <li><b>1,000 mg sodium 30 minutes before every session</b>, in water. Given your history of lightheadedness mid-session, this is a safety measure.</li>
+  <li><b>Half-dose the Pre JYM.</b> 300 mg of caffeine on a sodium-depleted body is how you get palpitations and then blame keto. Half serving, weeks 1–2, always with the electrolyte drink.</li>
+</ul>
+
+<h3 class="sub">Weeks 3–6 — rebuild, then push</h3>
+<ul class="clean">
+  <li><b>Restore full volume in week 3.</b> Add sets back before adding load.</li>
+  <li><b>The honey window.</b> If Lower Body is still more than 10% below baseline at week 3, use the intra-workout carb: <b>30 g of honey (≈2 tbsp) sipped across the session, Tuesday only.</b> Muscle takes up glucose during contraction without needing insulin, so this restores some glycogen and power without meaningfully disturbing the diet. Not before the session, not after — during.</li>
+  <li><b>Good phase for your July 4 finding.</b> You diagnosed that at 45–50 kg your hands and forearms take over from your lats. Loads are down anyway right now — so this is the ideal window to run rows and pulldowns lighter and slower, drill the back activation properly, and add straps to remove grip as the limiter.</li>
+  <li><b>Keep hyperextensions in.</b> Bodyweight, every pull day. Cheapest possible insurance on the pelvis directive.</li>
+</ul>
+
+<h3 class="sub">Weeks 7–8 — retest</h3>
+<p>Five lifts, same conditions as your master file: machine chest press, lat pulldown, chest-supported row, leg press, leg extension. Fed, mid-morning or evening, full warm-up. Write the numbers next to your June–July benchmarks. That comparison is the honest verdict on whether keto works for <em>you</em> — not the scale, not the meter.</p>
+
+<h3 class="sub">The weekly rhythm from week 9</h3>
+<div class="tw">
+<table>
+<thead><tr><th>Day</th><th>Session</th><th>Diet mode</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="nm">Mon</td><td>Upper Push</td><td>A — Standard</td><td>Alternate chest press / shoulder press order as before</td></tr>
+<tr><td class="nm">Tue</td><td>Lower Body</td><td>A — highest calorie day</td><td>Honey intra-workout if needed. Eat properly beforehand.</td></tr>
+<tr><td class="nm">Wed</td><td>Upper Pull</td><td>A — Standard</td><td>Medical priority. Never the session you skip.</td></tr>
+<tr><td class="nm">Thu</td><td>Upper Power</td><td>A — Standard</td><td></td></tr>
+<tr class="hi"><td class="nm">Fri</td><td>Lower Power (AM)</td><td><b>C — Carb touch</b></td><td>Train morning, carbs land at the evening gathering. Your social calendar becomes the plan instead of fighting it.</td></tr>
+<tr><td class="nm">Sat</td><td>Rest / swim</td><td><b>B — Lean</b></td><td>Breaststroke dominant, no butterfly. Swim is Zone-2, fine on a lean day.</td></tr>
+<tr><td class="nm">Sun</td><td>Rest / swim</td><td><b>B — Lean</b></td><td>Batch-cook for the week here.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-i">
+  <div class="cot">Why this layout</div>
+  <p>Friday is your recurring social evening — the master file says plan around it, don't fight it. So it becomes the scheduled carb touch: you train Lower Power that morning, the carbs land in the evening meal where they were going to land anyway, and it's a <b>planned protocol day instead of a failure</b>. The two lean days then follow immediately, on rest days, where the deficit costs you nothing in the gym.</p>
+</div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="minerals">
+<div class="tag"><span class="badge">9</span> Minerals &amp; fiber</div>
+<h2 class="sec">The two things that break people</h2>
+<p class="sec-lead">Almost everything filed under "keto flu" is electrolytes. Almost everything filed under "keto wrecked my digestion" is fiber done wrong.</p>
+
+<h3 class="sub">Daily mineral targets</h3>
+<div class="tw">
+<table>
+<thead><tr><th>Mineral</th><th class="mono">Daily target</th><th>Where it comes from</th></tr></thead>
+<tbody>
+<tr><td class="nm">Sodium</td><td class="mono">4,000–6,000 mg</td><td>10–15 g of salt. Salt everything, plus the drink below. This is 3–4× what you're used to and it is correct.</td></tr>
+<tr><td class="nm">Potassium</td><td class="mono">3,000–4,000 mg</td><td>Mostly food: avocado (~700 mg each), spinach, meat, mushrooms, plus a little salt substitute.</td></tr>
+<tr><td class="nm">Magnesium</td><td class="mono">400 mg elemental</td><td>Supplement — citrate or glycinate, <b>not oxide</b> (poorly absorbed). Split into two doses.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="ex">
+  <div class="exl">The Tashkent electrolyte drink · per 500 ml</div>
+  <ul class="clean" style="margin-top:6px;">
+    <li><b>½ tsp fine salt</b> — ~1,150 mg sodium</li>
+    <li><b>¼ tsp potassium chloride salt substitute</b> (соль с пониженным содержанием натрия) — ~350 mg potassium</li>
+    <li><b>Juice of ½ lemon + stevia</b> to make it drinkable</li>
+    <li><b>Magnesium taken separately</b> — 200 mg elemental, twice a day</li>
+  </ul>
+  <p style="margin-bottom:0;"><b>2–3 servings a day.</b> One on waking, one 30 minutes before training, one late afternoon. This is the local replacement for the electrolyte product advertised in video 2 — same three minerals, same ratios, no shipping.</p>
+</div>
+
+<div class="co co-w">
+  <div class="cot">Two cautions on the drink</div>
+  <p><b>Регидрон is not a substitute.</b> It's in every pharmacy here and it works — but it contains roughly 10 g of glucose per sachet, which is half your daily carb budget. Emergencies only.</p>
+  <p><b>Potassium chloride has a real ceiling.</b> A quarter teaspoon a day alongside food potassium is fine for a healthy person. If you ever go on blood-pressure medication (particularly ACE inhibitors or potassium-sparing diuretics) or have any kidney issue, drop the KCl and get potassium from food only.</p>
+</div>
+
+<h3 class="sub">Fiber — ramp it, don't jump it</h3>
+<div class="tw">
+<table>
+<thead><tr><th>When</th><th>Psyllium</th><th>Plus</th></tr></thead>
+<tbody>
+<tr><td class="nm">Week 1</td><td class="mono">5 g (1 tsp), once daily</td><td>Vegetables only</td></tr>
+<tr><td class="nm">Week 2</td><td class="mono">10 g, split into 2 doses</td><td>Add 15 g chia</td></tr>
+<tr><td class="nm">Week 3+</td><td class="mono">10 g, split</td><td>Chia + avocado daily + 200–300 g veg → ~20 g soluble, 30–35 g total</td></tr>
+</tbody>
+</table>
+</div>
+<ul class="clean">
+  <li><b>Psyllium needs a full large glass of water each dose.</b> Taken dry it causes precisely the constipation it's meant to prevent.</li>
+  <li><b>Take it 2 hours away from supplements and any medication</b> — the gel that slows fat absorption also slows theirs.</li>
+  <li><b>Net carbs = total carbs − fiber − sugar alcohols.</b> Fiber grams don't count against your 20.</li>
+</ul>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="supps">
+<div class="tag"><span class="badge">10</span> Supplements</div>
+<h2 class="sec">What to take — and what to skip</h2>
+<p class="sec-lead">Both videos carry sponsor recommendations. I've separated what the science supports from what's being sold.</p>
+
+<h3 class="sub">Tier 1 — actually do these</h3>
+<div class="tw">
+<table>
+<thead><tr><th>What</th><th class="mono">Dose</th><th>Why</th><th>Sourcing here</th></tr></thead>
+<tbody>
+<tr><td class="nm">Electrolytes</td><td class="mono">per §9</td><td>The single highest-impact item. Prevents "keto flu," protects you from a dizzy episode mid-session.</td><td>Salt + salt substitute, any shop</td></tr>
+<tr><td class="nm">Creatine monohydrate</td><td class="mono">5 g/day</td><td>Partly offsets the glycogen and water loss, so it directly protects the lifts you're worried about. Also evidence for anti-inflammatory effect at higher doses. No loading needed.</td><td>Sport-nutrition shops, uzum.uz</td></tr>
+<tr><td class="nm">Magnesium</td><td class="mono">400 mg elemental</td><td>Lost heavily under low insulin. Cramps, sleep, muscle contraction.</td><td>Citrate/glycinate; Magne B6 in pharmacies</td></tr>
+<tr><td class="nm">Fish oil</td><td class="mono">2–3 g EPA+DHA</td><td>Rule 5. <b>Triglyceride form</b> — check the label; ethyl ester oxidises far more readily.</td><td>Solgar / NOW in pharmacies — read the form</td></tr>
+<tr><td class="nm">Psyllium husk</td><td class="mono">10 g, split</td><td>Rule 6. The cheapest soluble fiber that works.</td><td>Pharmacies (шелуха подорожника / Мукофальк)</td></tr>
+<tr><td class="nm">Whey isolate</td><td class="mono">1–2 scoops</td><td>Your protein safety net. Isolate, not concentrate — lower carbs.</td><td>Sport-nutrition shops</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="sub">Tier 2 — worth adding once the basics are running</h3>
+<div class="tw">
+<table>
+<thead><tr><th>What</th><th class="mono">Dose</th><th>Honest assessment</th></tr></thead>
+<tbody>
+<tr><td class="nm">TMG (betaine anhydrous)</td><td class="mono">2.5–6 g/day</td><td>Video 1 is very enthusiastic. It's cheap, safe, a methyl donor that lowers homocysteine, with decent evidence for body-composition effects. Reasonable addition — not the miracle it's described as.</td></tr>
+<tr><td class="nm">MCT oil</td><td class="mono">5–15 g, tactical</td><td><b>The two videos flatly contradict each other here.</b> Video 1 says use it to drive ketones up; video 2 says don't build on it, because high ketones suppress your own fat release. Video 2 is newer and the mechanism is sound. Verdict: use MCT for a mental lift or a low-fuel morning. <b>Never to make the meter read higher.</b> Start at 5 g — more than that too early causes urgent GI problems.</td></tr>
+<tr><td class="nm">Fermented dairy</td><td class="mono">1 serving/day</td><td>Suzma / katyk / kefir. This replaces the paid probiotic in video 1. Add a commercial probiotic only if the gut is still unsettled at week 6.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="sub">Tier 3 — skip</h3>
+<div class="tw">
+<table>
+<thead><tr><th>What</th><th>Why I'm saying no</th></tr></thead>
+<tbody>
+<tr><td class="nm">Yohimbine / rauwolscine</td><td>Video 1 flags it as aggressive and says check with a doctor. Beyond that: <b>you already take a 300 mg caffeine pre-workout.</b> Stacking an alpha-2 antagonist on top of that raises blood pressure, anxiety and heart rate in exactly the way that will make you think keto is the problem. Not worth it for a marginal fat-loss effect.</td></tr>
+<tr><td class="nm">MOTS-c peptide</td><td>The video itself calls this experimental and out of its wheelhouse — the human data isn't there, and peptide sourcing is unregulated. Nothing about your situation calls for it.</td></tr>
+<tr><td class="nm">Exogenous ketone salts/esters</td><td>Not in either video, and rule 1 explains why: raising blood ketones from outside signals your body to release <em>less</em> of its own fat. You're trying to burn stored fat, not buy ketones.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-w">
+  <div class="cot">Caffeine total</div>
+  <p>Keto makes you urinate more; caffeine adds to that. Keep total caffeine at or under <b>400 mg/day</b> including coffee (a Nespresso is ~120 mg, a full Pre JYM serving ~300 mg). Half-serve the pre-workout for the first fortnight and always take it with the electrolyte drink, never on an empty, salt-depleted stomach.</p>
+</div>
+
+<h3 class="sub">Sweeteners</h3>
+<div class="pills">
+  <span class="pill g">Stevia — default</span>
+  <span class="pill g">Monk fruit</span>
+  <span class="pill g">Allulose — if you can find it</span>
+  <span class="pill">Erythritol — fine in moderation</span>
+  <span class="pill">Xylitol — fine, toxic to dogs</span>
+  <span class="pill r">Maltitol — spikes glucose, causes GI distress</span>
+</div>
+<p>Video 1 argues the 2023 scare studies on erythritol and xylitol were badly designed with reverse causation, which is a fair criticism — but "totally fine" is stronger than the evidence really supports. Sensible position: <b>stevia and monk fruit as your defaults, erythritol without worry when it's in something, and don't build the diet on sweet things either way.</b> Allulose is genuinely interesting — it occupies the GLUT5 transporter and can blunt a glucose rise — but it's unlikely to be on a shelf in Tashkent. Order it if you want it.</p>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="life">
+<div class="tag"><span class="badge">11</span> Real life</div>
+<h2 class="sec">Plov, guests, and Friday nights</h2>
+<p class="sec-lead">Rule 12: this fails on friction, not on carbohydrate. Uzbek hospitality is the highest-friction environment there is, so it needs a plan rather than willpower.</p>
+
+<h3 class="sub">At the table</h3>
+<div class="vs">
+  <div class="col can">
+    <div class="who">Eat these, freely</div>
+    <ul>
+      <li>Shashlik — lamb, beef, chicken</li>
+      <li>Kazan kabob, the meat</li>
+      <li>Kebab, kuurdak</li>
+      <li>Achichuk and other salads (light on onion)</li>
+      <li>Greens, herbs, cheese, nuts</li>
+      <li>Tea, unsweetened</li>
+    </ul>
+  </div>
+  <div class="col cant">
+    <div class="who">The moves that make it easy</div>
+    <ul>
+      <li><b>Eat 50–60 g of protein before you go.</b> You are not negotiating with plov on an empty stomach.</li>
+      <li><b>Take the meat off the plov</b> rather than refusing the dish. Nobody is offended.</li>
+      <li><b>Hold a cup of tea.</b> An empty hand invites feeding.</li>
+      <li><b>Don't announce the diet.</b> "I ate before" ends the conversation; "I'm on keto" starts a two-hour one.</li>
+      <li><b>If you eat the plov — that was Mode C.</b> Log it, move on, resume at the next meal. Never compensate by skipping meals the next day.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="co co-i">
+  <div class="cot">The reframe that makes this sustainable</div>
+  <p>Video 2 spends a full rule on this and it's the most useful thing in either video: <b>keto is a tool, not an identity.</b> You're not defending a position. You're running a metabolic protocol for twelve weeks, with a carb touch built into Friday <em>on purpose</em>. A social meal that lands on a Friday is on the plan. One that lands on a Tuesday costs you about a day of adaptation and nothing else.</p>
+  <p>The failure isn't the plov. The failure is deciding you've "broken it" and eating badly for four days.</p>
+</div>
+
+<h3 class="sub">Travel &amp; the no-fridge day</h3>
+<ul class="clean">
+  <li><b>Boiled eggs, tinned sardines, hard cheese, almonds</b> — the whole emergency kit fits in a bag.</li>
+  <li><b>Any restaurant:</b> grilled meat + salad, no bread. That's it. That's the whole strategy.</li>
+  <li><b>Salt sachets in your bag.</b> Travel days are dehydration days.</li>
+  <li><b>Whey isolate in a shaker</b> — the rule from your master file survives the diet change intact: any time a meal would be skipped, drink one instead.</li>
+</ul>
+</section>
+
+<!-- ============ 12 ============ -->
+<section id="track">
+<div class="tag"><span class="badge">12</span> The log</div>
+<h2 class="sec">What you write down</h2>
+<p class="sec-lead">Eight columns. Two minutes a day. Without this you'll be guessing at week 8, and guessing is how people quit something that was working.</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>Date</th><th class="mono">Gluc</th><th class="mono">Ket</th><th class="mono">GKI</th><th class="mono">UA</th><th class="mono">kg</th><th class="mono">Waist</th><th>Session quality 1–5 + note</th></tr></thead>
+<tbody>
+<tr><td class="mono">07.08</td><td class="mono">4.9</td><td class="mono">0.3</td><td class="mono">16.3</td><td class="mono">5.8</td><td class="mono">80.4</td><td class="mono">—</td><td><em>baseline, normal eating</em></td></tr>
+<tr><td class="mono">…</td><td class="mono"></td><td class="mono"></td><td class="mono"></td><td class="mono"></td><td class="mono"></td><td class="mono"></td><td></td></tr>
+</tbody>
+</table>
+</div>
+
+<ul class="clean">
+  <li><b>Weight and waist weekly, not daily.</b> Same morning, before food, after the bathroom. Daily weight on keto is mostly water theatre and will mislead you badly in week 1.</li>
+  <li><b>Waist matters more than weight for you</b> — visceral fat loss is a stated goal, and body recomposition routinely holds the scale flat while the tape moves.</li>
+  <li><b>Session quality 1–5 is the most valuable column.</b> It's what tells you whether adaptation is happening, well before the meter does.</li>
+  <li><b>Note Whoop recovery next to bad readings.</b> A poor night moves glucose and ketones both — you want to know that before you blame the diet.</li>
+  <li><b>Log the plov.</b> Honestly. An unlogged deviation is the one that makes week 8 uninterpretable.</li>
+</ul>
+
+<div class="co co-i">
+  <div class="cot">Where this lives</div>
+  <p>Say the word and I'll set this up in the vault as a proper note under <b>Health &amp; Training</b>, with the tasks wired into your <code>Tasks.md</code> dashboard — weekly meter readings, the week-8 retest, the week-12 refeed decision — so it surfaces on its own instead of depending on you remembering.</p>
+</div>
+</section>
+
+<!-- ============ 13 ============ -->
+<section id="flags">
+<div class="tag"><span class="badge">13</span> Honest notes</div>
+<h2 class="sec">Red flags, and where I don't fully agree with the videos</h2>
+
+<h3 class="sub">Stop and see a doctor if</h3>
+<div class="co co-r">
+  <div class="cot">Not "monitor" — actually go</div>
+  <ul style="margin:0;">
+    <li><b>Uric acid still above 9 mg/dL (535 µmol/L) past week 6</b>, or any sudden hot, swollen, painful joint — big toe, ankle, knee. Given your pelvis and neck history, do not let a gout flare get misfiled as a training injury.</li>
+    <li><b>Palpitations, persistent dizziness or fainting</b> that a full day of proper sodium doesn't resolve.</li>
+    <li><b>Ketones above 5 mmol/L together with high glucose</b> plus nausea, vomiting or rapid breathing.</li>
+    <li><b>Strength still more than 20% below baseline at week 8.</b> That's no longer adaptation; something in the plan or in you needs looking at.</li>
+    <li><b>Any prescription medication</b> — particularly for blood pressure or blood sugar. Tell your doctor you're doing this before you start; doses often need adjusting on keto.</li>
+  </ul>
+</div>
+
+<h3 class="sub">Where I've deviated from the videos, and why</h3>
+<div class="tw">
+<table>
+<thead><tr><th>The videos say</th><th>What I've written, and why</th></tr></thead>
+<tbody>
+<tr><td class="nm">50% of calories from protein</td><td>180 g/day (~33%) as the daily floor, with the 50%+ configuration confined to Mode B lean days. At your calorie level, true 50% protein <em>is</em> a PSMF — it isn't a diet you run daily. This satisfies both videos rather than one.</td></tr>
+<tr><td class="nm">MCT oil to drive ketones up (video 1)</td><td>Tactical use only. Video 2 directly contradicts video 1 here and has the better argument: raising ketones with MCT down-regulates release of your own fat. Since your goal is stored fat, the newer position wins.</td></tr>
+<tr><td class="nm">15–20 g carb boluses every other day (video 1)</td><td>Taken video 2's version instead: 30–50 g once or twice a week. Same purpose — protecting glucose tolerance — but it fits your Friday schedule and is less disruptive to adaptation during the first eight weeks.</td></tr>
+<tr><td class="nm">Start PSMF cycling early (video 1)</td><td>Delayed to week 9. Adding a deep deficit to a body that's still adapting, when your documented weakness is <em>under</em>-eating, is how this ends in three weeks with poor lifts and a bad opinion of keto.</td></tr>
+<tr><td class="nm">C15 fat, "first clinical deficiency in 75 years"</td><td>Eat the aged cheese — it's good food and the advice is harmless. But that specific framing originates with a company selling a C15 supplement. Enjoy the parmesan; don't buy the pill.</td></tr>
+<tr><td class="nm">The named probiotic and electrolyte brands</td><td>Both are paid placements in the videos, disclosed in the videos themselves. The underlying advice — feed your gut, replace your minerals — is completely sound. §9 and §5 give you the local versions at a fraction of the cost.</td></tr>
+<tr><td class="nm">Erythritol and xylitol are "still fine"</td><td>Softened. The criticism of the 2023 studies is fair, but the all-clear is stronger than the evidence supports. Stevia and monk fruit as defaults; erythritol without anxiety when it turns up in something.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="co co-v">
+  <div class="cot">One thing to be clear about</div>
+  <p>I'm building this from two videos by one practitioner plus your own training file — not from a clinical assessment, and I'm not a doctor. The protocol is conservative where it matters: it starts at maintenance, it delays the aggressive parts, and the uric acid channel on your meter is being used as an actual safety instrument rather than a curiosity. If you have bloodwork from the past year, show it to me and I'll tell you what to watch. And if you're on any medication at all, that conversation happens with your doctor before day 1, not after.</p>
+</div>
+</section>
+
+<!-- ============ 14 ============ -->
+<section id="shop">
+<div class="tag"><span class="badge">14</span> Appendix</div>
+<h2 class="sec">The weekly basket</h2>
+<p class="sec-lead">One shop, one Sunday. If this is in the house, the protocol runs itself.</p>
+
+<div class="vs">
+  <div class="col">
+    <div class="who" style="color:var(--coral-d);">Every week</div>
+    <ul>
+      <li>Eggs — <b>30</b></li>
+      <li>Ground beef (фарш) — 1.5 kg</li>
+      <li>Beef or lamb for steaks/shashlik — 1 kg</li>
+      <li>Chicken thighs — 1 kg</li>
+      <li>Turkey breast — 500 g</li>
+      <li>Mackerel / trout / salmon — 2 portions</li>
+      <li>Tinned sardines — 4 tins</li>
+      <li>Tvorog — 1 kg</li>
+      <li>Suzma or katyk — 1 kg</li>
+      <li>Smetana — 400 g</li>
+      <li>Hard cheese (parmesan / cheddar / brynza) — 400 g</li>
+      <li>Butter — 400 g</li>
+      <li>Avocado — 5–7</li>
+      <li>Cabbage, broccoli, cauliflower, zucchini, eggplant, peppers, cucumber</li>
+      <li>Spinach + all the зелень you can carry</li>
+    </ul>
+  </div>
+  <div class="col">
+    <div class="who" style="color:var(--coral-d);">Stock once, lasts a month</div>
+    <ul>
+      <li>Olive oil — good bottle, 1 L</li>
+      <li>Ghee or lamb tail fat</li>
+      <li>Almonds — 500 g</li>
+      <li>Chia seeds — 500 g</li>
+      <li>Psyllium husk — 300 g</li>
+      <li>Fine salt — the big bag</li>
+      <li>Potassium chloride salt substitute</li>
+      <li>Magnesium citrate or glycinate</li>
+      <li>Creatine monohydrate — 500 g</li>
+      <li>Fish oil, triglyceride form</li>
+      <li>Whey isolate — 2 kg</li>
+      <li>Stevia</li>
+      <li>Meter strips — <b>29 glucose · 29 ketone · 12 uric acid</b> for the first 8 weeks</li>
+      <li>Honey — one small jar, for Tuesdays only</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<div class="foot">
+  <p><strong>Sources.</strong> Built from two Thomas DeLauer videos supplied 7 August 2026 — the "starting keto now" briefing and <em>The New Era of Keto in 2026 (NEW science, NEW rules)</em> — merged, de-duplicated, and reconciled where they disagree. Fitted to <em>Asom — Training &amp; Health Master File</em> (vault, last updated 12 July 2026) for bodyweight, program, injury constraints and the documented under-eating pattern. Food availability reflects what is ordinarily stocked in Tashkent supermarkets and bazaars — check before making a special trip.</p>
+  <p><strong>Not medical advice.</strong> One practitioner's synthesis plus a coach's structuring of it. If you take any prescription medication — especially for blood pressure or blood sugar — speak to your doctor before day 1. The uric acid thresholds in §7 and the red flags in §13 are the parts to take literally.</p>
+  <p>Asom · Keto Protocol v1.0 · 7 August 2026 · review at week 8</p>
+</div>
+
+</div>
+</body>
+</html>
